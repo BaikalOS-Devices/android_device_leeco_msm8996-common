@@ -135,9 +135,6 @@ BOARD_HAL_STATIC_LIBRARIES := libhealthd.msm
 # Before enabling lineage charger you have to fix it!
 WITH_LINEAGE_CHARGER := false
 
-# CNE and DPM
-BOARD_USES_QCNE := true
-
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
