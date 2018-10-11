@@ -125,9 +125,6 @@ on post-fs-data
     mkdir /data/fpc_images/enroll 0770 system system
     mkdir /data/fpc 0770 system system
 
-    # Create directory used for display
-    mkdir /persist/display 0770 system graphics
-
     # Create vpp directory
     mkdir /mnt/vendor/persist/vpp 0770 media media
 
