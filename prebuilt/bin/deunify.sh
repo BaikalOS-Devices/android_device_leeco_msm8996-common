@@ -11,20 +11,20 @@ echo "DEVINFO: ${DEVINFO}"
 case "$DEVINFO" in
   le_zl0*)
     # Move firmware
-    mv -f /vendor/firmware/zl0/* /vendor/firmware/
+    mv -f /system/vendor/firmware/zl0/* /system/vendor/firmware/
 
     # Remove NFC perms
-    rm -f /vendor/etc/permissions/android.hardware.nfc*
-    rm -f /vendor/etc/permissions/com.android.nfc*
+    rm -f /system/vendor/etc/permissions/android.hardware.nfc*
+    rm -f /system/vendor/etc/permissions/com.android.nfc*
 
     # Remove NFC services
-    rm -f /vendor/etc/init/android.hardware.nfc*
-    rm -f /vendor/etc/init/vendor.nxp.hardware.nfc*
+    rm -f /system/vendor/etc/init/android.hardware.nfc*
+    rm -f /system/vendor/etc/init/vendor.nxp.hardware.nfc*
 
     # Remove SmartcardService
     rm -f /system/etc/permissions/org.simalliance.openmobileapi.xml
     rm -f /system/framework/org.simalliance.openmobileapi.jar
-    rm -rf /vendor/app/SmartcardService
+    rm -rf /system/vendor/app/SmartcardService
     ;;
   le_zl1*)
     # Remove qti-telephony-common.jar

@@ -16,6 +16,7 @@
 #
 
 BAIKALOS_BUILD_TEST := true
+BAIKALOS_BUILD_DEV := true
 
 PLATFORM_PATH := device/leeco/msm8996-common
 
