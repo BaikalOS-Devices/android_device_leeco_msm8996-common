@@ -3,7 +3,7 @@ on init
     write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 0
     write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 0
     write /sys/devices/soc/${ro.boot.bootdevice}/${ro.boot.bootdevice}:ufs_variant/pm_qos_enable 0
-    write /sys/module/lpm_levels/parameters/sleep_disabled Y
+    write /sys/module/lpm_levels/parameters/sleep_disabled "Y"
 
 on boot
     # Bring back main cores CPU 0,2
@@ -32,7 +32,7 @@ on enable-low-power
     write /sys/module/lpm_levels/parameters/sleep_disabled "N"
 
     # Set GPU idle frequency to 133 MHz
-    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
+    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 7
 
     # Disable thermal bcl hotplug to switch governor
     write /sys/module/msm_thermal/core_control/enabled 0
@@ -45,70 +45,109 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 19000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 90
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 20000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 960000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "19000 480000:20000 960000:20000"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 100
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 25000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack -1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 307200
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads 80
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "50 422400:50 480000:65 556800:70 652800:70 729600:70 844800:70 960000:70 1036800:70 1113600:70 1190400:70 1228800:70 1324800:80 1401600:80 1478400:80 1593600:80"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 19000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 79000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 307200
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/powersave_bias 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 960000
+
+
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 100
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 100
+
 
     # Configure governor settings for big cluster
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "19000 1400000:39000 1700000:19000 2100000:79000"
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 90
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_rate 20000
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/hispeed_freq 1248000
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay 25000
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/boost 0
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 100
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_rate 25000
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_slack -1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/hispeed_freq 307200
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "85 1500000:90 1800000:70 2100000:95"
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "90 403200:70 480000:70 556800:70 652800:70 729600:70 806400:70 883200:70 940800:70 1036800:80 1113600:80 1190400:80 1248000:80 1324800:80 1401600:80 1478400:80 1555200:90 1632000:90 1708800:90 1785600:90 1824000:90 1920000:90 1996800:90 2073600:90 2150400:90"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/min_sample_time 19000
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/max_freq_hysteresis 79000
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/max_freq_hysteresis 19000
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 307200
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/fast_ramp_down 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/enable_prediction 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/powersave_bias 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 960000
 
     # Re-enable thermal and BCL hotplug
     write /sys/module/msm_thermal/core_control/enabled 1
 
     # Input boost configuration
-    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1324800 2:0"
-    write /sys/module/cpu_boost/parameters/input_boost_ms 80
+    write /sys/module/cpu_boost/parameters/input_boost_freq "0:960000 2:480000"
+    write /sys/module/cpu_boost/parameters/input_boost_ms 20
 
     # Setting b.L scheduler parameters
-    write /proc/sys/kernel/sched_boost 0
-    write /proc/sys/kernel/sched_upmigrate 95
-    write /proc/sys/kernel/sched_downmigrate 90
+    write /proc/sys/kernel/sched_boost 1
+    write /proc/sys/kernel/sched_migration_fixup 1
+    write /proc/sys/kernel/sched_upmigrate 100
+    write /proc/sys/kernel/sched_downmigrate 98
     write /proc/sys/kernel/sched_freq_inc_notify 400000
     write /proc/sys/kernel/sched_freq_dec_notify 400000
-    write /proc/sys/kernel/sched_spill_nr_run 3
-    write /proc/sys/kernel/sched_init_task_load 100
+    write /proc/sys/kernel/sched_spill_nr_run 50
+    write /proc/sys/kernel/sched_spill_load 100
+    write /proc/sys/kernel/sched_init_task_load 10
+
+    write /proc/sys/kernel/proc/sys/kernel/sched_upmigrate_min_nice 1
+
+    write /sys/devices/system/cpu/cpu0/sched_mostly_idle_nr_run 25
+    write /sys/devices/system/cpu/cpu0/sched_mostly_idle_load 95
+    write /sys/devices/system/cpu/cpu0/sched_static_cpu_pwr_cost 10
+    write /sys/devices/system/cpu/cpu0/sched_static_cluster_pwr_cost 20
+
+    write /sys/devices/system/cpu/cpu1/sched_mostly_idle_nr_run 25
+    write /sys/devices/system/cpu/cpu1/sched_mostly_idle_load 95
+    write /sys/devices/system/cpu/cpu1/sched_static_cpu_pwr_cost 10
+    write /sys/devices/system/cpu/cpu1/sched_static_cluster_pwr_cost 20
+
+    write /sys/devices/system/cpu/cpu2/sched_mostly_idle_nr_run 1
+    write /sys/devices/system/cpu/cpu2/sched_mostly_idle_load 5
+    write /sys/devices/system/cpu/cpu2/sched_static_cpu_pwr_cost 500
+    write /sys/devices/system/cpu/cpu2/sched_static_cluster_pwr_cost 1000
+
+    write /sys/devices/system/cpu/cpu3/sched_mostly_idle_nr_run 1
+    write /sys/devices/system/cpu/cpu3/sched_mostly_idle_load 5
+    write /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost 500
+    write /sys/devices/system/cpu/cpu3/sched_static_cluster_pwr_cost 1000
+
 
     # Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
-    write /sys/class/devfreq/soc:qcom,cpubw/polling_interval 50
+    write /sys/class/devfreq/soc:qcom,cpubw/polling_interval 100
     write /sys/class/devfreq/soc:qcom,cpubw/min_freq 1525
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/mbps_zones "1525 5195 11863 13763"
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms 4
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 34
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms 10
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 60
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory 20
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length 10
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_ceil_mbps 0
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_io_percent 34
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_io_percent 60
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_delay 20
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/guard_band_mbps 0
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/up_scale 250
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/idle_mbps 1600
 
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 10
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 50
     write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 10
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 50
     write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
 
     # Enable UFS powersaving
@@ -131,7 +170,7 @@ on enable-low-power
     write /dev/cpuset/top-app/cpus 0-3
     write /dev/cpuset/foreground/cpus 0-2
     write /dev/cpuset/background/cpus 0
-    write /dev/cpuset/system-background/cpus 0-2
+    write /dev/cpuset/system-background/cpus 0-1
 
 on charger
     write /sys/devices/system/cpu/cpu1/online 0
@@ -143,7 +182,7 @@ on charger
     write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 1
     write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 1
     write /sys/devices/soc/${ro.boot.bootdevice}/${ro.boot.bootdevice}:ufs_variant/pm_qos_enable 1
-    write /sys/module/lpm_levels/parameters/sleep_disabled 0
+    write /sys/module/lpm_levels/parameters/sleep_disabled "N"
 
 on property:init.svc.recovery=running
     trigger enable-low-power
