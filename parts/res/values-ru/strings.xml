@@ -39,4 +39,9 @@
     <string name="kcal_contrast">Контраст</string>
     <string name="menu_reset">Сбросить</string>
     <string name="kcal_color_temp">Температура цвета (K)</string>
+
+    <!-- Volte -->
+    <string name="volte_pref_title">VoLTE Хак</string>
+    <string name="volte_fix_title">Включить VoLTE</string>
+    <string name="volte_fix_summary">Требуется перезагрузка, настройки симкарт будут слетать при каждой загрузке</string>
 </resources>

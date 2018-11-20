@@ -49,12 +49,14 @@ public class DeviceSettings extends PreferenceFragment implements
     private static final String KEY_CATEGORY_DISPLAY = "display";
     private static final String KEY_CATEGORY_CAMERA = "camera_pref";
     private static final String SYSTEM_PROPERTY_CAMERA_FOCUS_FIX = "persist.camera.focus_fix";
+    private static final String SYSTEM_PROPERTY_VOLTE_FIX = "persist.volte.fix";
     final String KEY_DEVICE_DOZE = "device_doze";
     final String KEY_DEVICE_DOZE_PACKAGE_NAME = "org.lineageos.settings.doze";
 
 
     private Preference mKcalPref;
     private SwitchPreference mCameraFocusFix;
+    private SwitchPreference mVolteFix;
     private PreferenceCategory cameraCategory;
 
     @Override
@@ -80,6 +82,12 @@ public class DeviceSettings extends PreferenceFragment implements
                 mCameraFocusFix.setChecked(SystemProperties.getBoolean(SYSTEM_PROPERTY_CAMERA_FOCUS_FIX, false));
                 mCameraFocusFix.setOnPreferenceChangeListener(this);
             }
+        }
+
+        mVolteFix = (SwitchPreference) findPreference(SYSTEM_PROPERTY_VOLTE_FIX);
+        if( mVolteFix != null ) {
+            mVolteFix.setChecked(SystemProperties.getBoolean(SYSTEM_PROPERTY_VOLTE_FIX, false));
+            mVolteFix.setOnPreferenceChangeListener(this);
         }
 
         if (!isAppInstalled(KEY_DEVICE_DOZE_PACKAGE_NAME)) {
