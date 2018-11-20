@@ -22,6 +22,11 @@
     <string name="display_title">Экран</string>
     <string name="device_doze_title">Индикация событий (doze)</string>
 
+    <!-- Battery -->
+    <string name="battery_settings_title">Батарейка</string>
+    <string name="qc_title">Быстрая зарядка</string>
+    <string name="qc_summary">Включить/отключить быструю зарядку</string>
+
     <!-- Camera -->
     <string name="camera_pref_title">Камера</string>
     <string name="camera_focus_fix_title">Фикс автофокуса</string>
