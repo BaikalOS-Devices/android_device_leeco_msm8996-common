@@ -17,28 +17,28 @@
 <resources>
     <!-- App -->
     <string name="app_name">Le Extras</string>
-    <string name="advanced_settings">Advanced</string>
+    <string name="advanced_settings">Настройки устройства</string>
     <!-- Ambient display -->
-    <string name="display_title">Display</string>
-    <string name="device_doze_title">Ambient display</string>
+    <string name="display_title">Экран</string>
+    <string name="device_doze_title">Индикация уведомлений</string>
     <!-- Camera -->
-    <string name="camera_pref_title">Camera</string>
-    <string name="camera_focus_fix_title">Autofocus Fix</string>
-    <string name="camera_focus_fix_summary">For devices with autofocus problem</string>
+    <string name="camera_pref_title">Камера</string>
+    <string name="camera_focus_fix_title">Фикс автофокуса</string>
+    <string name="camera_focus_fix_summary">Для устройств с проблемами с автофокусом</string>
     <!-- Kcal -->
-    <string name="kcal_title">Display color</string>
-    <string name="kcal_summary">Display color calibration using KCAL</string>
-    <string name="kcal_enabled_title">Enable KCAL</string>
-    <string name="kcal_enabled_summary">Turn on display calibration using KCAL</string>
-    <string name="kcal_red">Red</string>
-    <string name="kcal_green">Green</string>
-    <string name="kcal_blue">Blue</string>
-    <string name="kcal_saturation">Saturation</string>
-    <string name="kcal_contrast">Constrast</string>
-    <string name="menu_reset">Reset</string>
-    <string name="kcal_color_temp">Color temperature (K)</string>
+    <string name="kcal_title">Калибровка дисплея</string>
+    <string name="kcal_summary">Калибровка дисплея с использованием KCAL</string>
+    <string name="kcal_enabled_title">Включить KCAL</string>
+    <string name="kcal_enabled_summary">Включить калибровку дисплея KCAL</string>
+    <string name="kcal_red">Красный</string>
+    <string name="kcal_green">Зеленый</string>
+    <string name="kcal_blue">Голубой</string>
+    <string name="kcal_saturation">Насыщенность</string>
+    <string name="kcal_contrast">Контраст</string>
+    <string name="menu_reset">Сброс</string>
+    <string name="kcal_color_temp">Цветовая температура (K)</string>
     <!-- Volte -->
     <string name="volte_pref_title">VoLTE Hack</string>
-    <string name="volte_fix_title">Enable VoLTE</string>
-    <string name="volte_fix_summary">requires reboot,sim settings resets after every reboot</string>
+    <string name="volte_fix_title">Включить VoLTE</string>
+    <string name="volte_fix_summary">требует перезагрузки, сброс параметров sim после каждой перезагрузки</string>
 </resources>
