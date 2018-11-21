@@ -43,7 +43,7 @@ on enable-low-power
 
     # Configure governor settings for little cluster
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "19000 480000:20000 960000:20000"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 100
@@ -62,13 +62,13 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 960000
 
 
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 100
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 100
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 101
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 101
 
 
     # Configure governor settings for big cluster
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay 25000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/boost 0
@@ -145,9 +145,9 @@ on enable-low-power
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/idle_mbps 1600
 
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 50
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 100
     write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 50
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 100
     write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
 
     # Enable UFS powersaving
@@ -168,8 +168,8 @@ on enable-low-power
 
     # update cpusets now that boot is complete and we want better load balancing
     write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/foreground/cpus 0-2
-    write /dev/cpuset/background/cpus 0
+    write /dev/cpuset/foreground/cpus 0-1
+    write /dev/cpuset/background/cpus 0-1
     write /dev/cpuset/system-background/cpus 0-1
 
 on charger
