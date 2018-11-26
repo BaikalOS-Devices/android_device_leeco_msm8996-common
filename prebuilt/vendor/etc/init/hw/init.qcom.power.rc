@@ -133,22 +133,30 @@ on enable-low-power
     write /sys/class/devfreq/soc:qcom,cpubw/polling_interval 100
     write /sys/class/devfreq/soc:qcom,cpubw/min_freq 1525
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/mbps_zones "1525 5195 11863 13763"
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms 10
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 60
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms 50
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 35
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory 20
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length 10
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_ceil_mbps 0
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_io_percent 60
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_io_percent 80
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_delay 20
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/guard_band_mbps 0
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/up_scale 250
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/idle_mbps 1600
 
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 100
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 50
     write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 100
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 50
     write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
+
+#    write /sys/class/devfreq/c00000.qcom,vidc:arm9_bus_ddr/governor "performance"
+#    write /sys/class/devfreq/624000.ufshc/governor "performance"
+#    write /sys/class/devfreq/c00000.qcom,vidc:bus_cnoc/governor "performance"
+#    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "cpufreq"
+#    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 100
+#    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "cpufreq"
+#    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 100
 
     # Enable UFS powersaving
     write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 1
@@ -184,8 +192,54 @@ on charger
     write /sys/devices/soc/${ro.boot.bootdevice}/${ro.boot.bootdevice}:ufs_variant/pm_qos_enable 1
     write /sys/module/lpm_levels/parameters/sleep_disabled "N"
 
+on state-asleep
+    write /dev/cpuset/top-app/cpus 0-1
+    write /dev/cpuset/foreground/cpus 0-1
+    write /dev/cpuset/background/cpus 0-1
+    write /dev/cpuset/system-background/cpus 0-1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 307200
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 307200
+
+on state-awake
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/system-background/cpus 0-3
+
+
+on state-background
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/system-background/cpus 0-3
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 940800
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 940800
+
+
 on property:init.svc.recovery=running
     trigger enable-low-power
 
 on property:sys.boot_completed=1
     trigger enable-low-power
+
+on property:power.wakefulness=1
+    trigger state-awake
+
+on property:power.wakefulness=0 && property:power.wake_lock=0
+    trigger state-asleep
+
+on property:power.wakefulness=0 && property:power.wake_lock=1
+    trigger state-background
+
+on property:power.wakefulness=2 && property:power.wake_lock=0
+    trigger state-asleep
+
+on property:power.wakefulness=2 && property:power.wake_lock=1
+    trigger state-background
+
+on property:power.wakefulness=3 && property:power.wake_lock=0
+    trigger state-asleep
+
+on property:power.wakefulness=3 && property:power.wake_lock=1
+    trigger state-background
+
