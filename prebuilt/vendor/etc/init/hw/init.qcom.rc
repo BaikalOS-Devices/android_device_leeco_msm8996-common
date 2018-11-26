@@ -80,8 +80,8 @@ on late-fs
     # boot time fs tune
     write /sys/block/sda/queue/iostats 0
     write /sys/block/sda/queue/iosched/slice_idle 0
-    write /sys/block/sda/queue/read_ahead_kb 2048
-    write /sys/block/sda/queue/nr_requests 256
+    write /sys/block/sda/queue/read_ahead_kb 512
+    write /sys/block/sda/queue/nr_requests 512
 
 on post-fs
     write /dev/ipa 1
@@ -650,12 +650,14 @@ service ims_rtp_daemon /vendor/bin/ims_rtp_daemon
    class main
    user system
    group radio diag inet log
+   writepid /dev/cpuset/system-background/tasks
    disabled
 
 service imsrcsservice /vendor/bin/imsrcsd
    class main
    user system
    group radio diag inet log
+   writepid /dev/cpuset/system-background/tasks
    disabled
 
 on property:vendor.ims.DATA_DAEMON_STATUS=1
@@ -667,6 +669,7 @@ service ppd /vendor/bin/mm-pp-dpps
     user system
     group system graphics
     socket pps stream 0660 system system
+    writepid /dev/cpuset/system-background/tasks
     disabled
 
 on property:init.svc.surfaceflinger=stopped
@@ -690,21 +693,25 @@ on property:init.svc.zygote=restarting
 service tlocd /vendor/bin/tloc_daemon
     class late_start
     user system
+    writepid /dev/cpuset/system-background/tasks
     group drmrpc gps net_raw
 
 service energy-awareness /vendor/bin/energy-awareness
     class main
     user root
     group system
+    writepid /dev/cpuset/system-background/tasks
     oneshot
 
 service mdtpd /vendor/bin/mdtpd
     class late_start
     user root
+    writepid /dev/cpuset/system-background/tasks
     group system radio drmrpc
 
 service vendor.ssr_setup /system/vendor/bin/ssr_setup
     oneshot
+    writepid /dev/cpuset/system-background/tasks
     disabled
 
 on property:persist.vendor.ssr.restart_level=*
@@ -756,11 +763,13 @@ service vendor.cnd /vendor/bin/cnd
 service dpmQmiMgr /vendor/bin/dpmQmiMgr
     class main
     user system
+    writepid /dev/cpuset/system-background/tasks
     group radio system
 
 service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     class core
     user root
+    writepid /dev/cpuset/system-background/tasks
     oneshot
 
 service vendor.rmt_storage /vendor/bin/rmt_storage
@@ -785,6 +794,7 @@ service start_hci_filter /vendor/bin/wcnss_filter
     class late_start
     user bluetooth
     group bluetooth diag system wakelock
+    writepid /dev/cpuset/system-background/tasks
     disabled
 
 on property:wc_transport.start_root=true
@@ -797,6 +807,7 @@ service hci_filter_root /vendor/bin/wcnss_filter
     class late_start
     user bluetooth
     group bluetooth oem_2901 system
+    writepid /dev/cpuset/system-background/tasks
     disabled
 
 service ftmd /vendor/bin/ftmdaemon
@@ -805,12 +816,14 @@ service ftmd /vendor/bin/ftmdaemon
     group bluetooth net_bt_admin misc oem_2901 net_bt
     disabled
     oneshot
+    writepid /dev/cpuset/system-background/tasks
     seclabel u:r:ftmdaemon:s0
 
 service vendor.port-bridge /vendor/bin/port-bridge
     class main
     user radio
     group radio system inet
+    writepid /dev/cpuset/system-background/tasks
     disabled
     oneshot
 
@@ -825,6 +838,7 @@ service vendor.ipacm /vendor/bin/ipacm
     class main
     user radio
     group radio inet
+    writepid /dev/cpuset/system-background/tasks
     disabled
 
 service vendor.dataqti /vendor/bin/qti
@@ -863,6 +877,7 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     interface android.hardware.wifi.supplicant@1.1::ISupplicant default
     class main
     socket vendor_wpa_wlan0 dgram 660 wifi wifi
+    writepid /dev/cpuset/system-background/tasks
     disabled
     oneshot
 
@@ -871,6 +886,7 @@ service cnss-daemon /vendor/bin/cnss-daemon -n -l
     user system
     group system inet net_admin wifi
     capabilities NET_ADMIN
+    writepid /dev/cpuset/system-background/tasks
 
 on property:sys.powerctl=*
     stop cnss-daemon
@@ -900,6 +916,7 @@ service vendor.ril-daemon2 /vendor/bin/hw/rild -c 2
     disabled
     group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+    writepid /dev/cpuset/system-background/tasks
 
 on property:persist.radio.multisim.config=dsds
     enable vendor.ril-daemon2
@@ -908,6 +925,7 @@ service vendor.ssr_diag /vendor/bin/ssr_diag
     class late_start
     user system
     group system
+    writepid /dev/cpuset/system-background/tasks
     disabled
 
 service charger_monitor /system/bin/charger_monitor
@@ -932,6 +950,7 @@ service hvdcp_opti /vendor/bin/hvdcp_opti
     class main
     user root
     group root
+    writepid /dev/cpuset/system-background/tasks
     seclabel u:r:hvdcp:s0
 
 service charger /vendor/bin/charger
