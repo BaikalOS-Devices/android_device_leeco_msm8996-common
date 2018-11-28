@@ -51,6 +51,7 @@ public class DeviceSettings extends PreferenceFragment implements
     private static final String QC_SYSTEM_PROPERTY = "persist.sys.le_fast_chrg_enable";
     private static final String SYSTEM_PROPERTY_CAMERA_FOCUS_FIX = "persist.camera.focus_fix";
     private static final String SYSTEM_PROPERTY_VOLTE_FIX = "persist.volte.fix";
+    private static final String SYSTEM_PROPERTY_HALL_SRV = "persist.sys.hall_sensor";
     final String KEY_DEVICE_DOZE = "device_doze";
     final String KEY_DEVICE_DOZE_PACKAGE_NAME = "org.lineageos.settings.doze";
 
@@ -59,6 +60,7 @@ public class DeviceSettings extends PreferenceFragment implements
     private SwitchPreference mCameraFocusFix;
     private SwitchPreference mEnableQC;
     private SwitchPreference mVolteFix;
+    private SwitchPreference mHallSrv;
     private PreferenceCategory cameraCategory;
 
     @Override
@@ -96,6 +98,12 @@ public class DeviceSettings extends PreferenceFragment implements
         if( mVolteFix != null ) {
             mVolteFix.setChecked(SystemProperties.getBoolean(SYSTEM_PROPERTY_VOLTE_FIX, false));
             mVolteFix.setOnPreferenceChangeListener(this);
+        }
+
+        mHallSrv = (SwitchPreference) findPreference(SYSTEM_PROPERTY_HALL_SRV);
+        if( mHallSrv != null ) {
+            mHallSrv.setChecked(SystemProperties.getBoolean(SYSTEM_PROPERTY_HALL_SRV, false));
+            mHallSrv.setOnPreferenceChangeListener(this);
         }
 
         if (!isAppInstalled(KEY_DEVICE_DOZE_PACKAGE_NAME)) {

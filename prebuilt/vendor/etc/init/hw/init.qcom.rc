@@ -967,3 +967,17 @@ on property:persist.sys.le_fast_chrg_enable=1
 
 on property:persist.sys.le_fast_chrg_enable=0
     write /sys/class/power_supply/le_ab/le_quick_charge_mode 1
+
+service folio_daemon /vendor/bin/folio_daemon
+    class late_start
+    user system
+    group system diag input
+    writepid /dev/cpuset/system-background/tasks
+    capabilities BLOCK_SUSPEND
+    disabled
+
+on property:persist.sys.hall_sensor=1 && property:sys.boot_completed=1
+    start folio_daemon
+
+on property:persist.sys.hall_sensor=0
+    stop folio_daemon

@@ -49,4 +49,9 @@
     <string name="volte_pref_title">VoLTE Hack</string>
     <string name="volte_fix_title">Enable VoLTE</string>
     <string name="volte_fix_summary">requires reboot,sim settings resets after every reboot</string>
+
+    <!-- HALL Sensor -->
+    <string name="hall_srv_title">HALL Sensor</string>
+    <string name="hall_srv_summary">Enable HALL sensor driver</string>
+
 </resources>

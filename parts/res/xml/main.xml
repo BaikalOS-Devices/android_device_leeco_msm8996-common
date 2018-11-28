@@ -65,4 +65,10 @@
             android:summary="@string/volte_fix_summary" />
      </PreferenceCategory>
 
+     <SwitchPreference
+        android:key="persist.sys.hall_sensor"
+        android:defaultValue="false"
+        android:title="@string/hall_srv_title"
+        android:summary="@string/hall_srv_summary" />
+
 </PreferenceScreen>

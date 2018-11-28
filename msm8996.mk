@@ -426,4 +426,8 @@ PRODUCT_COPY_FILES += \
 BOARD_VENDOR_EXTRA_SYMLINKS += \
     /vendor/firmware:/firmware/drm
 
+# Use daemon to detect folio open/close
+PRODUCT_PACKAGES += \
+    folio_daemon
+
 $(call inherit-product, vendor/leeco/msm8996-common/msm8996-common-vendor.mk)
