@@ -104,8 +104,12 @@ on enable-low-power
     write /proc/sys/kernel/sched_spill_nr_run 50
     write /proc/sys/kernel/sched_spill_load 100
     write /proc/sys/kernel/sched_init_task_load 10
+    write /proc/sys/kernel/sched_big_waker_task_load 50
+    write /proc/sys/kernel/sched_small_task 15
+    write /proc/sys/kernel/sched_wakeup_load_threshold 110
+    write /proc/sys/kernel/sched_small_wakee_task_load 15
 
-    write /proc/sys/kernel/proc/sys/kernel/sched_upmigrate_min_nice 1
+    write /proc/sys/kernel/proc/sys/kernel/sched_upmigrate_min_nice 7
 
     write /sys/devices/system/cpu/cpu0/sched_mostly_idle_nr_run 25
     write /sys/devices/system/cpu/cpu0/sched_mostly_idle_load 95
@@ -148,7 +152,6 @@ on enable-low-power
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 50
     write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
     write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 50
-    write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
 
 #    write /sys/class/devfreq/c00000.qcom,vidc:arm9_bus_ddr/governor "performance"
 #    write /sys/class/devfreq/624000.ufshc/governor "performance"
@@ -176,9 +179,9 @@ on enable-low-power
 
     # update cpusets now that boot is complete and we want better load balancing
     write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/foreground/cpus 0-1
-    write /dev/cpuset/background/cpus 0-1
-    write /dev/cpuset/system-background/cpus 0-1
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/system-background/cpus 0-3
 
 on charger
     write /sys/devices/system/cpu/cpu1/online 0
@@ -193,19 +196,26 @@ on charger
     write /sys/module/lpm_levels/parameters/sleep_disabled "N"
 
 on state-asleep
-    write /dev/cpuset/top-app/cpus 0-1
-    write /dev/cpuset/foreground/cpus 0-1
-    write /dev/cpuset/background/cpus 0-1
-    write /dev/cpuset/system-background/cpus 0-1
+    write /dev/cpuset/top-app/cpus 0
+    write /dev/cpuset/foreground/cpus 0
+    write /dev/cpuset/background/cpus 0
+    write /dev/cpuset/system-background/cpus 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 307200
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 307200
+    #write /sys/class/devfreq/soc:qcom,cpubw/governor "powersave"
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor  "powersave"
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "powersave"
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "powersave"
 
 on state-awake
     write /dev/cpuset/top-app/cpus 0-3
     write /dev/cpuset/foreground/cpus 0-3
     write /dev/cpuset/background/cpus 0-3
     write /dev/cpuset/system-background/cpus 0-3
-
+    #write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
 
 on state-background
     write /dev/cpuset/top-app/cpus 0-3
@@ -214,7 +224,9 @@ on state-background
     write /dev/cpuset/system-background/cpus 0-3
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 940800
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 940800
-
+    #write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
 
 on property:init.svc.recovery=running
     trigger enable-low-power
