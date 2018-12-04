@@ -981,3 +981,14 @@ on property:persist.sys.hall_sensor=1 && property:sys.boot_completed=1
 
 on property:persist.sys.hall_sensor=0
     stop folio_daemon
+
+on property:persist.fx.hp_detect=0
+    write /sys/module/snd_soc_wcd_mbhc/parameters/disable_hp_detect 0
+    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 1
+    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 0
+
+on property:persist.fx.hp_detect=1
+    write /sys/module/snd_soc_wcd_mbhc/parameters/disable_hp_detect 1
+    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 1
+    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 0
+
