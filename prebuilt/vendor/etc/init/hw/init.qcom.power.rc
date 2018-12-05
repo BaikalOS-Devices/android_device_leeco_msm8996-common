@@ -53,9 +53,9 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "50 422400:50 480000:65 556800:70 652800:70 729600:70 844800:70 960000:70 1036800:70 1113600:70 1190400:70 1228800:70 1324800:80 1401600:80 1478400:80 1593600:80"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 19000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 79000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 49000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 307200
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/powersave_bias 1
@@ -70,7 +70,7 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay 25000
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "25000 1400000:49000 1700000:49000 2100000:79000"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/boost 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 100
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_rate 25000
@@ -81,7 +81,7 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/min_sample_time 19000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/max_freq_hysteresis 19000
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 307200
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/fast_ramp_down 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/enable_prediction 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/powersave_bias 1
