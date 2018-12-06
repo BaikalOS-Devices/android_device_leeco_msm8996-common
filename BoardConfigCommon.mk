@@ -190,14 +190,6 @@ DEVICE_MATRIX_FILE := $(PLATFORM_PATH)/compatibility_matrix.xml
 TARGET_INIT_VENDOR_LIB := libinit_leeco_msm8996
 TARGET_RECOVERY_DEVICE_MODULES := libinit_leeco_msm8996
 
-<<<<<<< HEAD
-# Keystore
-TARGET_PROVIDES_KEYMASTER := true
-=======
-# Lineage Hardware
-JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|$(PLATFORM_PATH)/lineagehw|**/*.java
->>>>>>> c9d3278... msm8996-common: Remove unused or deprecated board flags
-
 # Partitions (/proc/partitions * 2 * BLOCK_SIZE (512) = size in bytes)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
@@ -218,9 +210,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USES_MKE2FS := true
 
 # Power
-TARGET_HAS_NO_WIFI_STATS := true
 TARGET_HAS_NO_WLAN_STATS := true
-# TARGET_USES_INTERACTION_BOOST := true
 
 # Recovery
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_leeco
