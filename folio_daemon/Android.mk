@@ -1,0 +1,27 @@
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE_TAGS := optional
+
+LOCAL_SHARED_LIBRARIES := \
+    libandroid \
+    libcutils \
+    liblog
+
+LOCAL_SRC_FILES := \
+    main.cpp
+
+LOCAL_C_INCLUDES :=
+
+LOCAL_CFLAGS := $(common_flags) -DLOG_TAG=\"folio_daemon\" -DLOG_NDEBUG=0
+
+LOCAL_CLANG := true
+LOCAL_MODULE := folio_daemon
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_OWNER := google
+LOCAL_PRIVATE_PLATFORM_APIS := true
+LOCAL_PRIVILEGED_MODULE := true
+LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR_EXECUTABLES)
+
+include $(BUILD_EXECUTABLE)

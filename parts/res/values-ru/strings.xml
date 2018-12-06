@@ -49,4 +49,9 @@
     <string name="volte_pref_title">VoLTE Хак</string>
     <string name="volte_fix_title">Включить VoLTE</string>
     <string name="volte_fix_summary">Требуется перезагрузка, настройки симкарт будут слетать при каждой загрузке</string>
+
+    <!-- HALL Sensor -->
+    <string name="hall_srv_title">Датчик Холла</string>
+    <string name="hall_srv_summary">Включить драйвер датчика Холла</string>
+
 </resources>
