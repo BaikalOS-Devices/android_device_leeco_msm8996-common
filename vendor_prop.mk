@@ -158,7 +158,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.redir_party_num=1 \
     persist.vendor.radio.mt_sms_ack=20 \
     persist.vendor.radio.sib16_support=1 \
-    telephony.lteOnCdmaDevice=1
+    telephony.lteOnCdmaDevice=1 \
+    persist.vendor.qti.pie.telephony=1
 
 # RmNet Data
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -201,3 +202,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # VoLTE Hack
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.volte.fix=0
+
