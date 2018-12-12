@@ -21,10 +21,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.audio.dolby.ds2.enabled=true \
     vendor.audio.dolby.ds2.hardbypass=true \
     vendor.audio.flac.sw.decoder.24bit=false \
-    vendor.audio_hal.period_size=192 \
     vendor.audio.hw.aac.encoder=true \
     ro.audio.offload_wakelock=false \
-    vendor.audio.offload.buffer.size.kb=384 \
+    vendor.audio.offload.buffer.size.kb=512 \
     vendor.audio.offload.gapless.enabled=true \
     vendor.audio.offload.multiaac.enable=true \
     vendor.audio.offload.multiple.enabled=true \
@@ -39,6 +38,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.audio.use.sw.alac.decoder=false \
     vendor.audio.use.sw.ape.decoder=false \
     vendor.voice.path.for.pcm.voip=true
+
+#    vendor.audio_hal.period_size=192 \
+
 
 # Audio (AAC 5.1 output)
 PRODUCT_PROPERTY_OVERRIDES += \
