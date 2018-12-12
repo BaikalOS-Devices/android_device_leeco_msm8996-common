@@ -57,4 +57,7 @@
        config to 19. -->
     <integer name="config_deviceHardwareKeys">19</integer>
 
+    <!-- Button brightness -->
+    <bool name="config_deviceHasVariableButtonBrightness">true</bool>
+
 </resources>
