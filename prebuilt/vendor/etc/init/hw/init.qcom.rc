@@ -97,10 +97,6 @@ on post-fs-data
     mkdir /persist/data/tz 0700 system system
     mkdir /data/misc/tloc/ 0700 system drmrpc
 
-    # NFC
-    mkdir /data/nfc
-    mkdir /data/oemnvitems 0771 radio radio
-
     # Sensors
     mkdir /data/misc/sensors
     chmod 0775 /data/misc/sensors
