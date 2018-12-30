@@ -424,6 +424,13 @@ PRODUCT_COPY_FILES += \
     kernel/leeco/msm8996/drivers/staging/qcacld-2.0/firmware_bin/WCNSS_cfg.dat:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
+# WFD
+PRODUCT_PACKAGES += \
+    libnl
+
+PRODUCT_BOOT_JARS += \
+    WfdCommon
+
 # Create a symlink for libcppf.so and liboemcrypto.so which expects the cppf firmware at
 # /system/etc/firmware to be able to move cppf firmware (via hex edit) to /vendor a link 
 # /vendor/firmware/drm is created, which points to /vendor/firmware
