@@ -54,4 +54,8 @@
     <string name="hall_srv_title">HALL Sensor</string>
     <string name="hall_srv_summary">Enable HALL sensor driver</string>
 
+    <!-- FB Boost -->
+    <string name="fb_boost_title">Boost on Draw</string>
+    <string name="fb_boost_summary">Boost CPU on frame draw. Could increase battery drain while svreen is on</string>
+
 </resources>

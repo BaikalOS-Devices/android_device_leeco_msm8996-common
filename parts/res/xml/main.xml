@@ -71,4 +71,11 @@
         android:title="@string/hall_srv_title"
         android:summary="@string/hall_srv_summary" />
 
+     <SwitchPreference
+        android:key="persist.ps.fb_boost"
+        android:defaultValue="false"
+        android:title="@string/fb_boost_title"
+        android:summary="@string/fb_boost_summary" />
+
+
 </PreferenceScreen>

@@ -52,8 +52,11 @@ public class DeviceSettings extends PreferenceFragment implements
     private static final String SYSTEM_PROPERTY_CAMERA_FOCUS_FIX = "persist.camera.focus_fix";
     private static final String SYSTEM_PROPERTY_VOLTE_FIX = "persist.volte.fix";
     private static final String SYSTEM_PROPERTY_HALL_SRV = "persist.sys.hall_sensor";
+    private static final String SYSTEM_PROPERTY_PS_FB_BOOST = "persist.ps.fb_boost";
+
     final String KEY_DEVICE_DOZE = "device_doze";
     final String KEY_DEVICE_DOZE_PACKAGE_NAME = "org.lineageos.settings.doze";
+
 
 
     private Preference mKcalPref;
@@ -61,6 +64,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private SwitchPreference mEnableQC;
     private SwitchPreference mVolteFix;
     private SwitchPreference mHallSrv;
+    private SwitchPreference mFbBoost;
+
     private PreferenceCategory cameraCategory;
 
     @Override
@@ -104,6 +109,12 @@ public class DeviceSettings extends PreferenceFragment implements
         if( mHallSrv != null ) {
             mHallSrv.setChecked(SystemProperties.getBoolean(SYSTEM_PROPERTY_HALL_SRV, false));
             mHallSrv.setOnPreferenceChangeListener(this);
+        }
+
+        mFbBoost = (SwitchPreference) findPreference(SYSTEM_PROPERTY_PS_FB_BOOST);
+        if( mFbBoost != null ) {
+            mFbBoost.setChecked(SystemProperties.getBoolean(SYSTEM_PROPERTY_PS_FB_BOOST, false));
+            mFbBoost.setOnPreferenceChangeListener(this);
         }
 
         if (!isAppInstalled(KEY_DEVICE_DOZE_PACKAGE_NAME)) {
@@ -154,5 +165,4 @@ public class DeviceSettings extends PreferenceFragment implements
             SystemProperties.set(key, "0");
         }
     }
-
 }
