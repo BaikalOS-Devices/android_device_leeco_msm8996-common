@@ -66,10 +66,24 @@
      </PreferenceCategory>
 
      <SwitchPreference
+        android:key="persist.qfp_enable"
+        android:defaultValue="false"
+        android:title="@string/qfp_enable_title"
+        android:summary="@string/qfp_enable_summary" />
+
+     <SwitchPreference
+        android:key="persist.qfp.wup_display"
+        android:defaultValue="false"
+        android:title="@string/qfp_wup_title"
+        android:summary="@string/qfp_wup_summary" />
+
+
+
+     <!-- SwitchPreference
         android:key="persist.sys.hall_sensor"
         android:defaultValue="false"
         android:title="@string/hall_srv_title"
-        android:summary="@string/hall_srv_summary" />
+        android:summary="@string/hall_srv_summary" / -->
 
      <SwitchPreference
         android:key="persist.ps.fb_boost"
