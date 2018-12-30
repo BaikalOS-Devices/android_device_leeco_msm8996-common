@@ -256,3 +256,9 @@ on property:power.wakefulness=3 && property:power.wake_lock=0
 on property:power.wakefulness=3 && property:power.wake_lock=1
     trigger state-background
 
+
+on property:persist.ps.fb_boost=0
+    write /sys/module/mdss_fb/parameters/boost_on_frame 0
+
+on property:persist.ps.fb_boost=1
+    write /sys/module/mdss_fb/parameters/boost_on_frame 1
