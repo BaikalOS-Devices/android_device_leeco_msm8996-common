@@ -339,6 +339,8 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
+    android.hardware.radio@1.2 \
+    android.hardware.radio.config@1.0 \
     libprotobuf-cpp-full \
     librmnetctl \
     libxml2
@@ -351,7 +353,9 @@ PRODUCT_COPY_FILES += \
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
-    android.hardware.sensors@1.0-service
+    android.hardware.sensors@1.0-service \
+    libsensorndkbridge
+
 
 # Telephony
 PRODUCT_PACKAGES += \
@@ -427,7 +431,11 @@ BOARD_VENDOR_EXTRA_SYMLINKS += \
     /vendor/firmware:/firmware/drm
 
 # Use daemon to detect folio open/close
-PRODUCT_PACKAGES += \
-    folio_daemon
+#PRODUCT_PACKAGES += \
+#    folio_daemon
+
+# Use daemon to detect folio open/close
+#PRODUCT_PACKAGES += \
+#    proximity_daemon
 
 $(call inherit-product, vendor/leeco/msm8996-common/msm8996-common-vendor.mk)
