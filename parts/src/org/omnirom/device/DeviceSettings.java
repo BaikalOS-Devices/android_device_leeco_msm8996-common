@@ -53,6 +53,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private static final String SYSTEM_PROPERTY_VOLTE_FIX = "persist.volte.fix";
     private static final String SYSTEM_PROPERTY_HALL_SRV = "persist.sys.hall_sensor";
     private static final String SYSTEM_PROPERTY_PS_FB_BOOST = "persist.ps.fb_boost";
+    private static final String SYSTEM_PROPERTY_QFP_WUP = "persist.qfp.wup_display";
+    private static final String SYSTEM_PROPERTY_QFP_ENABLE = "persist.qfp_enable";
 
     final String KEY_DEVICE_DOZE = "device_doze";
     final String KEY_DEVICE_DOZE_PACKAGE_NAME = "org.lineageos.settings.doze";
@@ -65,6 +67,8 @@ public class DeviceSettings extends PreferenceFragment implements
     private SwitchPreference mVolteFix;
     private SwitchPreference mHallSrv;
     private SwitchPreference mFbBoost;
+    private SwitchPreference mQfpWup;
+    private SwitchPreference mQfpEnable;
 
     private PreferenceCategory cameraCategory;
 
@@ -111,10 +115,30 @@ public class DeviceSettings extends PreferenceFragment implements
             mHallSrv.setOnPreferenceChangeListener(this);
         }
 
-        mFbBoost = (SwitchPreference) findPreference(SYSTEM_PROPERTY_PS_FB_BOOST);
-        if( mFbBoost != null ) {
-            mFbBoost.setChecked(SystemProperties.getBoolean(SYSTEM_PROPERTY_PS_FB_BOOST, false));
-            mFbBoost.setOnPreferenceChangeListener(this);
+        mQfpWup = (SwitchPreference) findPreference(SYSTEM_PROPERTY_PS_FB_BOOST);
+        if( mQfpWup != null ) {
+            mQfpWup.setChecked(SystemProperties.getBoolean(SYSTEM_PROPERTY_PS_FB_BOOST, false));
+            mQfpWup.setOnPreferenceChangeListener(this);
+        }
+
+        mQfpWup = (SwitchPreference) findPreference(SYSTEM_PROPERTY_QFP_WUP);
+        if( mQfpWup != null ) {
+            if (isZl1()) {
+                getPreferenceScreen().removePreference(mQfpWup);
+            } else {
+                mQfpWup.setChecked(SystemProperties.getBoolean(SYSTEM_PROPERTY_QFP_WUP, false));
+                mQfpWup.setOnPreferenceChangeListener(this);
+            }
+        }
+
+        mQfpEnable = (SwitchPreference) findPreference(SYSTEM_PROPERTY_QFP_ENABLE);
+        if( mQfpEnable != null ) {
+            if (isZl1()) {
+                getPreferenceScreen().removePreference(mQfpWup);
+            } else {
+                mQfpEnable.setChecked(SystemProperties.getBoolean(SYSTEM_PROPERTY_QFP_ENABLE, false));
+                mQfpEnable.setOnPreferenceChangeListener(this);
+            }
         }
 
         if (!isAppInstalled(KEY_DEVICE_DOZE_PACKAGE_NAME)) {
