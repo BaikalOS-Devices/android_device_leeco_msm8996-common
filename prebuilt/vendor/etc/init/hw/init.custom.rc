@@ -25,3 +25,42 @@ on property:persist.camera.focus_fix=1
 
 on property:persist.camera.focus_fix=0
     write /sys/module/msm_actuator/parameters/use_focus_fix 0
+
+service folio_daemon /vendor/bin/folio_daemon
+    class late_start
+    user system
+    group system diag input
+    writepid /dev/cpuset/system-background/tasks
+    capabilities BLOCK_SUSPEND
+    disabled
+
+on property:persist.sys.hall_sensor=1 && property:sys.boot_completed=1
+    start folio_daemon
+
+on property:persist.sys.hall_sensor=0
+    stop folio_daemon
+
+on property:persist.fx.hp_detect=0
+    write /sys/module/snd_soc_wcd_mbhc/parameters/disable_hp_detect 0
+    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 1
+    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 0
+
+on property:persist.fx.hp_detect=1
+    write /sys/module/snd_soc_wcd_mbhc/parameters/disable_hp_detect 1
+    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 1
+    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 0
+
+service proximity_daemon /vendor/bin/proximity_daemon
+    class late_start
+    user system
+    group system diag input
+    writepid /dev/cpuset/system-background/tasks
+    capabilities BLOCK_SUSPEND
+    disabled
+
+on property:persist.sys.proximity_sensor=1 && property:sys.boot_completed=1
+    start proximity_daemon
+
+on property:persist.sys.proximity_sensor=0
+    stop proximity_daemon
+

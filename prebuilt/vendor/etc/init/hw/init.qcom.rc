@@ -66,6 +66,17 @@ on fs
 
     mount_all /vendor/etc/fstab.qcom
 
+    # Set permissions for persist partition
+#    chown root system /mnt/vendor/persist
+#    chmod 0771 /mnt/vendor/persist
+#    mkdir /mnt/vendor/persist/alarm 0770 system system
+#    mkdir /mnt/vendor/persist/bluetooth 0770 bluetooth bluetooth
+#    mkdir /mnt/vendor/persist/bms 0700 root system
+#    mkdir /mnt/vendor/persist/data 0700 system system
+#    mkdir /mnt/vendor/persist/display 0770 system graphics
+#    mkdir /mnt/vendor/persist/time 0770 system system
+#    restorecon_recursive /mnt/vendor/persist
+
     # Restorecon
     restorecon_recursive /persist
 
@@ -967,28 +978,4 @@ on property:persist.sys.le_fast_chrg_enable=1
 
 on property:persist.sys.le_fast_chrg_enable=0
     write /sys/class/power_supply/le_ab/le_quick_charge_mode 1
-
-service folio_daemon /vendor/bin/folio_daemon
-    class late_start
-    user system
-    group system diag input
-    writepid /dev/cpuset/system-background/tasks
-    capabilities BLOCK_SUSPEND
-    disabled
-
-on property:persist.sys.hall_sensor=1 && property:sys.boot_completed=1
-    start folio_daemon
-
-on property:persist.sys.hall_sensor=0
-    stop folio_daemon
-
-on property:persist.fx.hp_detect=0
-    write /sys/module/snd_soc_wcd_mbhc/parameters/disable_hp_detect 0
-    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 1
-    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 0
-
-on property:persist.fx.hp_detect=1
-    write /sys/module/snd_soc_wcd_mbhc/parameters/disable_hp_detect 1
-    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 1
-    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 0
 
