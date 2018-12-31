@@ -77,8 +77,6 @@
         android:title="@string/qfp_wup_title"
         android:summary="@string/qfp_wup_summary" />
 
-
-
      <!-- SwitchPreference
         android:key="persist.sys.hall_sensor"
         android:defaultValue="false"

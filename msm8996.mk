@@ -424,8 +424,9 @@ PRODUCT_COPY_FILES += \
     kernel/leeco/msm8996/drivers/staging/qcacld-2.0/firmware_bin/WCNSS_cfg.dat:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
-# WFD
+# WiFi Display
 PRODUCT_PACKAGES += \
+    libaacwrapper \
     libnl
 
 PRODUCT_BOOT_JARS += \
@@ -444,15 +445,5 @@ BOARD_VENDOR_EXTRA_SYMLINKS += \
 # Use daemon to detect folio open/close
 #PRODUCT_PACKAGES += \
 #    proximity_daemon
-
-# WiFi Display
-	
-PRODUCT_PACKAGES += \
-    libaacwrapper \
-    libnl
-	
-	
-PRODUCT_BOOT_JARS += \
-    WfdCommon
 
 $(call inherit-product, vendor/leeco/msm8996-common/msm8996-common-vendor.mk)
