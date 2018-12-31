@@ -445,4 +445,14 @@ BOARD_VENDOR_EXTRA_SYMLINKS += \
 #PRODUCT_PACKAGES += \
 #    proximity_daemon
 
+# WiFi Display
+	
+PRODUCT_PACKAGES += \
+    libaacwrapper \
+    libnl
+	
+	
+PRODUCT_BOOT_JARS += \
+    WfdCommon
+
 $(call inherit-product, vendor/leeco/msm8996-common/msm8996-common-vendor.mk)
