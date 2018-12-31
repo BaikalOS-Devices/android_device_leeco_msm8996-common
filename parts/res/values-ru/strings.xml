@@ -54,8 +54,12 @@
     <string name="hall_srv_title">Датчик Холла</string>
     <string name="hall_srv_summary">Включить драйвер датчика Холла</string>
 
+    <!-- FB Boost -->
+    <string name="fb_boost_title">Буст при открисовке</string>
+    <string name="fb_boost_summary">Повышать частоту CPU и шины GPU при отрисовке кадра. Увеличивает расход батареи</string>
+
     <string name="qfp_wup_title">Пробуждать по СОП</string>
-    <string name="qfp_wup_summary">Пробуждать телефон по датчику отпечатка сразу по детектированию пальца</string>
+    <string name="qfp_wup_summary">Пробуждать телефон по датчику отпечатка сразу по детектированию пальца. Требуется перезагрузка.</string>
 
     <string name="qfp_enable_title">Включить СОП</string>
     <string name="qfp_enable_summary">Включить сканер отпечатка пальца</string>

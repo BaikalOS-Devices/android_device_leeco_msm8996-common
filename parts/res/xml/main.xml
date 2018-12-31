@@ -65,11 +65,11 @@
             android:summary="@string/volte_fix_summary" />
      </PreferenceCategory>
 
-     <SwitchPreference
+     <!-- SwitchPreference
         android:key="persist.qfp_enable"
         android:defaultValue="false"
         android:title="@string/qfp_enable_title"
-        android:summary="@string/qfp_enable_summary" />
+        android:summary="@string/qfp_enable_summary" / -->
 
      <SwitchPreference
         android:key="persist.qfp.wup_display"
