@@ -827,7 +827,7 @@ service vendor.dataqti /vendor/bin/qti
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-service vendor.sensors /vendor/bin/sensors.qcom
+service vendor.sensors.qti /vendor/bin/sensors.qti
     class core
     user root
     group root
@@ -872,6 +872,7 @@ on property:sys.powerctl=*
 
 service loc_launcher /vendor/bin/loc_launcher
     class late_start
+    user gps
     group gps inet diag wifi
     writepid /dev/cpuset/system-background/tasks
 
