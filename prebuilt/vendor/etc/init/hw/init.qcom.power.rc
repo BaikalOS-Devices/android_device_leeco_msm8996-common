@@ -132,6 +132,13 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost 500
     write /sys/devices/system/cpu/cpu3/sched_static_cluster_pwr_cost 1000
 
+    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 0
+    write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 110
+    write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 95
+
+    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 1
+    write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 95
+    write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 95
 
     # Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
@@ -207,6 +214,13 @@ on state-asleep
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor  "powersave"
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "powersave"
     write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "powersave"
+    #write /sys/devices/system/cpu/cpu0/core_ctl/disable 1
+    #write /sys/devices/system/cpu/cpu2/core_ctl/disable 1
+    #write /sys/devices/system/cpu/cpu0/online 1
+    #write /sys/devices/system/cpu/cpu1/online 0
+    #write /sys/devices/system/cpu/cpu2/online 0
+    #write /sys/devices/system/cpu/cpu3/online 0
+
 
 on state-awake
     write /dev/cpuset/top-app/cpus 0-3
@@ -217,6 +231,12 @@ on state-awake
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
     write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
+    #write /sys/devices/system/cpu/cpu0/core_ctl/disable 0
+    #write /sys/devices/system/cpu/cpu2/core_ctl/disable 0
+    #write /sys/devices/system/cpu/cpu0/online 1
+    #write /sys/devices/system/cpu/cpu1/online 1
+    #write /sys/devices/system/cpu/cpu2/online 1
+    #write /sys/devices/system/cpu/cpu3/online 1
 
 on state-background
     write /dev/cpuset/top-app/cpus 0-3
@@ -228,6 +248,12 @@ on state-background
     #write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
     write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
+    #write /sys/devices/system/cpu/cpu0/core_ctl/disable 0
+    #write /sys/devices/system/cpu/cpu2/core_ctl/disable 1
+    #write /sys/devices/system/cpu/cpu0/online 1
+    #write /sys/devices/system/cpu/cpu1/online 1
+    #write /sys/devices/system/cpu/cpu2/online 0
+    #write /sys/devices/system/cpu/cpu3/online 0
 
 on property:init.svc.recovery=running
     trigger enable-low-power
