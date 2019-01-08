@@ -156,10 +156,10 @@ on enable-low-power
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/up_scale 250
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/idle_mbps 1600
 
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 50
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 50
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "cpufreq"
+    #write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 50
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "cpufreq"
+    #write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 50
 
 #    write /sys/class/devfreq/c00000.qcom,vidc:arm9_bus_ddr/governor "performance"
 #    write /sys/class/devfreq/624000.ufshc/governor "performance"
@@ -174,13 +174,24 @@ on enable-low-power
     write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 1
     write /sys/devices/soc/${ro.boot.bootdevice}/${ro.boot.bootdevice}:ufs_variant/pm_qos_enable 1
 
-    setprop sys.io.scheduler "bfq"
+    #setprop sys.io.scheduler "bfq"
 
     # VM
     write /proc/sys/vm/dirty_background_ratio 20
     write /proc/sys/vm/dirty_expire_centisecs 100
-    write /proc/sys/vm/swappiness 5
-    write /proc/sys/vm/vfs_cache_pressure 60
+
+
+    write /proc/sys/vm/swappiness 0
+    write /proc/sys/vm/vfs_cache_pressure 100
+    write /proc/sys/vm/dirty_ratio 80
+    write /proc/sys/vm/dirty_background_ratio 20
+    write /proc/sys/vm/dirty_expire_centisecs 100
+    write /proc/sys/vm/dirty_writeback_centisecs 250
+    write /proc/sys/vm/min_free_kbytes 4096
+    write /proc/sys/vm/oom_kill_allocating_task 0
+    write /proc/sys/vm/page-cluster 3
+    write /proc/sys/kernel/random/read_wakeup_threshold 64
+    write /proc/sys/kernel/random/write_wakeup_threshold 128
 
     # Starting io prefetcher service
     start iop
@@ -229,8 +240,8 @@ on state-awake
     write /dev/cpuset/system-background/cpus 0-3
     #write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "cpufreq"
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "cpufreq"
     #write /sys/devices/system/cpu/cpu0/core_ctl/disable 0
     #write /sys/devices/system/cpu/cpu2/core_ctl/disable 0
     #write /sys/devices/system/cpu/cpu0/online 1
@@ -246,8 +257,8 @@ on state-background
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 940800
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 940800
     #write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "cpufreq"
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "cpufreq"
     #write /sys/devices/system/cpu/cpu0/core_ctl/disable 0
     #write /sys/devices/system/cpu/cpu2/core_ctl/disable 1
     #write /sys/devices/system/cpu/cpu0/online 1
