@@ -89,5 +89,11 @@
         android:title="@string/fb_boost_title"
         android:summary="@string/fb_boost_summary" />
 
+     <SwitchPreference
+        android:key="persist.hw.0d_disable"
+        android:defaultValue="false"
+        android:title="@string/hw_0d_disable_title"
+        android:summary="@string/hw_0d_disable_summary" />
+
 
 </PreferenceScreen>

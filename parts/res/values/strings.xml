@@ -64,4 +64,7 @@
     <string name="qfp_enable_title">Enable FP</string>
     <string name="qfp_enable_summary">Enable Fingerprint Sensor</string>
 
+    <string name="hw_0d_disable_title">Disable HW Keys</string>
+    <string name="hw_0d_disable_summary">Disable HW Keys</string>
+
 </resources>

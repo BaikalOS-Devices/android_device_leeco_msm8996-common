@@ -64,4 +64,7 @@
     <string name="qfp_enable_title">Включить СОП</string>
     <string name="qfp_enable_summary">Включить сканер отпечатка пальца</string>
 
+    <string name="hw_0d_disable_title">Отключить Кнопки</string>
+    <string name="hw_0d_disable_summary">Отключить аппаратные кнопки</string>
+
 </resources>

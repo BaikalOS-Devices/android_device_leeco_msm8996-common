@@ -55,6 +55,7 @@ public class DeviceSettings extends PreferenceFragment implements
     private static final String SYSTEM_PROPERTY_PS_FB_BOOST = "persist.ps.fb_boost";
     private static final String SYSTEM_PROPERTY_QFP_WUP = "persist.qfp.wup_display";
     private static final String SYSTEM_PROPERTY_QFP_ENABLE = "persist.qfp_enable";
+    private static final String SYSTEM_PROPERTY_HW_0D_DISABLE = "persist.hw.0d_disable";
 
     final String KEY_DEVICE_DOZE = "device_doze";
     final String KEY_DEVICE_DOZE_PACKAGE_NAME = "org.lineageos.settings.doze";
@@ -69,6 +70,7 @@ public class DeviceSettings extends PreferenceFragment implements
     private SwitchPreference mFbBoost;
     private SwitchPreference mQfpWup;
     private SwitchPreference mQfpEnable;
+    private SwitchPreference mHw0DDisable;
 
     private PreferenceCategory cameraCategory;
 
@@ -139,6 +141,15 @@ public class DeviceSettings extends PreferenceFragment implements
                 mQfpEnable.setChecked(SystemProperties.getBoolean(SYSTEM_PROPERTY_QFP_ENABLE, false));
                 mQfpEnable.setOnPreferenceChangeListener(this);
             }
+        }
+
+
+
+
+        mHw0DDisable = (SwitchPreference) findPreference(SYSTEM_PROPERTY_HW_0D_DISABLE);
+        if( mHw0DDisable != null ) {
+            mHw0DDisable.setChecked(SystemProperties.getBoolean(SYSTEM_PROPERTY_HW_0D_DISABLE, false));
+            mHw0DDisable.setOnPreferenceChangeListener(this);
         }
 
         if (!isAppInstalled(KEY_DEVICE_DOZE_PACKAGE_NAME)) {
