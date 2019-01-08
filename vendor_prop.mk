@@ -129,7 +129,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
    persist.dbg.wfc_avail_ovr=1 \
    persist.radio.VT_CAM_INTERFACE=2 \
    persist.radio.VT_ENABLE=1 \
-   persist.radio.VT_HYBRID_ENABLE=1
+   persist.radio.VT_HYBRID_ENABLE=1 \
+   persist.radio.ROTATION_ENABLE=1 \
+   persist.vendor.qti.telephony.vt_cam_interface=2
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -210,3 +212,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.volte.fix=0
 
+
+# FinigerprintService
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.fingerprint.cleanup.unused=false
