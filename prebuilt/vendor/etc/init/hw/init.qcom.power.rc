@@ -132,13 +132,13 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost 500
     write /sys/devices/system/cpu/cpu3/sched_static_cluster_pwr_cost 1000
 
-    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 0
-    write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 110
-    write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 95
+    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 1
+    write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 75
+    write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 85
 
     write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 1
-    write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 95
-    write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 95
+    write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 65
+    write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 75
 
     # Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
