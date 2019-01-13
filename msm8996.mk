@@ -256,8 +256,8 @@ PRODUCT_PACKAGES += \
 
 # LeParts settigs modules
 PRODUCT_PACKAGES += \
-    LeParts \
-    LeDoze
+    BaikalParts \
+    BaikalDoze
 
 # Lights
 PRODUCT_PACKAGES += \
