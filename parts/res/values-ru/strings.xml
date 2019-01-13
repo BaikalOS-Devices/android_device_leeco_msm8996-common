@@ -55,7 +55,7 @@
     <string name="hall_srv_summary">Включить драйвер датчика Холла</string>
 
     <!-- FB Boost -->
-    <string name="fb_boost_title">Буст при открисовке</string>
+    <string name="fb_boost_title">Буст при отрисовке</string>
     <string name="fb_boost_summary">Повышать частоту CPU и шины GPU при отрисовке кадра. Увеличивает расход батареи</string>
 
     <string name="qfp_wup_title">Пробуждать по СОП</string>
