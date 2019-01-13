@@ -37,7 +37,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.audio.tunnel.encode=false \
     vendor.audio.use.sw.alac.decoder=false \
     vendor.audio.use.sw.ape.decoder=false \
-    vendor.voice.path.for.pcm.voip=true
+    vendor.voice.path.for.pcm.voip=true \
+    persist.ps.audio.use_fluence=1 \
+    persist.ps.anc.enable=0
 
 #    vendor.audio_hal.period_size=192 \
 
