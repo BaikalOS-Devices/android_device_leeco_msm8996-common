@@ -19,8 +19,19 @@
     <!-- Ambient display -->
     <!-- Battery -->
     <!-- Camera -->
+    <string name="camera_focus_fix_summary">Dla urządzeń mających problem z automatycznym wyostrzaniem</string>
     <!-- Kcal -->
     <!-- Volte -->
+    <string name="volte_fix_title">Włącz VoLTE</string>
+    <string name="volte_fix_summary">wymaga restartu, ustawienia SIM resetują się po każdym restarcie</string>
     <!-- HALL Sensor -->
+    <string name="hall_srv_title">Czujnik Halla</string>
     <!-- FB Boost -->
+    <string name="fb_boost_summary">Przyspiesza CPU przy rysowaniu ramki. Może powodować większe użycie baterii przy włączonym ekranie</string>
+    <string name="qfp_wup_title">Wybudź urządzenie po użyciu czytnika odcisku palca</string>
+    <string name="qfp_wup_summary">Wybudź przy dotknięciu skanera pomijając weryfikację odcisku. Wymaga restartu!</string>
+    <string name="qfp_enable_title">Włącz skaner odcisków</string>
+    <string name="qfp_enable_summary">Włącz skaner odcisków palca</string>
+    <string name="hw_0d_disable_title">Wyłącz klawisze fizyczne</string>
+    <string name="hw_0d_disable_summary">Wyłącz klawisze fizyczne</string>
 </resources>
