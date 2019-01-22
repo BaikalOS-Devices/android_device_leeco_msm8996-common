@@ -16,21 +16,10 @@
 -->
 <resources>
     <!-- App -->
-    <string name="app_name">Доповнення</string>
-    <string name="advanced_settings">Розширені</string>
     <!-- Ambient display -->
-    <string name="display_title">Дисплей</string>
-    <string name="device_doze_title">Активний дисплей</string>
     <!-- Battery -->
-    <string name="battery_settings_title">Батарея</string>
-    <string name="qc_title">Швидке заряджання</string>
-    <string name="qc_summary">Увімкнення/вимкнення швидкої зарядки</string>
     <!-- Camera -->
-    <string name="camera_pref_title">Камера</string>
-    <string name="camera_focus_fix_title">Виправлення автофокусу</string>
-    <string name="camera_focus_fix_summary">Для пристроїв з проблемою автофокусування</string>
     <!-- Kcal -->
-    <string name="kcal_title">Колір екрану</string>
     <!-- Volte -->
     <!-- HALL Sensor -->
     <!-- FB Boost -->
