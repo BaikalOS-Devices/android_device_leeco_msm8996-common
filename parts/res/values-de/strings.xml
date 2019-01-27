@@ -49,6 +49,8 @@
     <string name="hall_srv_title">HALL Sensor</string>
     <string name="hall_srv_summary">HALL Sensor Treiber aktivieren</string>
     <!-- FB Boost -->
+    <string name="fb_boost_title">Beschleunigung bei Draw</string>
+    <string name="fb_boost_summary">CPU bei frame draw beschleunigen. Könnte Akkuverbrauch erhöhen während der Bildschirm eingeschaltet ist</string>
     <string name="qfp_wup_title">Aufwecken durch Fingerabdrucksensor</string>
     <string name="qfp_wup_summary">Direkt aufwecken wenn ein Finger erkannt wurde, benötigt reboot!</string>
     <string name="qfp_enable_title">Fingerabdrucksensor aktivieren</string>
