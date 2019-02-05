@@ -16,10 +16,24 @@
 -->
 <resources>
     <!-- App -->
+    <string name="app_name">Допълнения</string>
+    <string name="advanced_settings">Разширени</string>
     <!-- Ambient display -->
+    <string name="display_title">Дисплей</string>
+    <string name="device_doze_title">Активнен дисплей</string>
     <!-- Battery -->
+    <string name="battery_settings_title">Батерия</string>
+    <string name="qc_title">Бързо зареждане</string>
     <!-- Camera -->
+    <string name="camera_pref_title">Камера</string>
+    <string name="camera_focus_fix_title">Фикс. на автофокуса</string>
+    <string name="camera_focus_fix_summary">За устройства с проблем за автофокуса</string>
     <!-- Kcal -->
+    <string name="kcal_red">Червено</string>
+    <string name="kcal_green">Зелено</string>
+    <string name="kcal_blue">Синьо</string>
+    <string name="kcal_saturation">Насищане</string>
+    <string name="kcal_contrast">Контраст</string>
     <!-- Volte -->
     <!-- HALL Sensor -->
     <!-- FB Boost -->
