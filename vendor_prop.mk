@@ -218,3 +218,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # FinigerprintService
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.fingerprint.cleanup.unused=false
+
+# BaikalService 
+PRODUCT_PROPERTY_OVERRIDES += \
+    baikal.eng.perf=1 \
+    baikal.eng.therm=0

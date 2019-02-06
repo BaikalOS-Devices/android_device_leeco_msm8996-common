@@ -42,7 +42,7 @@
 # Usb hal
 /(vendor|system/vendor)/bin/hw/android\.hardware\.usb@1\.0-service\.leeco_msm8996       u:object_r:hal_usb_default_exec:s0
 
-/sys/devices/soc/75ba000\.i2c/i2c-12/12-[0-9a-f]+/input/input[0-9]+/0dbutton                   u:object_r:proc_touchpanel:s0
-/sys/devices/soc/75ba000\.i2c/i2c-12/12-[0-9a-f]+/keys_on                                      u:object_r:proc_touchpanel:s0
+#/sys/devices/soc/75ba000\.i2c/i2c-12/12-[0-9a-f]+/input/input[0-9]+/0dbutton                   u:object_r:proc_touchpanel:s0
+#/sys/devices/soc/75ba000\.i2c/i2c-12/12-[0-9a-f]+/keys_on                                      u:object_r:proc_touchpanel:s0
 
 /sys/remote/enable                                                       u:object_r:sysfs_ir_enable:s0
