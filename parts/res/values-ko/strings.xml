@@ -53,5 +53,5 @@
     <string name="qfp_enable_title">지문인식 활성화</string>
     <string name="qfp_enable_summary">지문 센서를 사용합니다</string>
     <string name="hw_0d_disable_title">하드웨어 버튼 비활성화</string>
-    <string name="hw_0d_disable_summary">하드웨어 버튼 비활성화</string>
+    <string name="hw_0d_disable_summary">하드웨어 버튼을 비활성화합니다</string>
 </resources>
