@@ -1,5 +1,6 @@
-import /vendor/etc/init/hw/init.performance.rc
 import /vendor/etc/init/hw/init.profiles.rc
+import /vendor/etc/init/hw/init.performance.rc
+import /vendor/etc/init/hw/init.thermal.rc
 
 
 on boot

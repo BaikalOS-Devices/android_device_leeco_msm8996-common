@@ -222,4 +222,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # BaikalService 
 PRODUCT_PROPERTY_OVERRIDES += \
     baikal.eng.perf=1 \
-    baikal.eng.therm=0
+    baikal.eng.therm=1
