@@ -75,8 +75,8 @@ on property:baikal.eng.perf.profile=balance
 
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "cpufreq"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "cpufreq"
+    #write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "cpufreq"
+    #write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "cpufreq"
 
 
 # Set idle GPU to 133 MHz
@@ -162,8 +162,8 @@ on property:baikal.eng.perf.profile=performance
 
     write /sys/class/devfreq/soc:qcom,cpubw/governor "performance"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "performance"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "performance"
+    #write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "performance"
+    #write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "performance"
 
 
 # Set idle GPU to 133 MHz
@@ -249,8 +249,8 @@ on property:baikal.eng.perf.profile=battery
 
     write /sys/class/devfreq/soc:qcom,cpubw/governor "powersave"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "powersave"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "powersave"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "powersave"
+    #write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "powersave"
+    #write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "powersave"
 
 
 # Set idle GPU to 133 MHz
@@ -336,11 +336,11 @@ on property:baikal.eng.perf.profile=gaming
 
     write /sys/class/devfreq/soc:qcom,cpubw/governor "performance"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "performance"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "performance"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "performance"
+    #write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "performance"
+    #write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "performance"
 
 # Set idle GPU to 133 MHz
-    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
+    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 0
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
     write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 3
     write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz 133
