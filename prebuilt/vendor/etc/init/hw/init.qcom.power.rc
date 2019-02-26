@@ -37,6 +37,14 @@ on enable-low-power
     # Disable thermal bcl hotplug to switch governor
     write /sys/module/msm_thermal/core_control/enabled 0
 
+
+    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 2
+    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 2
+    write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 0
+    write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 0
+    write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 0
+    write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 0
+
     # Enable Adaptive LMK
     #write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
     #write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
@@ -62,7 +70,6 @@ on enable-low-power
 
 
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 101
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 101
 
 
     # Configure governor settings for big cluster
@@ -84,6 +91,9 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/enable_prediction 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/powersave_bias 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 960000
+
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 101
+
 
     # Re-enable thermal and BCL hotplug
     write /sys/module/msm_thermal/core_control/enabled 1
@@ -154,18 +164,8 @@ on enable-low-power
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/up_scale 250
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/idle_mbps 1600
 
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "cpufreq"
-    #write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 50
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "cpufreq"
-    #write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 50
-
-#    write /sys/class/devfreq/c00000.qcom,vidc:arm9_bus_ddr/governor "performance"
-#    write /sys/class/devfreq/624000.ufshc/governor "performance"
-#    write /sys/class/devfreq/c00000.qcom,vidc:bus_cnoc/governor "performance"
-#    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "cpufreq"
-#    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 100
-#    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "cpufreq"
-#    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 100
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 50
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 50
 
     # Enable UFS powersaving
     write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 1
@@ -212,57 +212,6 @@ on charger
     write /sys/devices/soc/${ro.boot.bootdevice}/${ro.boot.bootdevice}:ufs_variant/pm_qos_enable 1
     write /sys/module/lpm_levels/parameters/sleep_disabled "N"
 
-on state-asleep
-    write /dev/cpuset/top-app/cpus 0
-    write /dev/cpuset/foreground/cpus 0
-    write /dev/cpuset/background/cpus 0
-    write /dev/cpuset/system-background/cpus 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 307200
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 307200
-    #write /sys/class/devfreq/soc:qcom,cpubw/governor "powersave"
-    write /sys/class/kgsl/kgsl-3d0/devfreq/governor  "powersave"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "powersave"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "powersave"
-    #write /sys/devices/system/cpu/cpu0/core_ctl/disable 1
-    #write /sys/devices/system/cpu/cpu2/core_ctl/disable 1
-    #write /sys/devices/system/cpu/cpu0/online 1
-    #write /sys/devices/system/cpu/cpu1/online 0
-    #write /sys/devices/system/cpu/cpu2/online 0
-    #write /sys/devices/system/cpu/cpu3/online 0
-
-
-on state-awake
-    write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/foreground/cpus 0-2
-    write /dev/cpuset/background/cpus 0
-    write /dev/cpuset/system-background/cpus 0-1
-    #write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
-    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "cpufreq"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "cpufreq"
-    #write /sys/devices/system/cpu/cpu0/core_ctl/disable 0
-    #write /sys/devices/system/cpu/cpu2/core_ctl/disable 0
-    #write /sys/devices/system/cpu/cpu0/online 1
-    #write /sys/devices/system/cpu/cpu1/online 1
-    #write /sys/devices/system/cpu/cpu2/online 1
-    #write /sys/devices/system/cpu/cpu3/online 1
-
-on state-background
-    write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/foreground/cpus 0-2
-    write /dev/cpuset/background/cpus 0
-    write /dev/cpuset/system-background/cpus 0-1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 940800
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 940800
-    #write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "cpufreq"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "cpufreq"
-    #write /sys/devices/system/cpu/cpu0/core_ctl/disable 0
-    #write /sys/devices/system/cpu/cpu2/core_ctl/disable 1
-    #write /sys/devices/system/cpu/cpu0/online 1
-    #write /sys/devices/system/cpu/cpu1/online 1
-    #write /sys/devices/system/cpu/cpu2/online 0
-    #write /sys/devices/system/cpu/cpu3/online 0
 
 on property:init.svc.recovery=running
     trigger enable-low-power
@@ -270,26 +219,6 @@ on property:init.svc.recovery=running
 on property:sys.boot_completed=1
     trigger enable-low-power
 
-#on property:power.wakefulness=1
-    #trigger state-awake
-
-#on property:power.wakefulness=0 && property:power.wake_lock=0
-    #trigger state-asleep
-
-#on property:power.wakefulness=0 && property:power.wake_lock=1
-    #trigger state-background
-
-#on property:power.wakefulness=2 && property:power.wake_lock=0
-    #trigger state-asleep
-
-#on property:power.wakefulness=2 && property:power.wake_lock=1
-    #trigger state-background
-
-#on property:power.wakefulness=3 && property:power.wake_lock=0
-    #trigger state-asleep
-
-#on property:power.wakefulness=3 && property:power.wake_lock=1
-    #trigger state-background
 
 
 on property:persist.ps.fb_boost=0
