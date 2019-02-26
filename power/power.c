@@ -195,7 +195,8 @@ static void process_video_encode_hint(void *metadata)
 int __attribute__ ((weak)) power_hint_override(struct power_module *module, power_hint_t hint,
         void *data)
 {
-    return HINT_NONE;
+    //return HINT_NONE;
+    return HINT_HANDLED;
 }
 
 /* Declare function before use */
