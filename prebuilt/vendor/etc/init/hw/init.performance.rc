@@ -8,6 +8,10 @@ on property:baikal.eng.perf.profile=default
 on property:baikal.eng.perf.profile=balance
     # Configure governor settings for little cluster
 
+    # Re-enable thermal and BCL hotplug
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/module/msm_thermal/parameters/enabled "N"
+
     write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 2
     write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 2
 
@@ -60,6 +64,10 @@ on property:baikal.eng.perf.profile=balance
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/powersave_bias 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 960000
 
+    # Re-enable thermal and BCL hotplug
+    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/module/msm_thermal/parameters/enabled "Y"
+
     # Setting b.L scheduler parameters
     write /proc/sys/kernel/sched_window_stats_policy 1
     write /proc/sys/kernel/sched_boost 0
@@ -78,7 +86,7 @@ on property:baikal.eng.perf.profile=balance
 
 
     write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 1
-    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 1
+    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 0
 
     write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 45
     write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 55
@@ -117,6 +125,10 @@ on property:baikal.eng.perf.profile=balance
 
 # Performance (based on DrunkSauce Lite)
 on property:baikal.eng.perf.profile=performance
+
+    # Re-enable thermal and BCL hotplug
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/module/msm_thermal/parameters/enabled "N"
 
     write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 2
     write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 2
@@ -169,6 +181,10 @@ on property:baikal.eng.perf.profile=performance
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/enable_prediction 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/powersave_bias 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 960000
+
+    # Re-enable thermal and BCL hotplug
+    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/module/msm_thermal/parameters/enabled "Y"
 
     # Setting b.L scheduler parameters
     write /proc/sys/kernel/sched_window_stats_policy 1
@@ -225,6 +241,10 @@ on property:baikal.eng.perf.profile=performance
 # Battery
 on property:baikal.eng.perf.profile=battery
 
+    # Re-enable thermal and BCL hotplug
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/module/msm_thermal/parameters/enabled "N"
+
     write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 2
     write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 2
 
@@ -276,6 +296,10 @@ on property:baikal.eng.perf.profile=battery
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/powersave_bias 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 960000
 
+    # Re-enable thermal and BCL hotplug
+    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/module/msm_thermal/parameters/enabled "Y"
+
     # Setting b.L scheduler parameters
     write /proc/sys/kernel/sched_window_stats_policy 1
     write /proc/sys/kernel/sched_boost 0
@@ -293,7 +317,7 @@ on property:baikal.eng.perf.profile=battery
     write /proc/sys/kernel/sched_small_wakee_task_load 10
 
     write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 1
-    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 1
+    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 0
 
     write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 65
     write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 75
@@ -332,6 +356,10 @@ on property:baikal.eng.perf.profile=battery
 
 # Gaming
 on property:baikal.eng.perf.profile=gaming
+
+    # Re-enable thermal and BCL hotplug
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/module/msm_thermal/parameters/enabled "N"
 
     write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 2
     write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 2
@@ -383,6 +411,10 @@ on property:baikal.eng.perf.profile=gaming
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/enable_prediction 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/powersave_bias 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 960000
+
+    # Re-enable thermal and BCL hotplug
+    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/module/msm_thermal/parameters/enabled "Y"
 
     # Setting b.L scheduler parameters
     write /proc/sys/kernel/sched_window_stats_policy 1
