@@ -118,25 +118,17 @@ on enable-low-power
     write /proc/sys/kernel/sched_wakeup_load_threshold 110
     write /proc/sys/kernel/sched_small_wakee_task_load 15
 
-    write /proc/sys/kernel/proc/sys/kernel/sched_upmigrate_min_nice 7
+    write /proc/sys/kernel/sched_upmigrate_min_nice 9
 
-    write /sys/devices/system/cpu/cpu0/sched_mostly_idle_nr_run 25
-    write /sys/devices/system/cpu/cpu0/sched_mostly_idle_load 95
     write /sys/devices/system/cpu/cpu0/sched_static_cpu_pwr_cost 10
     write /sys/devices/system/cpu/cpu0/sched_static_cluster_pwr_cost 20
 
-    write /sys/devices/system/cpu/cpu1/sched_mostly_idle_nr_run 25
-    write /sys/devices/system/cpu/cpu1/sched_mostly_idle_load 95
     write /sys/devices/system/cpu/cpu1/sched_static_cpu_pwr_cost 10
     write /sys/devices/system/cpu/cpu1/sched_static_cluster_pwr_cost 20
 
-    write /sys/devices/system/cpu/cpu2/sched_mostly_idle_nr_run 1
-    write /sys/devices/system/cpu/cpu2/sched_mostly_idle_load 5
     write /sys/devices/system/cpu/cpu2/sched_static_cpu_pwr_cost 500
     write /sys/devices/system/cpu/cpu2/sched_static_cluster_pwr_cost 1000
 
-    write /sys/devices/system/cpu/cpu3/sched_mostly_idle_nr_run 1
-    write /sys/devices/system/cpu/cpu3/sched_mostly_idle_load 5
     write /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost 500
     write /sys/devices/system/cpu/cpu3/sched_static_cluster_pwr_cost 1000
 
@@ -150,7 +142,7 @@ on enable-low-power
 
     # Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
-    write /sys/class/devfreq/soc:qcom,cpubw/polling_interval 50
+    write /sys/class/devfreq/soc:qcom,cpubw/polling_interval 10
     write /sys/class/devfreq/soc:qcom,cpubw/min_freq 762
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/mbps_zones "762 1144 1525 2288 3143 4173 5195 5859 7759 9887 11863 13763"
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms 4
@@ -158,7 +150,7 @@ on enable-low-power
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory 20
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length 10
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_ceil_mbps 0
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_io_percent 34
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_io_percent 60
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_delay 20
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/guard_band_mbps 0
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/up_scale 250
@@ -166,9 +158,9 @@ on enable-low-power
 
     #Set mem_latency
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 50
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 10
     write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 50
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 10
 
     # Enable UFS powersaving
     write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 1
@@ -180,7 +172,6 @@ on enable-low-power
     # VM
     write /proc/sys/vm/dirty_background_ratio 20
     write /proc/sys/vm/dirty_expire_centisecs 100
-
 
     write /proc/sys/vm/swappiness 0
     write /proc/sys/vm/vfs_cache_pressure 100
@@ -215,17 +206,15 @@ on charger
     write /sys/devices/soc/${ro.boot.bootdevice}/${ro.boot.bootdevice}:ufs_variant/pm_qos_enable 1
     write /sys/module/lpm_levels/parameters/sleep_disabled "N"
 
-
 on property:init.svc.recovery=running
     trigger enable-low-power
 
 on property:sys.boot_completed=1
     trigger enable-low-power
 
-
-
 on property:persist.ps.fb_boost=0
     write /sys/module/mdss_fb/parameters/boost_on_frame 0
 
 on property:persist.ps.fb_boost=1
     write /sys/module/mdss_fb/parameters/boost_on_frame 1
+
