@@ -155,7 +155,7 @@ on post-fs-data
     mkdir /data/vendor/qtee 0770 system system
 
     # Create folder for mm-qcamera-daemon
-    mkdir /data/vendor/camera 0770 camera camera
+    mkdir /data/vendor/qcam 0770 camera camera
 
 
     # Create directory for tftp
@@ -579,7 +579,7 @@ service perfd /vendor/bin/perfd
    socket perfd seqpacket 0666 root system
    writepid /dev/cpuset/system-background/tasks
 
-service thermal-engine /vendor/bin/thermal-engine -d -c ${sys.qcom.thermalcfg:-/vendor/etc/thermal-engine-8996.conf}
+service thermal-engine /vendor/bin/thermal-engine -c ${sys.qcom.thermalcfg:-/vendor/etc/thermal-engine-8996.conf}
    class main
    user root
    socket thermal-send-client stream 0666 system system
