@@ -142,17 +142,10 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.device@1.0.so \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
-    camera.device@3.2-impl \
-    camera.device@1.0-impl \
     camera.msm8996 \
     Snap
-
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.camera.device@1.0 \
-    vendor.qti.hardware.camera.device@1.0_vendor
 
 # Charger
 PRODUCT_COPY_FILES += \
@@ -233,7 +226,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.health@2.0-impl \
     android.hardware.health@2.0-service \
-    libhealthd.msm
+    libhealthd.msm \
+    charger_res_images
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -315,10 +309,15 @@ PRODUCT_PACKAGES += \
     libstagefrighthw
 
 # Power
+#PRODUCT_PACKAGES += \
+#    android.hardware.power@1.0-impl \
+#    android.hardware.power@1.0-service \
+#    power.qcom
+
+# Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-impl \
-    android.hardware.power@1.0-service \
-    power.qcom
+    android.hardware.power@1.1-service-qti
+
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
@@ -358,10 +357,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.2 \
     android.hardware.radio.config@1.0 \
-    android.hardware.secure_element@1.0 \
     libprotobuf-cpp-full \
     librmnetctl \
     libxml2
+
+#    android.hardware.secure_element@1.0 \
+
 
 PRODUCT_PACKAGES += \
     ims-ext-common \
@@ -399,8 +400,10 @@ PRODUCT_COPY_FILES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service.leeco_msm8996 \
+    android.hardware.usb@1.0-service.basic \
     com.android.future.usb.accessory
+
+#    android.hardware.usb@1.0-service.leeco_msm8996 \
 
 # Vendor properties
 -include $(LOCAL_PATH)/vendor_prop.mk
@@ -411,8 +414,8 @@ PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-service
 
 # VNDK
-PRODUCT_PACKAGES += \
-    vndk_package
+#PRODUCT_PACKAGES += \
+#    vndk_package
 
 # VNDK-SP
 PRODUCT_PACKAGES += \
