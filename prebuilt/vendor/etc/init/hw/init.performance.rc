@@ -8,6 +8,16 @@ on property:baikal.eng.perf.profile=default
 on property:baikal.eng.perf.profile=balance
     # Configure governor settings for little cluster
 
+    # Enable cpufreq boost
+    write /sys/module/cpu_input_boost/parameters/boost_enabled "N"
+    write /sys/module/cpu_input_boost/parameters/input_boost_duration 64
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_hp 1036800
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_lp 1036800
+
+    # Enable devrfreq boost
+    write /sys/module/devfreq_boost/parameters/boost_enabled "Y"
+    write /sys/module/devfreq_boost/parameters/boost_all "Y"
+
     # Re-enable thermal and BCL hotplug
     write /sys/module/msm_thermal/core_control/enabled 0
     write /sys/module/msm_thermal/parameters/enabled "N"
@@ -38,8 +48,6 @@ on property:baikal.eng.perf.profile=balance
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/powersave_bias 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 960000
 
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 101
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 101
@@ -67,8 +75,6 @@ on property:baikal.eng.perf.profile=balance
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/fast_ramp_down 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/enable_prediction 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/powersave_bias 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 960000
 
     # Re-enable thermal and BCL hotplug
     write /sys/module/msm_thermal/core_control/enabled 1
@@ -92,6 +98,15 @@ on property:baikal.eng.perf.profile=balance
     write /proc/sys/kernel/sched_wakeup_load_threshold 60
     write /proc/sys/kernel/sched_small_wakee_task_load 15
 
+    write /sys/devices/system/cpu/cpu0/sched_static_cpu_pwr_cost 10
+    write /sys/devices/system/cpu/cpu0/sched_static_cluster_pwr_cost 20
+    write /sys/devices/system/cpu/cpu1/sched_static_cpu_pwr_cost 10
+    write /sys/devices/system/cpu/cpu1/sched_static_cluster_pwr_cost 20
+    write /sys/devices/system/cpu/cpu2/sched_static_cpu_pwr_cost 500
+    write /sys/devices/system/cpu/cpu2/sched_static_cluster_pwr_cost 1000
+    write /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost 500
+    write /sys/devices/system/cpu/cpu3/sched_static_cluster_pwr_cost 1000
+
 
     write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 1
     write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 0
@@ -104,14 +119,14 @@ on property:baikal.eng.perf.profile=balance
 
     write /dev/cpuset/top-app/cpus 0-3
     write /dev/cpuset/foreground/cpus 0-2
-    write /dev/cpuset/background/cpus 0
+    write /dev/cpuset/background/cpus 0-1
     write /dev/cpuset/system-background/cpus 0-1
 
     write /sys/class/devfreq/soc:qcom,cpubw/min_freq 762
     write /sys/class/devfreq/soc:qcom,cpubw/max_freq 13763
 
-    write /sys/class/devfreq/soc:qcom,cpubw/min_freq 762
-    write /sys/class/devfreq/soc:qcom,cpubw/max_freq 13763
+    write /sys/class/devfreq/soc:qcom,mincpubw/min_freq 762
+    write /sys/class/devfreq/soc:qcom,mincpubw/max_freq 13763
 
     write /sys/class/devfreq/soc:qcom,gpubw/min_freq 762
     write /sys/class/devfreq/soc:qcom,gpubw/max_freq 13763
@@ -127,7 +142,7 @@ on property:baikal.eng.perf.profile=balance
 # Set idle GPU to 133 MHz
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
-    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
+    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 3
     write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz 133
     write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133000000
     write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz 624
@@ -136,6 +151,16 @@ on property:baikal.eng.perf.profile=balance
 
 # Performance (based on DrunkSauce Lite)
 on property:baikal.eng.perf.profile=performance
+
+    # Enable cpufreq boost
+    write /sys/module/cpu_input_boost/parameters/boost_enabled "Y"
+    write /sys/module/cpu_input_boost/parameters/input_boost_duration 256
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_hp 2150400
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_lp 1593600
+
+    # Enable devrfreq boost
+    write /sys/module/devfreq_boost/parameters/boost_enabled "Y"
+    write /sys/module/devfreq_boost/parameters/boost_all "Y"
 
     # Re-enable thermal and BCL hotplug
     write /sys/module/msm_thermal/core_control/enabled 0
@@ -168,8 +193,6 @@ on property:baikal.eng.perf.profile=performance
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/powersave_bias 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 960000
 
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 80
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 80
@@ -196,8 +219,6 @@ on property:baikal.eng.perf.profile=performance
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/fast_ramp_down 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/enable_prediction 0
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/powersave_bias 0
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 960000
 
     # Re-enable thermal and BCL hotplug
     write /sys/module/msm_thermal/core_control/enabled 1
@@ -205,21 +226,30 @@ on property:baikal.eng.perf.profile=performance
 
     # Setting b.L scheduler parameters
     write /proc/sys/kernel/sched_window_stats_policy 1
-    write /proc/sys/kernel/sched_boost 0
+    write /proc/sys/kernel/sched_boost 1
     write /proc/sys/kernel/sched_migration_fixup 1
-    write /proc/sys/kernel/sched_upmigrate 90
-    write /proc/sys/kernel/sched_downmigrate 60
-    write /proc/sys/kernel/sched_upmigrate 90
-    write /proc/sys/kernel/sched_downmigrate 60
+    write /proc/sys/kernel/sched_upmigrate 75
+    write /proc/sys/kernel/sched_downmigrate 50
+    write /proc/sys/kernel/sched_upmigrate 75
+    write /proc/sys/kernel/sched_downmigrate 50
     write /proc/sys/kernel/sched_freq_inc_notify 40000
     write /proc/sys/kernel/sched_freq_dec_notify 200000
-    write /proc/sys/kernel/sched_spill_nr_run 50
-    write /proc/sys/kernel/sched_spill_load 100
+    write /proc/sys/kernel/sched_spill_nr_run 12
+    write /proc/sys/kernel/sched_spill_load 70
     write /proc/sys/kernel/sched_init_task_load 10
-    write /proc/sys/kernel/sched_big_waker_task_load 50
+    write /proc/sys/kernel/sched_big_waker_task_load 12
     write /proc/sys/kernel/sched_small_task 15
-    write /proc/sys/kernel/sched_wakeup_load_threshold 50
+    write /proc/sys/kernel/sched_wakeup_load_threshold 12
     write /proc/sys/kernel/sched_small_wakee_task_load 10
+
+    write /sys/devices/system/cpu/cpu0/sched_static_cpu_pwr_cost 200
+    write /sys/devices/system/cpu/cpu0/sched_static_cluster_pwr_cost 400
+    write /sys/devices/system/cpu/cpu1/sched_static_cpu_pwr_cost 200
+    write /sys/devices/system/cpu/cpu1/sched_static_cluster_pwr_cost 400
+    write /sys/devices/system/cpu/cpu2/sched_static_cpu_pwr_cost 10
+    write /sys/devices/system/cpu/cpu2/sched_static_cluster_pwr_cost 20
+    write /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost 10
+    write /sys/devices/system/cpu/cpu3/sched_static_cluster_pwr_cost 20
 
     write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 2
     write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 2
@@ -228,17 +258,16 @@ on property:baikal.eng.perf.profile=performance
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 0
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 0
 
-
     write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/foreground/cpus 0-2
-    write /dev/cpuset/background/cpus 0
-    write /dev/cpuset/system-background/cpus 0-1
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/system-background/cpus 0-3
 
     write /sys/class/devfreq/soc:qcom,cpubw/min_freq 5859
     write /sys/class/devfreq/soc:qcom,cpubw/max_freq 13763
 
-    write /sys/class/devfreq/soc:qcom,cpubw/min_freq 5859
-    write /sys/class/devfreq/soc:qcom,cpubw/max_freq 13763
+    write /sys/class/devfreq/soc:qcom,mincpubw/min_freq 5859
+    write /sys/class/devfreq/soc:qcom,mincpubw/max_freq 13763
 
     write /sys/class/devfreq/soc:qcom,gpubw/min_freq 5859
     write /sys/class/devfreq/soc:qcom,gpubw/max_freq 13763
@@ -254,7 +283,7 @@ on property:baikal.eng.perf.profile=performance
 # Set idle GPU to 133 MHz
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
-    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
+    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 1
     write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz 133
     write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133000000
     write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz 624
@@ -262,6 +291,16 @@ on property:baikal.eng.perf.profile=performance
 
 # Battery
 on property:baikal.eng.perf.profile=battery
+
+    # Enable cpufreq boost
+    write /sys/module/cpu_input_boost/parameters/boost_enabled "N"
+    write /sys/module/cpu_input_boost/parameters/input_boost_duration 0
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_hp 307200
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_lp 307200
+
+    # Disable devrfreq boost
+    write /sys/module/devfreq_boost/parameters/boost_enabled "N"
+    write /sys/module/devfreq_boost/parameters/boost_all "N"
 
     # Re-enable thermal and BCL hotplug
     write /sys/module/msm_thermal/core_control/enabled 0
@@ -294,8 +333,6 @@ on property:baikal.eng.perf.profile=battery
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/powersave_bias 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 960000
 
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 150
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 150
@@ -321,8 +358,6 @@ on property:baikal.eng.perf.profile=battery
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/fast_ramp_down 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/enable_prediction 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/powersave_bias 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 960000
 
     # Re-enable thermal and BCL hotplug
     write /sys/module/msm_thermal/core_control/enabled 1
@@ -332,10 +367,10 @@ on property:baikal.eng.perf.profile=battery
     write /proc/sys/kernel/sched_window_stats_policy 1
     write /proc/sys/kernel/sched_boost 0
     write /proc/sys/kernel/sched_migration_fixup 1
-    write /proc/sys/kernel/sched_upmigrate 90
-    write /proc/sys/kernel/sched_downmigrate 60
-    write /proc/sys/kernel/sched_upmigrate 90
-    write /proc/sys/kernel/sched_downmigrate 60
+    write /proc/sys/kernel/sched_upmigrate 95
+    write /proc/sys/kernel/sched_downmigrate 75
+    write /proc/sys/kernel/sched_upmigrate 95
+    write /proc/sys/kernel/sched_downmigrate 75
     write /proc/sys/kernel/sched_freq_inc_notify 400000
     write /proc/sys/kernel/sched_freq_dec_notify 40000
     write /proc/sys/kernel/sched_spill_nr_run 50
@@ -346,6 +381,15 @@ on property:baikal.eng.perf.profile=battery
     write /proc/sys/kernel/sched_wakeup_load_threshold 110
     write /proc/sys/kernel/sched_small_wakee_task_load 10
 
+    write /sys/devices/system/cpu/cpu0/sched_static_cpu_pwr_cost 10
+    write /sys/devices/system/cpu/cpu0/sched_static_cluster_pwr_cost 20
+    write /sys/devices/system/cpu/cpu1/sched_static_cpu_pwr_cost 10
+    write /sys/devices/system/cpu/cpu1/sched_static_cluster_pwr_cost 20
+    write /sys/devices/system/cpu/cpu2/sched_static_cpu_pwr_cost 500
+    write /sys/devices/system/cpu/cpu2/sched_static_cluster_pwr_cost 1000
+    write /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost 500
+    write /sys/devices/system/cpu/cpu3/sched_static_cluster_pwr_cost 1000
+
     write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 1
     write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 0
 
@@ -354,13 +398,16 @@ on property:baikal.eng.perf.profile=battery
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 85
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 95
 
-    write /dev/cpuset/top-app/cpus 0-2
-    write /dev/cpuset/foreground/cpus 0-2
+    write /dev/cpuset/top-app/cpus 0-1
+    write /dev/cpuset/foreground/cpus 0-1
     write /dev/cpuset/background/cpus 0
-    write /dev/cpuset/system-background/cpus 0-1
+    write /dev/cpuset/system-background/cpus 0
 
     write /sys/class/devfreq/soc:qcom,cpubw/min_freq 762
-    write /sys/class/devfreq/soc:qcom,cpubw/max_freq 13763
+    write /sys/class/devfreq/soc:qcom,cpubw/max_freq 762
+
+    write /sys/class/devfreq/soc:qcom,mincpubw/min_freq 762
+    write /sys/class/devfreq/soc:qcom,mincpubw/max_freq 762
 
     write /sys/class/devfreq/soc:qcom,gpubw/min_freq 762
     write /sys/class/devfreq/soc:qcom,gpubw/max_freq 762
@@ -383,11 +430,19 @@ on property:baikal.eng.perf.profile=battery
     write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz 133
     write /sys/class/kgsl/kgsl-3d0/devfreq/max_freq 133000000 
 
-    write /sys/class/devfreq/soc:qcom,cpubw/min_freq 762
-    write /sys/class/devfreq/soc:qcom,cpubw/max_freq 762
 
 # Gaming
 on property:baikal.eng.perf.profile=gaming
+
+    # Enable cpufreq boost
+    write /sys/module/cpu_input_boost/parameters/boost_enabled "Y"
+    write /sys/module/cpu_input_boost/parameters/input_boost_duration 256
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_hp 2150400
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_lp 1593600
+
+    # Enable devrfreq boost
+    write /sys/module/devfreq_boost/parameters/boost_enabled "Y"
+    write /sys/module/devfreq_boost/parameters/boost_all "Y"
 
     # Re-enable thermal and BCL hotplug
     write /sys/module/msm_thermal/core_control/enabled 0
@@ -400,9 +455,6 @@ on property:baikal.eng.perf.profile=gaming
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
 
     # Configure governor settings for little cluster
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1593600
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
-
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1593600
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
 
@@ -420,16 +472,11 @@ on property:baikal.eng.perf.profile=gaming
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/powersave_bias 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/screen_off_maxfreq 960000
 
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 60
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 80
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 50
 
     # Configure governor settings for big cluster
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 2150400
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 1036800
-
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 2150400
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 1036800
 
@@ -447,8 +494,6 @@ on property:baikal.eng.perf.profile=gaming
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/fast_ramp_down 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/enable_prediction 0
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/powersave_bias 0
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/screen_off_maxfreq 960000
 
     # Re-enable thermal and BCL hotplug
     write /sys/module/msm_thermal/core_control/enabled 1
@@ -458,18 +503,18 @@ on property:baikal.eng.perf.profile=gaming
     write /proc/sys/kernel/sched_window_stats_policy 1
     write /proc/sys/kernel/sched_boost 1
     write /proc/sys/kernel/sched_migration_fixup 1
-    write /proc/sys/kernel/sched_upmigrate 90
-    write /proc/sys/kernel/sched_downmigrate 60
-    write /proc/sys/kernel/sched_upmigrate 90
-    write /proc/sys/kernel/sched_downmigrate 60
+    write /proc/sys/kernel/sched_upmigrate 60
+    write /proc/sys/kernel/sched_downmigrate 30
+    write /proc/sys/kernel/sched_upmigrate 60
+    write /proc/sys/kernel/sched_downmigrate 30
     write /proc/sys/kernel/sched_freq_inc_notify 20000
     write /proc/sys/kernel/sched_freq_dec_notify 400000
-    write /proc/sys/kernel/sched_spill_nr_run 50
-    write /proc/sys/kernel/sched_spill_load 100
+    write /proc/sys/kernel/sched_spill_nr_run 12
+    write /proc/sys/kernel/sched_spill_load 50
     write /proc/sys/kernel/sched_init_task_load 10
-    write /proc/sys/kernel/sched_big_waker_task_load 50
+    write /proc/sys/kernel/sched_big_waker_task_load 12
     write /proc/sys/kernel/sched_small_task 15
-    write /proc/sys/kernel/sched_wakeup_load_threshold 50
+    write /proc/sys/kernel/sched_wakeup_load_threshold 12
     write /proc/sys/kernel/sched_small_wakee_task_load 10
 
 
@@ -481,15 +526,15 @@ on property:baikal.eng.perf.profile=gaming
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 0
 
     write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/foreground/cpus 0-2
-    write /dev/cpuset/background/cpus 0
-    write /dev/cpuset/system-background/cpus 0-1
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/system-background/cpus 0-3
 
     write /sys/class/devfreq/soc:qcom,cpubw/min_freq 13763
     write /sys/class/devfreq/soc:qcom,cpubw/max_freq 13763
 
-    write /sys/class/devfreq/soc:qcom,cpubw/min_freq 13763
-    write /sys/class/devfreq/soc:qcom,cpubw/max_freq 13763
+    write /sys/class/devfreq/soc:qcom,mincpubw/min_freq 13763
+    write /sys/class/devfreq/soc:qcom,mincpubw/max_freq 13763
 
     write /sys/class/devfreq/soc:qcom,gpubw/min_freq 13763
     write /sys/class/devfreq/soc:qcom,gpubw/max_freq 13763
@@ -501,6 +546,15 @@ on property:baikal.eng.perf.profile=gaming
     write /sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq 13763
     write /sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq 13763
     write /sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq 13763
+
+    write /sys/devices/system/cpu/cpu0/sched_static_cpu_pwr_cost 200
+    write /sys/devices/system/cpu/cpu0/sched_static_cluster_pwr_cost 400
+    write /sys/devices/system/cpu/cpu1/sched_static_cpu_pwr_cost 200
+    write /sys/devices/system/cpu/cpu1/sched_static_cluster_pwr_cost 400
+    write /sys/devices/system/cpu/cpu2/sched_static_cpu_pwr_cost 10
+    write /sys/devices/system/cpu/cpu2/sched_static_cluster_pwr_cost 20
+    write /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost 10
+    write /sys/devices/system/cpu/cpu3/sched_static_cluster_pwr_cost 20
 
 
 # Set idle GPU to 133 MHz
@@ -515,3 +569,4 @@ on property:baikal.eng.perf.profile=gaming
 
 #on property:baikal.eng.perf.profile=*
 #    setprop "baikal.eng.perf.profile" "default"
+
