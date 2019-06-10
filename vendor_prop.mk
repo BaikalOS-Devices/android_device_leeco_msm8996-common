@@ -223,4 +223,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # BaikalService 
 PRODUCT_PROPERTY_OVERRIDES += \
     baikal.eng.perf=1 \
-    baikal.eng.therm=1
+    baikal.eng.therm=1 \
+    baikal.eng.core_ctl=1 \
+    sys.baikal.min_cpus=2
+

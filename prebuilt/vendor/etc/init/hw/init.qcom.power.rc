@@ -132,11 +132,11 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost 500
     write /sys/devices/system/cpu/cpu3/sched_static_cluster_pwr_cost 1000
 
-    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 1
+    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 2
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 75
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 85
 
-    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 1
+    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 2
     write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 65
     write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 75
 
@@ -193,6 +193,8 @@ on enable-low-power
     write /dev/cpuset/foreground/cpus 0-2
     write /dev/cpuset/background/cpus 0
     write /dev/cpuset/system-background/cpus 0-1
+
+    setprop "sys.baikalos.power.ready" 1
 
 on charger
     write /sys/devices/system/cpu/cpu1/online 0

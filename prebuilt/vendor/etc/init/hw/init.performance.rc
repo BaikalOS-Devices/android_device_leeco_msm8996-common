@@ -4,6 +4,21 @@ on boot
 on property:baikal.eng.perf.profile=default
     setprop "baikal.eng.perf.profile" "balance"
 
+on property:sys.baikalos.power.ready=1
+    setprop "baikal.eng.perf.profile" ${baikal.eng.perf.profile:-default}
+
+on property:persist.baikal.core_ctl=1
+    setprop sys.baikal.min_cpus 1
+    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 1
+    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 1
+    setprop "baikal.eng.perf.profile" ${baikal.eng.perf.profile:-default}
+
+on property:persist.baikal.core_ctl=0
+    setprop sys.baikal.min_cpus 2
+    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 2
+    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 2
+    setprop "baikal.eng.perf.profile" ${baikal.eng.perf.profile:-default}
+
 # Balance (default profile)
 on property:baikal.eng.perf.profile=balance
     # Configure governor settings for little cluster
@@ -108,8 +123,8 @@ on property:baikal.eng.perf.profile=balance
     write /sys/devices/system/cpu/cpu3/sched_static_cluster_pwr_cost 1000
 
 
-    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 1
-    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 0
+    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus ${sys.baikal.min_cpus:-2}
+    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus ${sys.baikal.min_cpus:-2}
 
     write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 45
     write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 55
@@ -221,7 +236,7 @@ on property:baikal.eng.perf.profile=performance
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/enable_prediction 0
 
     # Re-enable thermal and BCL hotplug
-    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/module/msm_thermal/core_control/enabled 0
     write /sys/module/msm_thermal/parameters/enabled "Y"
 
     # Setting b.L scheduler parameters
