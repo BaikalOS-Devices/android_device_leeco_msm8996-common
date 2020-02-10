@@ -1,0 +1,43 @@
+import /vendor/etc/init/hw/init.profiles.rc
+import /vendor/etc/init/hw/init.performance.rc
+import /vendor/etc/init/hw/init.thermal.rc
+
+
+on boot
+    # KCAL permissions
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcal
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcal_enable
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcal_cont
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcal_sat
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcal_hue
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcal_min
+    chown system system /sys/devices/platform/kcal_ctrl.0/kcal_val
+    chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal
+    chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_enable
+    chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_cont
+    chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_sat
+    chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_hue
+    chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_min
+    chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal_val
+    # IR
+    chmod 666 /dev/remote/name
+    chmod 666 /sys/remote/enable
+    chmod 666 /dev/ttyHSL1
+
+on property:persist.fx.hp_detect=0
+    write /sys/module/snd_soc_wcd_mbhc/parameters/disable_hp_detect 0
+    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 1
+    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 0
+
+on property:persist.fx.hp_detect=1
+    write /sys/module/snd_soc_wcd_mbhc/parameters/disable_hp_detect 1
+    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 1
+    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 0
+
+on property:persist.hw.0d_disable=1
+    write /sys/devices/soc/75ba000.i2c/i2c-12/12-004b/input/input3/0dbutton 0
+    write /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/keys_on 0
+
+on property:persist.hw.0d_disable=0
+    write /sys/devices/soc/75ba000.i2c/i2c-12/12-004b/input/input3/0dbutton 1
+    write /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/keys_on 1

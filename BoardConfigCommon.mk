@@ -46,10 +46,11 @@ TARGET_USES_64_BIT_BINDER := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff log_buf_len=8M sched_enable_hmp=1 sched_enable_power_aware=1
 BOARD_KERNEL_CMDLINE += androidboot.configfs=true
 BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/leeco/msm8996
@@ -164,7 +165,7 @@ DEVICE_MATRIX_FILE := $(PLATFORM_PATH)/compatibility_matrix.xml
 
 # Init
 TARGET_INIT_VENDOR_LIB := //$(PLATFORM_PATH):libinit_leeco_msm8996
-TARGET_RECOVERY_DEVICE_MODULES := libinit_leeco_msm8996
+TARGET_RECOVERY_DEVICE_MODULES := //$(PLATFORM_PATH):libinit_leeco_msm8996
 
 # Partitions (/proc/partitions * 2 * BLOCK_SIZE (512) = size in bytes)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
@@ -180,8 +181,13 @@ BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
-BOARD_ROOT_EXTRA_SYMLINKS := \
-    /mnt/vendor/persist:/persist
+#BOARD_ROOT_EXTRA_SYMLINKS := \
+#    /mnt/vendor/persist:/persist
+
+BOARD_ROOT_EXTRA_SYMLINKS := /mnt/vendor/persist:/persist
+BOARD_ROOT_EXTRA_SYMLINKS += /vendor/lib/dsp:/dsp
+BOARD_ROOT_EXTRA_SYMLINKS += /vendor/firmware_mnt:/firmware
+
 
 TARGET_USES_MKE2FS := true
 
@@ -225,9 +231,9 @@ BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/vendor
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(PLATFORM_PATH)/sepolicy/private
 
 # Shims
-TARGET_LD_SHIM_LIBS := \
-    /system/lib/libui.so|libui_shim.so \
-    /system/lib64/libui.so|libui_shim.so
+#TARGET_LD_SHIM_LIBS := \
+#    /system/lib/libui.so|libui_shim.so \
+#    /system/lib64/libui.so|libui_shim.so
 
 # Treble
 PRODUCT_FULL_TREBLE_OVERRIDE := true

@@ -28,6 +28,7 @@
 import /vendor/etc/init/hw/init.qcom.power.rc
 import /vendor/etc/init/hw/init.qcom.usb.rc
 import /vendor/etc/init/hw/init.device.rc
+import /vendor/etc/init/hw/init.custom.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -43,6 +44,10 @@ on init
     # QSEE rpmb listener need symlink for bootdevice
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+    # Start Time Daemon early for keymaster 
+    start time_daemon 
+    wait_for_prop init.svc.time_daemon running
 
     # Start qseecomd early as we mount /system early
     # vold needs keymaster which needs qseecomd
@@ -92,10 +97,12 @@ on post-fs-data
     # msm specific files that need to be created on /data
     mkdir /persist/drm 0770 system system
     mkdir /persist/misc 0770 system system
+    mkdir /persist/alarm 0770 system system
     mkdir /persist/secnvm 0770 system system
     mkdir /mnt/vendor/persist/secnvm 0770 system system
     mkdir /persist/data/sfs 0700 system system
     mkdir /persist/data/tz 0700 system system
+    mkdir /data/misc/tloc/ 0700 system drmrpc
 
     # Sensors
     chown system system /mnt/vendor/persist/sensors/gyro_sensitity_cal
@@ -110,6 +117,15 @@ on post-fs-data
     chown system system /mnt/vendor/persist/sensors/registry/sns_reg_config
     chown system system /mnt/vendor/persist/sensors/registry/config
     chmod 0664 /mnt/vendor/persist/sensors/sensors_settings
+
+    # Sensors
+    mkdir /data/misc/sensors
+    chmod 0775 /data/misc/sensors
+    chmod 0755 /persist/sensors
+    chmod 0644 /persist/sensors/sensors_settings
+    chmod 0644 /persist/sensors/gyro_sensitity_cal
+    chown system root /persist/sensors/sensors_settings
+    chown system root /persist/sensors/gyro_sensitity_cal
 
     # Create vpp directory
     mkdir /mnt/vendor/persist/vpp 0770 media media
@@ -216,7 +232,19 @@ on post-fs-data
     mkdir /dev/socket/location/mq 0770 gps gps
     mkdir /dev/socket/location/xtra 0770 gps gps
 
-    # Create /data/vendor/time folder for time-services
+    # Create directory from IMS services
+    mkdir /data/shared 0755
+    chown system system /data/shared
+
+    # Create directory for FOTA
+    mkdir /data/fota 0771
+    chown system system /data/fota
+
+    # Create directory for hostapd
+    mkdir /data/hostapd 0770 system wifi
+
+    # Create /data/time folder for time-services
+    mkdir /data/time/ 0700 system system
     mkdir /data/vendor/time 0700 system system
 
     setprop vold.post_fs_data_done 1
@@ -290,12 +318,21 @@ on early-boot
     exec u:r:qti_init_shell:s0 -- /vendor/bin/init.qcom.early_boot.sh
 
 on boot
+    # Quick charge toggle permission
+    chown system system /sys/class/power_supply/le_ab/le_quick_charge_mode
+
     # Secure touch
     chmod 0660 /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch_enable
     chmod 0440 /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch
     chown system drmrpc /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch_enable
     chown system drmrpc /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/secure_touch
     #write /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input0/update_fw 1
+
+    # Touchscreen
+    chown system system /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input2/0dbutton
+    chmod 0666 /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input2/0dbutton
+    chown system system /proc/touchpanel/capacitive_keys_enable
+    chmod 0666 /proc/touchpanel/capacitive_keys_enable
 
     # Torch
     chown system system /sys/class/leds/torch-light0/brightness
@@ -470,8 +507,8 @@ on boot
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed"
     # end boot time fs tune
-    write /sys/block/sda/queue/read_ahead_kb 512
-    write /sys/block/sda/queue/nr_requests 512
+    write /sys/block/sda/queue/read_ahead_kb 2048
+    write /sys/block/sda/queue/nr_requests 256
     write /sys/block/sda/queue/iostats 1
     # CPE fw_name used by sound trigger HAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
@@ -515,7 +552,7 @@ service vendor.qseecomd /vendor/bin/qseecomd
    group root
    writepid /dev/cpuset/system-background/tasks
 
-service thermal-engine /vendor/bin/thermal-engine -c ${sys.qcom.thermalcfg:-/vendor/etc/thermal-engine.conf}
+service thermal-engine /vendor/bin/thermal-engine -c ${sys.qcom.thermalcfg:-/vendor/etc/thermal-engine-8996.conf}
     class main
     user root
     socket thermal-send-client stream 0666 system system

@@ -45,7 +45,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
-    bt.max.hfpclient.connections=1 \
+    bt.max.hfpclient.connections=2 \
     ro.bluetooth.wipower=true \
     ro.bluetooth.emb_wp_mode=true \
     vendor.qcom.bluetooth.soc=rome
@@ -132,7 +132,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
-   ro.vendor.extension_library=libqti-perfd-client.so
+   ro.vendor.extension_library=libqti-perfd-client.so \
+   ro.vendor.qti.sys.fw.bg_apps_limit=200
 
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -416,4 +416,15 @@
 
     <!-- Enable adjusting the button backlight -->
     <bool name="config_deviceHasVariableButtonBrightness">true</bool>
+
+    <!-- Whether device ignores the RSSNR signal implementation -->
+    <bool name="config_ignoreRssnrSignalLevel">true</bool>
+
+    <bool name="config_button_brightness_support">true</bool>
+
+    <integer name="config_button_brightness_default">25</integer>
+    <integer name="config_buttonBrightnessSettingMinimum">0</integer>
+    <integer name="config_buttonBrightnessSettingMaximum">40</integer>
+    <integer name="config_buttonBrightnessSettingDefault">25</integer>
+
 </resources>
