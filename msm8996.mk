@@ -21,12 +21,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_m.mk)
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-custom
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
     $(LOCAL_PATH)/overlay-lineage/lineage-sdk \
-    $(LOCAL_PATH)/overlay/packages/apps/Snap
+    $(LOCAL_PATH)/overlay/packages/apps/Snap \
 
 # Init
 PRODUCT_COPY_FILES += \
@@ -107,6 +107,10 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     libvolumelistener \
     tinymix
+
+PRODUCT_PACKAGES += \
+    audio.bluetooth.default \
+    android.hardware.bluetooth.audio@2.0-impl
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
@@ -243,12 +247,12 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.leeco_8996
 
 # Lineage hardware
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.leeco_8996
+#PRODUCT_PACKAGES += \
+#    vendor.lineage.touch@1.0-service.leeco_8996
 
 # LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.0-service-sdm
+#PRODUCT_PACKAGES += \
+#    vendor.lineage.livedisplay@2.0-service-sdm
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -383,9 +387,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/thermal-engine-8996.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine-8996.conf \
+    $(LOCAL_PATH)/configs/thermal-engine-8996-cool.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine-8996-cool.conf \
+    $(LOCAL_PATH)/configs/thermal-engine-8996-gaming.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine-8996-gaming.conf
+
+
 # Trust HAL
-PRODUCT_PACKAGES += \
-    vendor.lineage.trust@1.0-service
+#PRODUCT_PACKAGES += \
+#    vendor.lineage.trust@1.0-service
 
 # USB
 PRODUCT_PACKAGES += \
