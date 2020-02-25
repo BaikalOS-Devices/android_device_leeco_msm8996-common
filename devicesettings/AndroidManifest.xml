@@ -25,7 +25,7 @@
         </receiver>
 
         <activity
-            android:name=".LeecoPreferenceActivity"
+            android:name=".DeviceSettings"
             android:label="@string/leeco_settings_title"
             android:theme="@style/DeviceSettings">
             <intent-filter>

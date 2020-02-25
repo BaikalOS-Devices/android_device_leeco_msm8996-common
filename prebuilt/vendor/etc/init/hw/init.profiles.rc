@@ -4,6 +4,9 @@ on boot
 
 
 #Performance framework to device map
+on property:persist.baikal.perf.default=*
+    setprop "baikal.eng.perf.profile" "temporary"
+    setprop "baikal.eng.perf.profile" ${persist.baikal.perf.default:-"balance"}
 
 on property:baikal.perf.profile=default
     setprop "baikal.eng.perf.profile" ${persist.baikal.perf.default:-"balance"}
@@ -21,9 +24,13 @@ on property:baikal.perf.profile=battery
     setprop "baikal.eng.perf.profile" "battery"
 
 on property:baikal.perf.profile=reader
-    setprop "baikal.eng.perf.profile" "battery"
+    setprop "baikal.eng.perf.profile" "idle"
 
 #Thermal framework to device map
+
+on property:persist.baikal.therm.default=*
+    setprop "baikal.eng.therm.profile" "temporary"
+    setprop "baikal.eng.therm.profile" ${persist.baikal.therm.default:-"balance"}
 
 on property:baikal.therm.profile=default
     setprop "baikal.eng.therm.profile" ${persist.baikal.therm.default:-"balance"}
@@ -35,19 +42,19 @@ on property:baikal.therm.profile=gaming
     setprop "baikal.eng.therm.profile" "gaming"
 
 on property:baikal.therm.profile=gaming2
-    setprop "baikal.eng.therm.profile" "gaming2"
+    setprop "baikal.eng.therm.profile" "gaming"
 
 on property:baikal.therm.profile=cool
     setprop "baikal.eng.therm.profile" "cool"
 
 on property:baikal.therm.profile=camera
-    setprop "baikal.eng.therm.profile" "camera"
+    setprop "baikal.eng.therm.profile" "gaming"
 
 on property:baikal.therm.profile=video
-    setprop "baikal.eng.therm.profile" "video"
+    setprop "baikal.eng.therm.profile" "gaming"
 
 on property:baikal.therm.profile=incall
     setprop "baikal.eng.therm.profile" "incall"
 
 on property:baikal.therm.profile=vr
-    setprop "baikal.eng.therm.profile" "vr"
+    setprop "baikal.eng.therm.profile" "gaming"

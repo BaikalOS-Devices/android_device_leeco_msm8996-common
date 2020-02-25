@@ -596,6 +596,7 @@ service vendor.imsrcsservice /vendor/bin/imsrcsd
    class main
    user system
    group radio diag inet log
+   writepid /dev/cpuset/system-background/tasks
 
 on property:vendor.ims.DATA_DAEMON_STATUS=1
     restart vendor.ims_rtp_daemon
@@ -738,12 +739,14 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     socket vendor_wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
+    writepid /dev/cpuset/system-background/tasks
 
 service cnss-daemon /vendor/bin/cnss-daemon -n -l
     class late_start
     user system
     group system inet net_admin wifi
     capabilities NET_ADMIN
+    writepid /dev/cpuset/system-background/tasks
 
 on property:sys.powerctl=*
     stop cnss-daemon
@@ -770,6 +773,7 @@ service vendor.ril-daemon2 /vendor/bin/hw/rild -c 2
     disabled
     group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+    writepid /dev/cpuset/system-background/tasks
 
 
 on property:persist.radio.multisim.config=dsds
@@ -812,6 +816,7 @@ service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
     user root
     group root
     seclabel u:r:hvdcp:s0
+    writepid /dev/cpuset/system-background/tasks
 
 service vendor.charger /vendor/bin/charger
     class charger

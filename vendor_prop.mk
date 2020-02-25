@@ -4,9 +4,9 @@
 
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
-    af.fast_track_multiplier=1 \
-    audio.heap.size.multiplier=7 \
-    audio.offload.min.duration.secs=30 \
+    af.fast_track_multiplier=2 \
+    audio.heap.size.multiplier=10 \
+    audio.offload.min.duration.secs=15 \
     audio.offload.video=true \
     persist.audio.ssr.3mic=false \
     persist.vendor.audio.fluence.audiorec=false \
@@ -18,19 +18,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.vc_call_vol_steps=7 \
     ro.vendor.audio.sdk.fluencetype=fluence \
     ro.vendor.audio.sdk.ssr=false \
-    vendor.audio.dolby.ds2.enabled=false \
-    vendor.audio.dolby.ds2.hardbypass=false \
-    vendor.audio.flac.sw.decoder.24bit=true \
+    vendor.audio.dolby.ds2.enabled=true \
+    vendor.audio.dolby.ds2.hardbypass=true \
+    vendor.audio.flac.sw.decoder.24bit=false \
     vendor.audio_hal.period_size=192 \
     vendor.audio.hw.aac.encoder=true \
-    vendor.audio.offload.buffer.size.kb=64 \
+    ro.audio.offload_wakelock=false \
+    vendor.audio.offload.buffer.size.kb=512 \
     vendor.audio.offload.gapless.enabled=true \
     vendor.audio.offload.multiaac.enable=true \
     vendor.audio.offload.multiple.enabled=true \
     vendor.audio.offload.passthrough=false \
     vendor.audio.offload.pcm.16bit.enable=true \
     vendor.audio.offload.pcm.24bit.enable=true \
-    vendor.audio.offload.pstimeout.secs=3 \
+    vendor.audio.offload.pstimeout.secs=1 \
     vendor.audio.offload.track.enable=false \
     vendor.audio.parser.ip.buffer.size=262144 \
     vendor.audio.safx.pbe.enabled=true \
@@ -110,7 +111,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.disable_skip_validate=1 \
     vendor.display.enable_default_color_mode=1 \
     vendor.display.perf_hint_window=50 \
-    vendor.video.disable.ubwc=1
+    vendor.video.disable.ubwc=1 \
+    debug.gralloc.enable_fb_ubwc=1 \
+    vendor.gralloc.disable_wb_ubwc=1 
+
 
 # Graphics (OpenGLES)
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -121,8 +125,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
    persist.dbg.volte_avail_ovr=1 \
    persist.dbg.vt_avail_ovr=1 \
    persist.dbg.wfc_avail_ovr=1 \
+   persist.radio.VT_CAM_INTERFACE=2 \
    persist.radio.VT_ENABLE=1 \
    persist.radio.VT_HYBRID_ENABLE=1 \
+   persist.radio.ROTATION_ENABLE=1 \
    persist.vendor.qti.telephony.vt_cam_interface=2
 
 # Media
@@ -188,3 +194,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
+
+# FinigerprintService
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.fingerprint.cleanup.unused=false
+
+# BaikalService 
+PRODUCT_PROPERTY_OVERRIDES += \
+    baikal.eng.perf=1 \
+    baikal.eng.therm=1 \
+    baikal.eng.core_ctl=1 \
+    sys.baikal.min_cpus=2
+
+# Baikal Maintainer
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.baikalos.maintainer=svasiliev22

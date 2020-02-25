@@ -1,6 +1,9 @@
 on boot
     setprop "baikal.eng.therm.profile" "default"
 
+on property:sys.baikalos.power.ready=1
+    setprop "baikal.therm.profile" ${baikal.therm.profile:-"default"}
+
 on property:baikal.eng.therm.profile=default
     setprop "baikal.eng.therm.profile" "balance"
 

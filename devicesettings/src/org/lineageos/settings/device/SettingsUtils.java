@@ -34,73 +34,74 @@ import java.lang.reflect.Method;
 
 public class SettingsUtils {
     public static final String TAG = "SettingsUtils";
-    public static final String CAMERA_FOCUS_FIX_ENABLED =
-            "CAMERA_FOCUS_FIX_ENABLED";
-    public static final String QUICK_CHARGE_ENABLED = "QUICK_CHARGE_ENABLED";
 
-    public static final String CAMERA_FOCUS_FIX_SYSFS =
-            "/sys/module/msm_actuator/parameters/use_focus_fix";
-    public static final String QUICK_CHARGE_SYSFS =
-            "/sys/class/power_supply/le_ab/le_quick_charge_mode";
-
-    private static final String QC_SYSTEM_PROPERTY = "persist.sys.le_fast_chrg_enable";
+    public static final String QC_SYSTEM_PROPERTY = "persist.sys.le_fast_chrg_enable";
+    public static final String SYSTEM_PROPERTY_CAMERA_FOCUS_FIX = "persist.camera.focus_fix";
+    public static final String SYSTEM_PROPERTY_PS_FB_BOOST = "persist.ps.fb_boost";
+    public static final String SYSTEM_PROPERTY_QFP_WUP = "persist.qfp.wup_display";
+    public static final String SYSTEM_PROPERTY_HW_0D_DISABLE = "persist.hw.0d_disable";
+    public static final String SYSTEM_PROPERTY_CORE_CTL = "persist.baikal.core_ctl";
 
     public static final String PREFERENCES = "SettingsUtilsPreferences";
 
-    public static void writeCameraFocusFixSysfs(boolean enabled) {
-        if (!supportsCameraFocusFix()) return;
-        try {
-            FileOutputStream out = new FileOutputStream(new File(CAMERA_FOCUS_FIX_SYSFS));
-            OutputStreamWriter writer = new OutputStreamWriter(out);
-
-            writer.write(enabled ? '1' : '0');
-
-            writer.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public static void writeCameraFocusFixProp(boolean enabled) {
+        SystemProperties.set(SYSTEM_PROPERTY_CAMERA_FOCUS_FIX, enabled ? "1" : "0");
     }
 
     public static void writeQuickChargeProp(boolean enabled) {
         SystemProperties.set(QC_SYSTEM_PROPERTY, enabled ? "1" : "0");
     }
 
+    public static void writeFbBoostProp(boolean enabled) {
+        SystemProperties.set(SYSTEM_PROPERTY_PS_FB_BOOST, enabled ? "1" : "0");
+    }
+
+    public static void writeQfpWupProp(boolean enabled) {
+        SystemProperties.set(SYSTEM_PROPERTY_QFP_WUP, enabled ? "1" : "0");
+    }
+
+    public static void writeHw0DProp(boolean enabled) {
+        SystemProperties.set(SYSTEM_PROPERTY_HW_0D_DISABLE, enabled ? "1" : "0");
+    }
+
+    public static void writeCoreCtlProp(boolean enabled) {
+        SystemProperties.set(SYSTEM_PROPERTY_CORE_CTL, enabled ? "1" : "0");
+    }
+
     public static boolean supportsCameraFocusFix() {
-        File focusFixPath = new File(CAMERA_FOCUS_FIX_SYSFS);
-        return focusFixPath.exists();
+        //File focusFixPath = new File(CAMERA_FOCUS_FIX_SYSFS);
+        //return focusFixPath.exists();
+	return true;
     }
 
     public static boolean supportsQuickChargeSwitch() {
-        File QCPath = new File(QUICK_CHARGE_SYSFS);
-        return QCPath.exists();
+        //File QCPath = new File(QUICK_CHARGE_SYSFS);
+        //return QCPath.exists();
+	return true;
     }
 
-    public static boolean setCameraFocusFixEnabled(Context context, boolean enabled) {
-        return putInt(context, CAMERA_FOCUS_FIX_ENABLED, enabled ? 1 : 0);
+    public static boolean getCameraFocusFixEnabled() {
+        return SystemProperties.getBoolean(SYSTEM_PROPERTY_CAMERA_FOCUS_FIX, false);
     }
 
-    public static boolean getCameraFocusFixEnabled(Context context) {
-        return getInt(context, CAMERA_FOCUS_FIX_ENABLED, 0) == 1;
+    public static boolean getQuickChargeEnabled() {
+        return SystemProperties.getBoolean(QC_SYSTEM_PROPERTY, false);
     }
 
-    public static boolean setQuickChargeEnabled(Context context, boolean enabled) {
-        return putInt(context, QUICK_CHARGE_ENABLED, enabled ? 1 : 0);
+    public static boolean getFbBoostEnabled() {
+        return SystemProperties.getBoolean(SYSTEM_PROPERTY_PS_FB_BOOST, false);
     }
 
-    public static boolean getQuickChargeEnabled(Context context) {
-        return getInt(context, QUICK_CHARGE_ENABLED, 1) == 1;
+    public static boolean getQfpWupEnabled() {
+        return SystemProperties.getBoolean(SYSTEM_PROPERTY_QFP_WUP, false);
     }
 
-    public static int getInt(Context context, String name, int def) {
-        SharedPreferences settings = context.getSharedPreferences(PREFERENCES, 0);
-        return settings.getInt(name, def);
+    public static boolean getHw0DEnabled() {
+        return SystemProperties.getBoolean(SYSTEM_PROPERTY_HW_0D_DISABLE, false);
     }
 
-    public static boolean putInt(Context context, String name, int value) {
-        SharedPreferences settings = context.getSharedPreferences(PREFERENCES, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt(name, value);
-        return editor.commit();
+    public static boolean getCoreCtlEnabled() {
+        return SystemProperties.getBoolean(SYSTEM_PROPERTY_CORE_CTL, false);
     }
 
     public static void registerPreferenceChangeListener(Context context,

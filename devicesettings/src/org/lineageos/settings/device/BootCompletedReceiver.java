@@ -31,7 +31,5 @@ public class BootCompletedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
         if (DEBUG) Log.d(TAG, "Boot Receiver");
-        SettingsUtils.writeCameraFocusFixSysfs(
-            SettingsUtils.getCameraFocusFixEnabled(context));
     }
 }

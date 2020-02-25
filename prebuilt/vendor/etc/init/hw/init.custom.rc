@@ -41,3 +41,5 @@ on property:persist.hw.0d_disable=1
 on property:persist.hw.0d_disable=0
     write /sys/devices/soc/75ba000.i2c/i2c-12/12-004b/input/input3/0dbutton 1
     write /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/keys_on 1
+
+

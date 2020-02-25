@@ -15,7 +15,11 @@ LOCAL_USE_AAPT2 := true
 
 LOCAL_STATIC_ANDROID_LIBRARIES := \
     androidx.core_core \
-    androidx.preference_preference
+    androidx.preference_preference \
+    com.google.android.material_material \
+    AicpGear-preference \
+    AicpGear-util
+
 
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 
