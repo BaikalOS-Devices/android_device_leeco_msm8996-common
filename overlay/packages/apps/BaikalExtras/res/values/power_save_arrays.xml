@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string-array name="default_thermal_listentries">
+    	<item>@string/thermal_balance</item>
+    	<item>@string/thermal_gaming</item>
+    	<item>@string/thermal_cool</item>
+     </string-array>
+     <string-array name="default_thermal_listvalues">
+    	<item>balance</item>
+    	<item>gaming</item>
+    	<item>cool</item>
+    </string-array>
+</resources>
