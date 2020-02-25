@@ -72,6 +72,9 @@ void vendor_load_properties()
     LOG(INFO) << "DEVINFO: " << device;
     bool unknownDevice = true;
 
+    property_set("ro.product.brand", "LeEco");
+    property_set("ro.product.manufacturer", "LeEco");
+
     if (device == "le_zl0_whole_netcom") {
         // This is LEX722
         property_overrride_triple("ro.product.device", "ro.product.system.device", "ro.product.vendor.device", "le_zl0");

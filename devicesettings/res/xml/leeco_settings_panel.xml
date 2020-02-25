@@ -17,15 +17,46 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <SwitchPreference
-        android:key="camera_focus_enable"
+        android:key="persist.camera.focus_fix"
         android:defaultValue="false"
         android:title="@string/camera_focus_fix_title"
         android:summary="@string/camera_focus_fix_summary" />
 
     <SwitchPreference
-        android:key="quick_charge_enable"
+        android:key="persist.sys.le_fast_chrg_enable"
         android:defaultValue="true"
-        android:title="@string/quick_charge_title"
-        android:summary="@string/quick_charge_summary" />
+        android:title="@string/qc_title"
+        android:summary="@string/qc_summary" />
+
+     <!-- SwitchPreference
+        android:key="persist.qfp.wup_display"
+        android:defaultValue="false"
+        android:title="@string/qfp_wup_title"
+        android:summary="@string/qfp_wup_summary" / -->
+
+    <com.aicp.gear.preference.GlobalSettingSwitchPreference
+        android:key="baikalos_hall_sensor"
+        android:title="@string/baikalos_hall_sensor_title"
+        android:summary="@string/baikalos_hall_sensor_summary"
+        android:defaultValue="false"
+        android:disableDependentsState="true" />
+
+     <SwitchPreference
+        android:key="persist.baikal.core_ctl"
+        android:defaultValue="false"
+        android:title="@string/core_ctl_title"
+        android:summary="@string/core_ctl_summary" />
+
+     <SwitchPreference
+        android:key="persist.ps.fb_boost"
+        android:defaultValue="false"
+        android:title="@string/fb_boost_title"
+        android:summary="@string/fb_boost_summary" />
+
+     <SwitchPreference
+        android:key="persist.hw.0d_disable"
+        android:defaultValue="false"
+        android:title="@string/hw_0d_disable_title"
+        android:summary="@string/hw_0d_disable_summary" />
 
 </PreferenceScreen>

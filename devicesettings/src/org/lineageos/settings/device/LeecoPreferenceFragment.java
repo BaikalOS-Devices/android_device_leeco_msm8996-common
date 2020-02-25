@@ -17,6 +17,7 @@
 package org.lineageos.settings.device;
 
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.provider.Settings;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.Preference;
@@ -29,8 +30,20 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
     private static final String KEY_CAMERA_FOCUS_FIX_ENABLE = "camera_focus_enable";
     private static final String KEY_QUICK_CHARGE_ENABLE = "quick_charge_enable";
 
+    public static final String QC_SYSTEM_PROPERTY = "persist.sys.le_fast_chrg_enable";
+    public static final String SYSTEM_PROPERTY_CAMERA_FOCUS_FIX = "persist.camera.focus_fix";
+    public static final String SYSTEM_PROPERTY_PS_FB_BOOST = "persist.ps.fb_boost";
+    public static final String SYSTEM_PROPERTY_QFP_WUP = "persist.qfp.wup_display";
+    public static final String SYSTEM_PROPERTY_HW_0D_DISABLE = "persist.hw.0d_disable";
+    public static final String SYSTEM_PROPERTY_CORE_CTL = "persist.baikal.core_ctl";
+
+
     private SwitchPreference mCameraFocusFixEnable;
     private SwitchPreference mQuickChargeEnable;
+    private SwitchPreference mFbBoostEnable;
+    //private SwitchPreference mQfpWupEnable;
+    private SwitchPreference mHw0DEnable;
+    private SwitchPreference mCoreCtl;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -42,22 +55,35 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.leeco_settings_panel);
         final PreferenceScreen prefSet = getPreferenceScreen();
-        mCameraFocusFixEnable = (SwitchPreference) findPreference(KEY_CAMERA_FOCUS_FIX_ENABLE);
-        mQuickChargeEnable = (SwitchPreference) findPreference(KEY_QUICK_CHARGE_ENABLE);
+        mCameraFocusFixEnable = (SwitchPreference) findPreference(SYSTEM_PROPERTY_CAMERA_FOCUS_FIX);
+        mQuickChargeEnable = (SwitchPreference) findPreference(QC_SYSTEM_PROPERTY);
+        mFbBoostEnable = (SwitchPreference) findPreference(SYSTEM_PROPERTY_PS_FB_BOOST);
+        //mQfpWupEnable = (SwitchPreference) findPreference(SYSTEM_PROPERTY_QFP_WUP);
+        mHw0DEnable = (SwitchPreference) findPreference(SYSTEM_PROPERTY_HW_0D_DISABLE);
+	mCoreCtl = (SwitchPreference) findPreference(SYSTEM_PROPERTY_CORE_CTL);
 
-        if (SettingsUtils.supportsCameraFocusFix()) {
-            mCameraFocusFixEnable.setChecked(SettingsUtils.getCameraFocusFixEnabled(getActivity()));
+        if (!isZl1()) {
+            mCameraFocusFixEnable.setChecked(SettingsUtils.getCameraFocusFixEnabled());
             mCameraFocusFixEnable.setOnPreferenceChangeListener(PrefListener);
+	    //mQfpWupEnable.setChecked(SettingsUtils.getQfpWupEnabled());
+            //mQfpWupEnable.setOnPreferenceChangeListener(PrefListener);
         } else {
             prefSet.removePreference(mCameraFocusFixEnable);
+            //prefSet.removePreference(mQfpWupEnable);
         }
 
-        if (SettingsUtils.supportsQuickChargeSwitch()) {
-            mQuickChargeEnable.setChecked(SettingsUtils.getQuickChargeEnabled(getActivity()));
-            mQuickChargeEnable.setOnPreferenceChangeListener(PrefListener);
-        } else {
-            prefSet.removePreference(mQuickChargeEnable);
-        }
+	mQuickChargeEnable.setChecked(SettingsUtils.getQuickChargeEnabled());
+	mQuickChargeEnable.setOnPreferenceChangeListener(PrefListener);
+
+	mFbBoostEnable.setChecked(SettingsUtils.getFbBoostEnabled());
+	mFbBoostEnable.setOnPreferenceChangeListener(PrefListener);
+
+	mHw0DEnable.setChecked(SettingsUtils.getHw0DEnabled());
+	mHw0DEnable.setOnPreferenceChangeListener(PrefListener);
+
+	mCoreCtl.setChecked(SettingsUtils.getCoreCtlEnabled());
+	mCoreCtl.setOnPreferenceChangeListener(PrefListener);
+
     }
 
     @Override
@@ -66,21 +92,39 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
         getListView().setPadding(0, 0, 0, 0);
     }
 
+    private boolean isZl1() {
+        if(SystemProperties.get("ro.product.vendor.device").equals("zl1")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private Preference.OnPreferenceChangeListener PrefListener =
         new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             final String key = preference.getKey();
 
-            if (KEY_CAMERA_FOCUS_FIX_ENABLE.equals(key)) {
+            if (SYSTEM_PROPERTY_CAMERA_FOCUS_FIX.equals(key)) {
                 boolean enabled = (boolean) value;
-                SettingsUtils.setCameraFocusFixEnabled(getActivity(), enabled);
-                SettingsUtils.writeCameraFocusFixSysfs(enabled);
-            } else if (KEY_QUICK_CHARGE_ENABLE.equals(key)) {
+                SettingsUtils.writeCameraFocusFixProp(enabled);
+            } else if (QC_SYSTEM_PROPERTY.equals(key)) {
                 boolean enabled = (boolean) value;
-                SettingsUtils.setQuickChargeEnabled(getActivity(), enabled);
                 SettingsUtils.writeQuickChargeProp(enabled);
-            }
+            } else if (SYSTEM_PROPERTY_PS_FB_BOOST.equals(key)) {
+                boolean enabled = (boolean) value;
+                SettingsUtils.writeFbBoostProp(enabled);
+            } else if (SYSTEM_PROPERTY_QFP_WUP.equals(key)) {
+                boolean enabled = (boolean) value;
+                SettingsUtils.writeQfpWupProp(enabled);
+            } else if (SYSTEM_PROPERTY_HW_0D_DISABLE.equals(key)) {
+                boolean enabled = (boolean) value;
+                SettingsUtils.writeHw0DProp(enabled);
+            } else if (SYSTEM_PROPERTY_CORE_CTL.equals(key)) {
+                boolean enabled = (boolean) value;
+                SettingsUtils.writeCoreCtlProp(enabled);
+	    }
 
             return true;
         }
