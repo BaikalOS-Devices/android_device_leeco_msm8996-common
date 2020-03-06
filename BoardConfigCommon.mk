@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 
+BUILD_BROKEN_DUP_RULES := true
+
 PLATFORM_PATH := device/leeco/msm8996-common
 
 TARGET_SPECIFIC_HEADER_PATH += $(PLATFORM_PATH)/include
@@ -48,7 +50,7 @@ TARGET_USES_64_BIT_BINDER := true
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff log_buf_len=8M sched_enable_hmp=1 sched_enable_power_aware=1
 BOARD_KERNEL_CMDLINE += androidboot.configfs=true
-BOARD_KERNEL_CMDLINE += loop.max_part=7
+BOARD_KERNEL_CMDLINE += loop.max_part=16
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
@@ -112,8 +114,10 @@ BOARD_QTI_CAMERA_32BIT_ONLY := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_HEALTHD_CUSTOM_CHARGER_RES := $(PLATFORM_PATH)/charger/images
-# Before enabling lineage charger you have to fix it!
-WITH_LINEAGE_CHARGER := false
+# Before enabling #BaikalOS charger you have to fix it!
+#BaikalOS charger
+#TARGET_RECOVERY_DENSITY := xxdpi
+#WITH_BAIKALOS_CHARGER := true // 
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
@@ -255,6 +259,7 @@ WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_P2P := "p2p"
 WIFI_HIDL_FEATURE_DISABLE_AP_MAC_RANDOMIZATION := true
+
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 -include vendor/leeco/msm8996-common/BoardConfigVendor.mk
