@@ -144,10 +144,15 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-impl \
-    android.hardware.camera.provider@2.4-service \
+    android.hardware.camera.provider@2.5-impl \
+    android.hardware.camera.provider@2.5-service-lazy \
+    android.hardware.camera.provider@2.5-service-lazy_64 \
     camera.msm8996 \
     Snap
+
+
+#    android.hardware.camera.provider@2.4-impl \
+#    android.hardware.camera.provider@2.4-service \
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
@@ -186,7 +191,7 @@ PRODUCT_PACKAGES += \
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
-    android.hardware.drm@1.0-service \
+    android.hardware.drm@1.0-service-lazy \
     android.hardware.drm@1.2-service.clearkey
 
 # For config.fs
@@ -223,7 +228,10 @@ PRODUCT_COPY_FILES += \
 # Healthd
 PRODUCT_PACKAGES += \
     android.hardware.health@2.0-service.leeco_8996 \
-    charger_res_images
+
+# Charger
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/charger/images,root/res/images/charger)
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -432,7 +440,7 @@ PRODUCT_PACKAGES += \
 
 # WiFi
 PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service \
+    android.hardware.wifi@1.0-service-lazy \
     libqsap_sdk \
     libQWiFiSoftApCfg \
     libwpa_client \
