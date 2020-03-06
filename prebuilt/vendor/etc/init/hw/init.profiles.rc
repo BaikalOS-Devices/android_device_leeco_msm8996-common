@@ -24,6 +24,9 @@ on property:baikal.perf.profile=battery
     setprop "baikal.eng.perf.profile" "battery"
 
 on property:baikal.perf.profile=reader
+    setprop "baikal.eng.perf.profile" "battery"
+
+on property:baikal.perf.profile=idle
     setprop "baikal.eng.perf.profile" "idle"
 
 #Thermal framework to device map
@@ -58,3 +61,6 @@ on property:baikal.therm.profile=incall
 
 on property:baikal.therm.profile=vr
     setprop "baikal.eng.therm.profile" "gaming"
+
+on property:baikal.therm.profile=idle
+    setprop "baikal.eng.therm.profile" "cool"

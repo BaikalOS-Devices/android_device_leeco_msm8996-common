@@ -7,11 +7,11 @@ on property:baikal.eng.perf.profile=default
 on property:sys.baikalos.power.ready=1
     setprop "baikal.eng.perf.profile" ${baikal.perf.profile:-"default"}
 
-on property:baikal.idle=0
-    setprop "baikal.eng.perf.profile" ${baikal.perf.profile:-"default"}
+#on property:baikal.idle=0
+#    setprop "baikal.eng.perf.profile" ${baikal.perf.profile:-"default"}
 
-on property:baikal.idle=1
-    setprop "baikal.eng.perf.profile" "idle"
+#on property:baikal.idle=1
+#    setprop "baikal.eng.perf.profile" "idle"
 
 on property:persist.baikal.core_ctl=1
     setprop sys.baikal.min_cpus 1
