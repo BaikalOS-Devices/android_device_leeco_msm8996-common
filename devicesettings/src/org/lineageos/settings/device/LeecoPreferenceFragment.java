@@ -36,6 +36,7 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
     public static final String SYSTEM_PROPERTY_QFP_WUP = "persist.qfp.wup_display";
     public static final String SYSTEM_PROPERTY_HW_0D_DISABLE = "persist.hw.0d_disable";
     public static final String SYSTEM_PROPERTY_CORE_CTL = "persist.baikal.core_ctl";
+    public static final String SYSTEM_PROPERTY_HP_DETECT = "persist.fx.hp_detect";
 
 
     private SwitchPreference mCameraFocusFixEnable;
@@ -44,6 +45,7 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
     //private SwitchPreference mQfpWupEnable;
     private SwitchPreference mHw0DEnable;
     private SwitchPreference mCoreCtl;
+    private SwitchPreference mHpDetect;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
         //mQfpWupEnable = (SwitchPreference) findPreference(SYSTEM_PROPERTY_QFP_WUP);
         mHw0DEnable = (SwitchPreference) findPreference(SYSTEM_PROPERTY_HW_0D_DISABLE);
 	mCoreCtl = (SwitchPreference) findPreference(SYSTEM_PROPERTY_CORE_CTL);
+	mHpDetect = (SwitchPreference) findPreference(SYSTEM_PROPERTY_HP_DETECT);
 
         if (!isZl1()) {
             mCameraFocusFixEnable.setChecked(SettingsUtils.getCameraFocusFixEnabled());
@@ -83,6 +86,9 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
 
 	mCoreCtl.setChecked(SettingsUtils.getCoreCtlEnabled());
 	mCoreCtl.setOnPreferenceChangeListener(PrefListener);
+
+	mHpDetect.setChecked(SettingsUtils.getHpDetectEnabled());
+	mHpDetect.setOnPreferenceChangeListener(PrefListener);
 
     }
 
@@ -124,8 +130,10 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
             } else if (SYSTEM_PROPERTY_CORE_CTL.equals(key)) {
                 boolean enabled = (boolean) value;
                 SettingsUtils.writeCoreCtlProp(enabled);
+            } else if (SYSTEM_PROPERTY_HP_DETECT.equals(key)) {
+                boolean enabled = (boolean) value;
+                SettingsUtils.writeHpDetectProp(enabled);
 	    }
-
             return true;
         }
     };

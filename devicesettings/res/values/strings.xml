@@ -40,4 +40,7 @@
     <string name="core_ctl_title">Enable Core Control</string>
     <string name="core_ctl_summary">Enable selective CPU core offlining for better power saving</string>
 
+    <string name="hp_detect_title">Disable HP detect</string>
+    <string name="hp_detect_summary">Disable detection of headphones. For devices with broken USB-C port.</string>
+
 </resources>

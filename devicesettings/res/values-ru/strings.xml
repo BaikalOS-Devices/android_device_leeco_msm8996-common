@@ -40,4 +40,6 @@
     <string name="core_ctl_title">Управление ядрами ЦПУ</string>
     <string name="core_ctl_summary">Включить автоматическое управление отключением ядер ЦПУ для оптимизации энергопотребления</string>
 
+    <string name="hp_detect_title">Отключить наушники</string>
+    <string name="hp_detect_summary">Отключить определение проводных наушников или гарнитуры. Для аппаратов с поврежденным портом USB.</string>
 </resources>

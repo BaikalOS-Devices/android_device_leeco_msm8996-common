@@ -41,6 +41,8 @@ public class SettingsUtils {
     public static final String SYSTEM_PROPERTY_QFP_WUP = "persist.qfp.wup_display";
     public static final String SYSTEM_PROPERTY_HW_0D_DISABLE = "persist.hw.0d_disable";
     public static final String SYSTEM_PROPERTY_CORE_CTL = "persist.baikal.core_ctl";
+    public static final String SYSTEM_PROPERTY_HP_DETECT = "persist.fx.hp_detect";
+
 
     public static final String PREFERENCES = "SettingsUtilsPreferences";
 
@@ -66,6 +68,10 @@ public class SettingsUtils {
 
     public static void writeCoreCtlProp(boolean enabled) {
         SystemProperties.set(SYSTEM_PROPERTY_CORE_CTL, enabled ? "1" : "0");
+    }
+
+    public static void writeHpDetectProp(boolean enabled) {
+        SystemProperties.set(SYSTEM_PROPERTY_HP_DETECT, enabled ? "1" : "0");
     }
 
     public static boolean supportsCameraFocusFix() {
@@ -102,6 +108,11 @@ public class SettingsUtils {
 
     public static boolean getCoreCtlEnabled() {
         return SystemProperties.getBoolean(SYSTEM_PROPERTY_CORE_CTL, false);
+
+    }
+
+    public static boolean getHpDetectEnabled() {
+        return SystemProperties.getBoolean(SYSTEM_PROPERTY_HP_DETECT, false);
     }
 
     public static void registerPreferenceChangeListener(Context context,
