@@ -331,6 +331,8 @@
     -->
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
 
+    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
+
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
 
     <!-- Screen brightness used to dim the screen while dozing in a very low power state.
