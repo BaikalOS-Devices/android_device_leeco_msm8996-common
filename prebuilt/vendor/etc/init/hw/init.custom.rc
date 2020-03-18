@@ -26,20 +26,22 @@ on boot
 
 on property:persist.fx.hp_detect=0
     write /sys/module/snd_soc_wcd_mbhc/parameters/disable_hp_detect 0
-    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 1
-    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 0
+#    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 1
+#    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 0
 
 on property:persist.fx.hp_detect=1
     write /sys/module/snd_soc_wcd_mbhc/parameters/disable_hp_detect 1
-    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 1
-    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 0
+#    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 1
+#    write /sys/module/snd_soc_wcd_mbhc/parameters/headset_detect_enable 0
 
 on property:persist.hw.0d_disable=1
+    write /sys/devices/soc/75ba000.i2c/i2c-12/12-004b/input/input2/0dbutton 0
     write /sys/devices/soc/75ba000.i2c/i2c-12/12-004b/input/input3/0dbutton 0
     write /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/keys_on 0
 
 on property:persist.hw.0d_disable=0
-    write /sys/devices/soc/75ba000.i2c/i2c-12/12-004b/input/input3/0dbutton 1
+    write /sys/devices/soc/75ba000.i2c/i2c-12/12-004b/input/input2/0dbutton 1
+    write /sys/devices/soc/75ba000.i2c/i2c-12/12-004b/input/input3/0dbutton 0
     write /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/keys_on 1
 
 

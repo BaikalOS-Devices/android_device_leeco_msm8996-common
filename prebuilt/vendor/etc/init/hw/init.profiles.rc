@@ -26,8 +26,11 @@ on property:baikal.perf.profile=battery
 on property:baikal.perf.profile=reader
     setprop "baikal.eng.perf.profile" "battery"
 
+on property:baikal.perf.profile=screen_off
+    setprop "baikal.eng.perf.profile" "battery"
+
 on property:baikal.perf.profile=idle
-    setprop "baikal.eng.perf.profile" "idle"
+    setprop "baikal.eng.perf.profile" "battery"
 
 #Thermal framework to device map
 
@@ -64,3 +67,9 @@ on property:baikal.therm.profile=vr
 
 on property:baikal.therm.profile=idle
     setprop "baikal.eng.therm.profile" "cool"
+
+on property:baikal.therm.profile=screen_off
+    setprop "baikal.eng.therm.profile" "cool"
+
+on property:baikal.fps_override=*
+    write /sys/module/mdss_fb/parameters/frame_rate_override ${baikal.fps_override:-0}

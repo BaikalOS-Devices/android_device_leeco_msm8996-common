@@ -277,9 +277,3 @@ on property:sys.boot_completed=1
 on property:init.svc.recovery=running
     trigger enable-low-power
 
-on property:persist.ps.fb_boost=0
-    write /sys/module/mdss_fb/parameters/boost_on_frame 0
-
-on property:persist.ps.fb_boost=1
-    write /sys/module/mdss_fb/parameters/boost_on_frame 1
-
