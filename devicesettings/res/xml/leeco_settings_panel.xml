@@ -48,6 +48,12 @@
         android:summary="@string/core_ctl_summary" />
 
      <SwitchPreference
+        android:key="persist.baikal.input_boost"
+        android:defaultValue="false"
+        android:title="@string/input_boost_title"
+        android:summary="@string/input_boost_summary" />
+
+     <SwitchPreference
         android:key="persist.ps.fb_boost"
         android:defaultValue="false"
         android:title="@string/fb_boost_title"
