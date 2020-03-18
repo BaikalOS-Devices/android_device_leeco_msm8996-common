@@ -46,7 +46,7 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
     //private SwitchPreference mQfpWupEnable;
     private SwitchPreference mHw0DEnable;
     private SwitchPreference mCoreCtl;
-    private SwitchPreference mHpDetect;
+    //private SwitchPreference mHpDetect;
     private SwitchPreference mInputBoost;
 
     @Override
@@ -65,7 +65,7 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
         //mQfpWupEnable = (SwitchPreference) findPreference(SYSTEM_PROPERTY_QFP_WUP);
         mHw0DEnable = (SwitchPreference) findPreference(SYSTEM_PROPERTY_HW_0D_DISABLE);
 	mCoreCtl = (SwitchPreference) findPreference(SYSTEM_PROPERTY_CORE_CTL);
-	mHpDetect = (SwitchPreference) findPreference(SYSTEM_PROPERTY_HP_DETECT);
+	//mHpDetect = (SwitchPreference) findPreference(SYSTEM_PROPERTY_HP_DETECT);
 	mInputBoost = (SwitchPreference) findPreference(SYSTEM_PROPERTY_INPUT_BOOST);
 
         if (!isZl1()) {
@@ -90,8 +90,8 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
 	mCoreCtl.setChecked(SettingsUtils.getCoreCtlEnabled());
 	mCoreCtl.setOnPreferenceChangeListener(PrefListener);
 
-	mHpDetect.setChecked(SettingsUtils.getHpDetectEnabled());
-	mHpDetect.setOnPreferenceChangeListener(PrefListener);
+	//mHpDetect.setChecked(SettingsUtils.getHpDetectEnabled());
+	//mHpDetect.setOnPreferenceChangeListener(PrefListener);
 
 	mInputBoost.setChecked(SettingsUtils.getInputBoostEnabled());
 	mInputBoost.setOnPreferenceChangeListener(PrefListener);
@@ -138,7 +138,7 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
                 SettingsUtils.writeCoreCtlProp(enabled);
             } else if (SYSTEM_PROPERTY_HP_DETECT.equals(key)) {
                 boolean enabled = (boolean) value;
-                SettingsUtils.writeHpDetectProp(enabled);
+                //SettingsUtils.writeHpDetectProp(enabled);
             } else if (SYSTEM_PROPERTY_INPUT_BOOST.equals(key)) {
                 boolean enabled = (boolean) value;
                 SettingsUtils.writeInputBoostProp(enabled);

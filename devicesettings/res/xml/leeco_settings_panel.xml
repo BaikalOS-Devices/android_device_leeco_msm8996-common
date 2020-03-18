@@ -65,11 +65,11 @@
         android:title="@string/hw_0d_disable_title"
         android:summary="@string/hw_0d_disable_summary" />
 
-     <SwitchPreference
+     <!-- SwitchPreference
         android:key="persist.fx.hp_detect"
         android:defaultValue="false"
         android:title="@string/hp_detect_title"
-        android:summary="@string/hp_detect_summary" />
+        android:summary="@string/hp_detect_summary" / -->
 
 
 </PreferenceScreen>
