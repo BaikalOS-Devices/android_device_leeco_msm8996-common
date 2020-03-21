@@ -190,7 +190,7 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 55
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 65
 
-    # Enable bus-dcvs
+# Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
     write /sys/class/devfreq/soc:qcom,cpubw/polling_interval 10
     write /sys/class/devfreq/soc:qcom,cpubw/min_freq 762
@@ -207,12 +207,11 @@ on enable-low-power
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/up_scale 250
     write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/idle_mbps 1600
 
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 10
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 10
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "cpufreq"
+    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 50
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/governor "cpufreq"
+    write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 50
     #write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
-
 
     write /sys/class/devfreq/soc:qcom,gpubw/min_freq 762
     write /sys/class/devfreq/soc:qcom,gpubw/max_freq 13763
