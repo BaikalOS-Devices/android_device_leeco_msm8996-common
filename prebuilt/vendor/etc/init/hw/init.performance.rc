@@ -176,25 +176,31 @@ on property:baikal.eng.perf.profile=balance
     write /dev/cpuset/system-background/cpus 0-1
     write /dev/cpuset/restricted/cpus 0-1
 
-    write /sys/class/devfreq/soc:qcom,gpubw/min_freq 762
-    write /sys/class/devfreq/soc:qcom,gpubw/max_freq 13763
+    write "/sys/class/devfreq/soc:qcom,cpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,cpubw/max_freq" 13763
 
-    write /sys/class/devfreq/soc:qcom,m4m/min_freq 307200000
-    write /sys/class/devfreq/soc:qcom,m4m/max_freq 1593600000
+    write "/sys/class/devfreq/soc:qcom,gpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,gpubw/max_freq" 13763
 
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq 1525
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq 13763
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq 1525
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq 13763
+    write "/sys/class/devfreq/soc:qcom,mincpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,mincpubw/max_freq" 13763
+
+    write "/sys/class/devfreq/soc:qcom,m4m/min_freq" 307200000
+    write "/sys/class/devfreq/soc:qcom,m4m/max_freq" 1593600000
+
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq" 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq" 13763
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq" 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq" 13763
 
 # Set idle GPU to 133 MHz
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
 #    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 3
-    write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz 133
-    write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133000000
-    write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz 624
-    write /sys/class/kgsl/kgsl-3d0/devfreq/max_freq 624000000 
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" 133
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq" 133000000
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" 624
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq" 624000000 
 
 # Balance (default profile)
 on property:baikal.eng.perf.profile=video
@@ -329,25 +335,31 @@ on property:baikal.eng.perf.profile=video
     write /dev/cpuset/system-background/cpus 0-1
     write /dev/cpuset/restricted/cpus 0-1
 
-    write /sys/class/devfreq/soc:qcom,gpubw/min_freq 762
-    write /sys/class/devfreq/soc:qcom,gpubw/max_freq 13763
+    write "/sys/class/devfreq/soc:qcom,cpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,cpubw/max_freq" 13763
 
-    write /sys/class/devfreq/soc:qcom,m4m/min_freq 307200000
-    write /sys/class/devfreq/soc:qcom,m4m/max_freq 1593600000
+    write "/sys/class/devfreq/soc:qcom,gpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,gpubw/max_freq" 13763
 
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq 1525
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq 13763
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq 1525
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq 13763
+    write "/sys/class/devfreq/soc:qcom,mincpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,mincpubw/max_freq" 13763
+
+    write "/sys/class/devfreq/soc:qcom,m4m/min_freq" 307200000
+    write "/sys/class/devfreq/soc:qcom,m4m/max_freq" 1593600000
+
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq" 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq" 13763
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq" 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq" 13763
 
 # Set idle GPU to 133 MHz
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
 #    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 3
-    write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz 133
-    write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133000000
-    write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz 624
-    write /sys/class/kgsl/kgsl-3d0/devfreq/max_freq 624000000 
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" 133
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq" 133000000
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" 624
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq" 624000000 
 
 
 
@@ -474,31 +486,31 @@ on property:baikal.eng.perf.profile=performance
     write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/restricted/cpus 0-3
 
-    write /sys/class/devfreq/soc:qcom,cpubw/min_freq 5859
-    write /sys/class/devfreq/soc:qcom,cpubw/max_freq 13763
+    write "/sys/class/devfreq/soc:qcom,cpubw/min_freq" 5859
+    write "/sys/class/devfreq/soc:qcom,cpubw/max_freq" 13763
 
-    write /sys/class/devfreq/soc:qcom,mincpubw/min_freq 5859
-    write /sys/class/devfreq/soc:qcom,mincpubw/max_freq 13763
+    write "/sys/class/devfreq/soc:qcom,mincpubw/min_freq" 5859
+    write "/sys/class/devfreq/soc:qcom,mincpubw/max_freq" 13763
 
-    write /sys/class/devfreq/soc:qcom,gpubw/min_freq 5859
-    write /sys/class/devfreq/soc:qcom,gpubw/max_freq 13763
+    write "/sys/class/devfreq/soc:qcom,gpubw/min_freq" 5859
+    write "/sys/class/devfreq/soc:qcom,gpubw/max_freq" 13763
 
-    write /sys/class/devfreq/soc:qcom,m4m/min_freq 902400000
-    write /sys/class/devfreq/soc:qcom,m4m/max_freq 1593600000
+    write "/sys/class/devfreq/soc:qcom,m4m/min_freq" 902400000
+    write "/sys/class/devfreq/soc:qcom,m4m/max_freq" 1593600000
 
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq 5928
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq 13763
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq 5928
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq 13763
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq" 5928
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq" 13763
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq" 5928
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq" 13763
 
 # Set idle GPU to 133 MHz
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
     write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 1
-    write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz 133
-    write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133000000
-    write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz 624
-    write /sys/class/kgsl/kgsl-3d0/devfreq/max_freq 624000000 
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" 133
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq" 133000000
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" 624
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq" 624000000 
 
 # Battery
 on property:baikal.eng.perf.profile=battery
@@ -624,32 +636,32 @@ on property:baikal.eng.perf.profile=battery
     write /dev/cpuset/system-background/cpus 0-1
     write /dev/cpuset/restricted/cpus 0-1
 
-    write /sys/class/devfreq/soc:qcom,cpubw/min_freq 762
-    write /sys/class/devfreq/soc:qcom,cpubw/max_freq 762
+    write "/sys/class/devfreq/soc:qcom,cpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,cpubw/max_freq" 762
 
-    write /sys/class/devfreq/soc:qcom,mincpubw/min_freq 762
-    write /sys/class/devfreq/soc:qcom,mincpubw/max_freq 762
+    write "/sys/class/devfreq/soc:qcom,mincpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,mincpubw/max_freq" 762
 
-    write /sys/class/devfreq/soc:qcom,gpubw/min_freq 762
-    write /sys/class/devfreq/soc:qcom,gpubw/max_freq 762
+    write "/sys/class/devfreq/soc:qcom,gpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,gpubw/max_freq" 762
 
-    write /sys/class/devfreq/soc:qcom,m4m/min_freq 307200000
-    write /sys/class/devfreq/soc:qcom,m4m/max_freq 307200000
+    write "/sys/class/devfreq/soc:qcom,m4m/min_freq" 307200000
+    write "/sys/class/devfreq/soc:qcom,m4m/max_freq" 307200000
 
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq 1525
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq 1525
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq 1525
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq" 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq" 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq" 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq" 1525
 
 
 # Set idle GPU to 133 MHz
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
-    write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz 133
-    write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133000000
-    write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz 133
-    write /sys/class/kgsl/kgsl-3d0/devfreq/max_freq 133000000 
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" 133
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq" 133000000
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" 133
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq" 133000000 
 
 
 # Gaming
@@ -761,22 +773,22 @@ on property:baikal.eng.perf.profile=gaming
     write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/restricted/cpus 0-3
 
-    write /sys/class/devfreq/soc:qcom,cpubw/min_freq 13763
-    write /sys/class/devfreq/soc:qcom,cpubw/max_freq 13763
+    write "/sys/class/devfreq/soc:qcom,cpubw/min_freq" 13763
+    write "/sys/class/devfreq/soc:qcom,cpubw/max_freq" 13763
 
-    write /sys/class/devfreq/soc:qcom,mincpubw/min_freq 13763
-    write /sys/class/devfreq/soc:qcom,mincpubw/max_freq 13763
+    write "/sys/class/devfreq/soc:qcom,mincpubw/min_freq" 13763
+    write "/sys/class/devfreq/soc:qcom,mincpubw/max_freq" 13763
 
-    write /sys/class/devfreq/soc:qcom,gpubw/min_freq 13763
-    write /sys/class/devfreq/soc:qcom,gpubw/max_freq 13763
+    write "/sys/class/devfreq/soc:qcom,gpubw/min_freq" 13763
+    write "/sys/class/devfreq/soc:qcom,gpubw/max_freq" 13763
 
-    write /sys/class/devfreq/soc:qcom,m4m/min_freq 1593600000
-    write /sys/class/devfreq/soc:qcom,m4m/max_freq 1593600000
+    write "/sys/class/devfreq/soc:qcom,m4m/min_freq" 1593600000
+    write "/sys/class/devfreq/soc:qcom,m4m/max_freq" 1593600000
 
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq 13763
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq 13763
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq 13763
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq 13763
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq" 13763
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq" 13763
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq" 13763
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq" 13763
 
     write /sys/devices/system/cpu/cpu0/sched_static_cpu_pwr_cost 200
     write /sys/devices/system/cpu/cpu0/sched_static_cluster_pwr_cost 400
@@ -792,10 +804,10 @@ on property:baikal.eng.perf.profile=gaming
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 0
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
 #    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 1
-    write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz 624
-    write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 624000000
-    write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz 624
-    write /sys/class/kgsl/kgsl-3d0/devfreq/max_freq 624000000 
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" 624
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq" 624000000
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" 624
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq" 624000000 
 
 
 
@@ -927,32 +939,32 @@ on property:baikal.eng.perf.profile=extreme
     write /dev/cpuset/system-background/cpus 0
     write /dev/cpuset/restricted/cpus 0
 
-    write /sys/class/devfreq/soc:qcom,cpubw/min_freq 762
-    write /sys/class/devfreq/soc:qcom,cpubw/max_freq 762
+    write "/sys/class/devfreq/soc:qcom,cpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,cpubw/max_freq" 762
 
-    write /sys/class/devfreq/soc:qcom,mincpubw/min_freq 762
-    write /sys/class/devfreq/soc:qcom,mincpubw/max_freq 762
+    write "/sys/class/devfreq/soc:qcom,mincpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,mincpubw/max_freq" 762
 
-    write /sys/class/devfreq/soc:qcom,gpubw/min_freq 762
-    write /sys/class/devfreq/soc:qcom,gpubw/max_freq 762
+    write "/sys/class/devfreq/soc:qcom,gpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,gpubw/max_freq" 762
 
-    write /sys/class/devfreq/soc:qcom,m4m/min_freq 307200000
-    write /sys/class/devfreq/soc:qcom,m4m/max_freq 307200000
+    write "/sys/class/devfreq/soc:qcom,m4m/min_freq" 307200000
+    write "/sys/class/devfreq/soc:qcom,m4m/max_freq" 307200000
 
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq 1525
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq 1525
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq 1525
-    write /sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq" 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq" 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq" 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq" 1525
 
 
 # Set idle GPU to 133 MHz
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 6
 #    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
-    write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz 133
-    write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133000000
-    write /sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz 133
-    write /sys/class/kgsl/kgsl-3d0/devfreq/max_freq 133000000 
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" 133
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq" 133000000
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" 133
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq" 133000000 
 
 #on property:baikal.eng.perf.profile=*
 #    setprop "baikal.eng.perf.profile" "default"
