@@ -418,4 +418,8 @@
 
     <bool name="config_dozeAlwaysOnEnabled">false</bool>
 
+    <!-- Whether device supports double tap to wake -->
+    <!-- Not realy sii[prted, but needed for AOD -->
+    <bool name="config_supportDoubleTapWake">true</bool>
+
 </resources>
