@@ -422,4 +422,8 @@
     <!-- Not realy sii[prted, but needed for AOD -->
     <bool name="config_supportDoubleTapWake">true</bool>
 
+    <!-- Does the device supports fast charging -->
+    <bool name="config_FastChargingLedSupported">true</bool>
+
+
 </resources>
