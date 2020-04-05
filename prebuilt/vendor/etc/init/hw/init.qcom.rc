@@ -45,10 +45,6 @@ on init
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
-    # Start Time Daemon early for keymaster 
-    start time_daemon 
-    wait_for_prop init.svc.time_daemon running
-
     # Start qseecomd early as we mount /system early
     # vold needs keymaster which needs qseecomd
     start vendor.qseecomd
