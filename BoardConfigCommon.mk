@@ -16,6 +16,7 @@
 #
 
 BUILD_BROKEN_DUP_RULES := true
+SELINUX_IGNORE_NEVERALLOWS := true
 
 PLATFORM_PATH := device/leeco/msm8996-common
 
@@ -52,7 +53,7 @@ BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 lpm_levels.sle
 BOARD_KERNEL_CMDLINE += androidboot.configfs=true
 BOARD_KERNEL_CMDLINE += loop.max_part=16
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive log_buf_len=8M
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/leeco/msm8996
