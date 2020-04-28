@@ -19,6 +19,11 @@
     <string name="leeco_settings_title">LeEco Settings</string>
     <string name="leeco_settings_summary">Device specific settings</string>
 
+    <!-- Ambient display -->
+    <string name="display_title">Display</string>
+    <string name="system_title">System</string>
+    <string name="device_doze_title">Ambient display</string>
+
     <string name="qc_title">Quick Charge</string>
     <string name="qc_summary">Enable/disable quick charge settings</string>
 
@@ -45,5 +50,22 @@
 
     <string name="hp_detect_title">Disable HP detect</string>
     <string name="hp_detect_summary">Disable detection of headphones. For devices with broken USB-C port.</string>
+
+    <!-- Kcal -->
+    <string name="kcal_title">Display color</string>
+    <string name="kcal_summary">Display color calibration using KCAL</string>
+    <string name="kcal_red">Red</string>
+    <string name="kcal_green">Green</string>
+    <string name="kcal_blue">Blue</string>
+    <string name="kcal_saturation">Saturation</string>
+    <string name="kcal_contrast">Constrast</string>
+    <string name="menu_reset">Reset</string>
+    <string name="kcal_color_temp">Color temperature (K)</string>
+
+    <string name="kcal_enabled_title">Enable KCAL</string>
+    <string name="kcal_enabled_summary">Turn on display calibration using KCAL</string>
+
+    <string name="kcal_locked_title">Lock KCAL settings</string>
+    <string name="kcal_locked_summary">Lock settings from system and other apps</string>
 
 </resources>

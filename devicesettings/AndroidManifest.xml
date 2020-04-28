@@ -15,7 +15,7 @@
     <application
         android:allowBackup="true"
         android:label="@string/device_settings_app_name"
-        android:persistent="false">
+        android:persistent="true">
 
         <receiver android:name="org.lineageos.settings.device.BootCompletedReceiver">
             <intent-filter>
@@ -26,6 +26,7 @@
 
         <activity
             android:name=".DeviceSettings"
+            android:exported="true"
             android:label="@string/leeco_settings_title"
             android:theme="@style/DeviceSettings">
             <intent-filter>
@@ -41,6 +42,29 @@
                 android:name="com.android.settings.icon"
                 android:resource="@drawable/ic_settings_lepref" />
         </activity>
+
+        <activity
+            android:name="org.lineageos.settings.device.DisplayCalibration"
+            android:exported="true"
+            android:label="@string/kcal_title"
+            android:theme="@android:style/Theme.DeviceDefault.Settings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <receiver android:name="org.lineageos.settings.device.Startup" >
+            <intent-filter android:priority="100" >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="org.lineageos.settings.device.UserStartup" >
+            <intent-filter android:priority="400" >
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
 
     </application>
 </manifest>

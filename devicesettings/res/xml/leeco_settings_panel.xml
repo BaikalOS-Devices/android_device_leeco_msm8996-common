@@ -16,6 +16,29 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory
+        android:key="display"
+        android:title="@string/display_title">
+        <Preference
+                 android:key="kcal"
+                 android:fragment="org.lineageos.settings.device.DisplayCalibration"
+                 android:summary="@string/kcal_summary"
+                 android:title="@string/kcal_title" />
+        <Preference
+            android:key="device_doze"
+            android:persistent="false"
+            android:title="@string/device_doze_title" >
+            <intent android:action="android.intent.action.MAIN"
+                 android:targetPackage="org.lineageos.settings.doze"
+                 android:targetClass="org.lineageos.settings.doze.DozeSettingsActivity"/>
+        </Preference>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:key="system"
+        android:title="@string/system_title">
+
     <SwitchPreference
         android:key="persist.camera.focus_fix"
         android:defaultValue="false"
@@ -71,5 +94,6 @@
         android:title="@string/hp_detect_title"
         android:summary="@string/hp_detect_summary" / -->
 
+    </PreferenceCategory>
 
 </PreferenceScreen>
