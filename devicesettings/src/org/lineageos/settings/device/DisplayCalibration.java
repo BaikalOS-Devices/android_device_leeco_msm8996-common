@@ -224,7 +224,7 @@ public class DisplayCalibration extends PreferenceActivity implements
             mRed = String.valueOf(mPrefs.getInt(KEY_KCAL_RED, 256));
             mBlue = String.valueOf(mPrefs.getInt(KEY_KCAL_BLUE, 256));
             mGreen = String.valueOf(mPrefs.getInt(KEY_KCAL_GREEN, 256));
-            mLocked = (String.valueOf(mPrefs.getInt(KEY_KCAL_LOCKED, 0))).equals("1");
+            mLocked = mPrefs.getBoolean(KEY_KCAL_LOCKED, false);
 
             String storedValue = ((String) String.valueOf(mRed)
                    + " " + String.valueOf(mGreen) + " " +  String.valueOf(mBlue));
