@@ -30,7 +30,7 @@ public class UserStartup extends BroadcastReceiver {
 
         Log.e(TAG, "onReceive");
 
-        DisplayCalibration.restore(context);
+        //DisplayCalibration.restore(context);
     }
 
 }

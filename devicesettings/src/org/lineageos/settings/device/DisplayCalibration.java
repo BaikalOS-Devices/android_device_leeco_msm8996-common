@@ -133,9 +133,13 @@ public class DisplayCalibration extends PreferenceActivity implements
         return UtilsKCAL.fileWritable(file);
     }
 
+    
     public static void restore(Context context) {
 
+       if( false ) return;
+
        Log.e(TAG, "Restore");
+    
 
        boolean storeEnabled = PreferenceManager
                 .getDefaultSharedPreferences(context).getBoolean(DisplayCalibration.KEY_KCAL_ENABLED, false);

@@ -19,11 +19,11 @@
     <PreferenceCategory
         android:key="display"
         android:title="@string/display_title">
-        <Preference
+        <!-- Preference
                  android:key="kcal"
                  android:fragment="org.lineageos.settings.device.DisplayCalibration"
                  android:summary="@string/kcal_summary"
-                 android:title="@string/kcal_title" />
+                 android:title="@string/kcal_title" / -->
         <Preference
             android:key="device_doze"
             android:persistent="false"
