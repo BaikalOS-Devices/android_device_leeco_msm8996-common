@@ -470,5 +470,8 @@
     <!-- Does the device supports fast charging -->
     <bool name="config_FastChargingLedSupported">true</bool>
 
+    <!-- Default state for LiveDisplay -->
+    <bool name="config_liveDisplayAvailable">true</bool>
+
 
 </resources>
