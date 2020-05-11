@@ -498,6 +498,24 @@ on property:sys.boot_completed=1
     # Enable hvdcp
     setprop persist.hvdcp.allow_opti 1
 
+service vendor.audio-hal-2-0 /vendor/bin/hw/android.hardware.audio@2.0-service
+    override
+    class hal
+    user audioserver
+    # media gid needed for /dev/fm (radio) and for /data/misc/media (tee)
+    group audio camera drmrpc inet media mediadrm net_bt net_bt_admin net_bw_acct oem_2901 wakelock system
+    capabilities BLOCK_SUSPEND SYS_NICE
+    ioprio rt 4
+    writepid /dev/cpuset/foreground/tasks /dev/stune/foreground/tasks
+    # audioflinger restarts itself when it loses connection with the hal
+    # and its .rc file has an "onrestart restart audio-hal" rule, thus
+    # an additional auto-restart from the init process isn't needed.
+    socket audio_hw_socket seqpacket 0666 system system
+    oneshot
+    interface android.hardware.audio@5.0::IDevicesFactory default
+    interface android.hardware.audio@4.0::IDevicesFactory default
+    interface android.hardware.audio@2.0::IDevicesFactory default
+
 # Start camera server as daemon
 service qcamerasvr /vendor/bin/mm-qcamera-daemon
     class late_start
@@ -628,18 +646,18 @@ on property:bluetooth.isEnabled=true
     write /sys/class/bluetooth/hci0/idle_timeout 7000
 
 on property:vold.decrypt=trigger_reset_main
-    stop audio-hal-2-0
+    stop vendor.audio-hal-2-0
 
 on property:vold.decrypt=trigger_shutdown_framework
-    stop audio-hal-2-0
+    stop vendor.audio-hal-2-0
 
 on property:vold.decrypt=trigger_restart_min_framework
-    start audio-hal-2-0
+    start vendor.audio-hal-2-0
 
 on property:vold.decrypt=trigger_restart_framework
-    stop camera-provider-2-4
-    start camera-provider-2-4
-    start audio-hal-2-0
+    stop vendor.camera-provider-2-5
+    start vendor.camera-provider-2-5
+    start vendor.audio-hal-2-0
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
@@ -771,23 +789,6 @@ service vendor.charger /vendor/bin/charger
     capabilities SYS_BOOT
     seclabel u:r:vendor_charger:s0
     writepid /dev/cpuset/system-background/tasks
-
-service vendor.audio-hal-2-0 /vendor/bin/hw/android.hardware.audio@2.0-service
-    override
-    class hal
-    user audioserver
-    # media gid needed for /dev/fm (radio) and for /data/misc/media (tee)
-    group audio camera drmrpc inet media mediadrm net_bt net_bt_admin net_bw_acct oem_2901 wakelock
-    capabilities BLOCK_SUSPEND
-    ioprio rt 4
-    writepid /dev/cpuset/foreground/tasks /dev/stune/foreground/tasks
-    # audioflinger restarts itself when it loses connection with the hal
-    # and its .rc file has an "onrestart restart audio-hal" rule, thus
-    # an additional auto-restart from the init process isn't needed.
-    oneshot
-    interface android.hardware.audio@5.0::IDevicesFactory default
-    interface android.hardware.audio@4.0::IDevicesFactory default
-    interface android.hardware.audio@2.0::IDevicesFactory default
 
 on property:vendor.sys.listeners.registered=*
     setprop sys.keymaster.loaded ${vendor.sys.listeners.registered}
