@@ -31,7 +31,7 @@
     <!-- The CPU temperature sensor path, defaults to empty -->
     <string name="config_cpuTempSensor" translatable="false">/sys/class/thermal/thermal_zone4/temp</string>
     <!-- The CPU temperature sensor path, defaults to empty -->
-    <string name="config_cpuTempSensorPrefix" translatable="false">/sys/class/thermal/thermal_zone</string>
+    <string name="config_cpuTempSensorPrefix" translatable="false">/sys/devices/virtual/thermal/thermal_zone</string>
     <!-- The CPU temperature sensor path, defaults to empty -->
     <string name="config_cpuTempSensorSuffix" translatable="false">/temp</string>
     <!-- The CPU temperature sensor path, defaults to empty -->
@@ -41,6 +41,12 @@
 
     <!-- FPSInfoService FPS node file path -->
     <string name="config_fpsInfoSysNode" translatable="false">/sys/devices/virtual/graphics/fb0/measured_fps</string>
+
+    <!-- The SYS temperature sensor path, defaults to empty -->
+    <string name="config_sysTempSensor" translatable="false">/sys/devices/virtual/thermal/thermal_zone1/temp</string>
+
+    <!-- The BAT temperature sensor path, defaults to empty -->
+    <string name="config_batTempSensor" translatable="false">/sys/class/power_supply/battery/temp</string>
 
 </resources>
 

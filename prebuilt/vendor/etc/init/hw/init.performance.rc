@@ -45,6 +45,7 @@ on property:persist.ps.fb_boost=1
 
 # Balance (default profile)
 on property:baikal.eng.perf.profile=balance
+    setprop "baikal.eng.perf.cur_profile" "balance"
     # Configure governor settings for little cluster
 
     write /sys/module/mdss_fb/parameters/boost_on_frame ${persist.ps.fb_boost:-0}
@@ -204,6 +205,8 @@ on property:baikal.eng.perf.profile=balance
 
 # Balance (default profile)
 on property:baikal.eng.perf.profile=video
+    setprop "baikal.eng.perf.cur_profile" "video"
+
     # Configure governor settings for little cluster
 
     write /sys/module/mdss_fb/parameters/boost_on_frame 0
@@ -365,6 +368,7 @@ on property:baikal.eng.perf.profile=video
 
 # Performance (based on DrunkSauce Lite)
 on property:baikal.eng.perf.profile=performance
+    setprop "baikal.eng.perf.cur_profile" "performance"
 
     write /sys/module/mdss_fb/parameters/boost_on_frame ${persist.ps.fb_boost:-0}
     setprop "baikal.perf.boost_on_frame" ${persist.ps.fb_boost:-0}
@@ -514,6 +518,7 @@ on property:baikal.eng.perf.profile=performance
 
 # Battery
 on property:baikal.eng.perf.profile=battery
+    setprop "baikal.eng.perf.cur_profile" "battery"
 
     write /sys/module/mdss_fb/parameters/boost_on_frame 0
     setprop "baikal.perf.boost_on_frame" 0
@@ -666,6 +671,7 @@ on property:baikal.eng.perf.profile=battery
 
 # Gaming
 on property:baikal.eng.perf.profile=gaming
+    setprop "baikal.eng.perf.cur_profile" "gaming"
 
     write /sys/module/mdss_fb/parameters/boost_on_frame 0
     setprop "baikal.perf.boost_on_frame" 0
@@ -813,6 +819,7 @@ on property:baikal.eng.perf.profile=gaming
 
 # DeviceIdle
 on property:baikal.eng.perf.profile=extreme
+    setprop "baikal.eng.perf.cur_profile" "extreme"
 
     write /sys/module/mdss_fb/parameters/boost_on_frame 0
     setprop "baikal.perf.boost_on_frame" 0

@@ -9,6 +9,8 @@ on property:baikal.eng.therm.profile=default
 
 # Balance (default profile)
 on property:baikal.eng.therm.profile=balance
+    setprop "baikal.eng.therm.cur_profile" "balance"
+
     setprop sys.qcom.thermalcfg "/vendor/etc/thermal-engine-8996.conf"
     stop thermal-engine
     wait_for_prop init.svc.thermal-engine stopped
@@ -17,6 +19,7 @@ on property:baikal.eng.therm.profile=balance
 
 # Balance (default profile)
 on property:baikal.eng.therm.profile=cool
+    setprop "baikal.eng.therm.cur_profile" "cool"
     setprop sys.qcom.thermalcfg "/vendor/etc/thermal-engine-8996-cool.conf"
     stop thermal-engine
     wait_for_prop init.svc.thermal-engine stopped
@@ -25,6 +28,7 @@ on property:baikal.eng.therm.profile=cool
 
 # Balance (default profile)
 on property:baikal.eng.therm.profile=incall
+    setprop "baikal.eng.therm.cur_profile" "incall"
     setprop sys.qcom.thermalcfg "/vendor/etc/thermal-engine-8996-cool.conf"
     stop thermal-engine
     wait_for_prop init.svc.thermal-engine stopped
@@ -33,6 +37,7 @@ on property:baikal.eng.therm.profile=incall
 
 # Balance (default profile)
 on property:baikal.eng.therm.profile=gaming
+    setprop "baikal.eng.therm.cur_profile" "gaming"
     setprop sys.qcom.thermalcfg "/vendor/etc/thermal-engine-8996-gaming.conf"
     stop thermal-engine
     wait_for_prop init.svc.thermal-engine stopped
