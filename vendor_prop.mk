@@ -164,9 +164,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.redir_party_num=1 \
     persist.vendor.radio.mt_sms_ack=20 \
     persist.vendor.radio.sib16_support=1 \
+    persist.vendor.radio.aosp_usr_pref_sel=true \
     ro.telephony.use_old_mnc_mcc_format=true \
     telephony.lteOnCdmaDevice=1 \
-    persist.sys.fflag.override.settings_network_and_internet_v2=true
+    persist.sys.fflag.override.settings_network_and_internet_v2=true \
 
 # Surfaceflinger
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -219,3 +220,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Baikal Maintainer
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.baikalos.maintainer=svasiliev22
+
