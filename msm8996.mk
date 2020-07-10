@@ -136,6 +136,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/bluetooth_audio_policy_configuration_hq.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration_hq.xml \
     $(LOCAL_PATH)/audio/usb_audio_policy_configuration_hq.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration_hq.xml
 
+# Bluetooth
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.btconfigstore@1.0.vendor
+
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5-impl:32 \
