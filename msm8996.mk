@@ -108,6 +108,13 @@ PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     android.hardware.bluetooth.audio@2.0-impl
 
+PRODUCT_PACKAGES += BluetoothExt
+PRODUCT_PACKAGES += libbtconfigstore
+PRODUCT_PACKAGES += vendor.qti.hardware.btconfigstore@1.0
+PRODUCT_PACKAGES += com.qualcomm.qti.bluetooth_audio@1.0
+PRODUCT_PACKAGES += vendor.qti.hardware.bluetooth_audio@2.0
+
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
     $(LOCAL_PATH)/audio/audio_output_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_output_policy.conf \
@@ -135,10 +142,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/a2dp_audio_policy_configuration_hq.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration_hq.xml \
     $(LOCAL_PATH)/audio/bluetooth_audio_policy_configuration_hq.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration_hq.xml \
     $(LOCAL_PATH)/audio/usb_audio_policy_configuration_hq.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration_hq.xml
-
-# Bluetooth
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.btconfigstore@1.0.vendor
 
 # Camera
 PRODUCT_PACKAGES += \
