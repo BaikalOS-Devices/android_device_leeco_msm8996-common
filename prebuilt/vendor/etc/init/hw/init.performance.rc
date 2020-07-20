@@ -111,7 +111,7 @@ on property:baikal.eng.perf.profile=balance
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "25000 1400000:49000 1700000:49000 2100000:79000"
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "19000 1036800:20000 1400000:49000 1700000:49000 2100000:79000"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 101
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/boost 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_rate 25000
@@ -172,8 +172,8 @@ on property:baikal.eng.perf.profile=balance
 
 
     write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/foreground/cpus 0-2
-    write /dev/cpuset/background/cpus 0-2
+    write /dev/cpuset/foreground/cpus 0-1
+    write /dev/cpuset/background/cpus 0-1
     write /dev/cpuset/system-background/cpus 0-1
     write /dev/cpuset/restricted/cpus 0-1
 
@@ -333,8 +333,8 @@ on property:baikal.eng.perf.profile=video
 
 
     write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/foreground/cpus 0-2
-    write /dev/cpuset/background/cpus 0-2
+    write /dev/cpuset/foreground/cpus 0-1
+    write /dev/cpuset/background/cpus 0-1
     write /dev/cpuset/system-background/cpus 0-1
     write /dev/cpuset/restricted/cpus 0-1
 
@@ -628,18 +628,23 @@ on property:baikal.eng.perf.profile=battery
     write /sys/devices/system/cpu/cpu3/sched_static_cluster_pwr_cost 1000
 
     write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 1
-    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 0
+    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 1
 
     write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 65
     write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 75
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 85
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 95
 
-    write /dev/cpuset/top-app/cpus 0-1
+    write /dev/cpuset/top-app/cpus 0,2
     write /dev/cpuset/foreground/cpus 0-1
     write /dev/cpuset/background/cpus 0-1
     write /dev/cpuset/system-background/cpus 0-1
     write /dev/cpuset/restricted/cpus 0-1
+
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 0
 
     write "/sys/class/devfreq/soc:qcom,cpubw/min_freq" 762
     write "/sys/class/devfreq/soc:qcom,cpubw/max_freq" 762
@@ -931,7 +936,7 @@ on property:baikal.eng.perf.profile=extreme
     write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 0
 
     write /sys/devices/system/cpu/cpu0/online 1
-    write /sys/devices/system/cpu/cpu1/online 0
+    write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
 
@@ -940,11 +945,11 @@ on property:baikal.eng.perf.profile=extreme
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 85
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 95
 
-    write /dev/cpuset/top-app/cpus 0
-    write /dev/cpuset/foreground/cpus 0
-    write /dev/cpuset/background/cpus 0
-    write /dev/cpuset/system-background/cpus 0
-    write /dev/cpuset/restricted/cpus 0
+    write /dev/cpuset/top-app/cpus 0-1
+    write /dev/cpuset/foreground/cpus 0-1
+    write /dev/cpuset/background/cpus 0-1
+    write /dev/cpuset/system-background/cpus 0-1
+    write /dev/cpuset/restricted/cpus 0-1
 
     write "/sys/class/devfreq/soc:qcom,cpubw/min_freq" 762
     write "/sys/class/devfreq/soc:qcom,cpubw/max_freq" 762
