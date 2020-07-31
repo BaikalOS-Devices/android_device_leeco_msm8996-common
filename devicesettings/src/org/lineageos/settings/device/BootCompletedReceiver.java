@@ -21,6 +21,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.provider.Settings;
 import android.util.Log;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
@@ -28,8 +29,14 @@ public class BootCompletedReceiver extends BroadcastReceiver {
     private static final boolean DEBUG = false;
     private static final String TAG = "SettingsDevice";
 
+    private static final String QTI_TELEPHONY_SETTING = "settings_network_and_internet_v2";
+
     @Override
     public void onReceive(final Context context, Intent intent) {
         if (DEBUG) Log.d(TAG, "Boot Receiver");
+        String value = Settings.Global.getString(context.getContentResolver(), QTI_TELEPHONY_SETTING);
+        if( value == null || value.equals("false") ) {
+            Settings.Global.putString(context.getContentResolver(), QTI_TELEPHONY_SETTING, "true");
+        }
     }
 }
