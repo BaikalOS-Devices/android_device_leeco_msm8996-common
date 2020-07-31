@@ -29,6 +29,14 @@ on boot
     chown system system /dev/cpuset/camera-daemon/tasks
     chmod 0664 /dev/cpuset/camera-daemon/tasks
 
+    mkdir /dev/cpuset/boost
+    write /dev/cpuset/boost/cpus 0-3
+    write /dev/cpuset/boost/mems 0
+    chown system system /dev/cpuset/boost
+    chown system system /dev/cpuset/boost/tasks
+    chmod 0660 /dev/cpuset/boost/tasks
+
+
     # Enable sched boost
     write /proc/sys/kernel/sched_boost 1
 
