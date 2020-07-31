@@ -142,11 +142,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
    ro.vendor.qti.sys.fw.bg_apps_limit=200
 
 # RIL
+#    ro.telephony.call_ring.multiple=false \
+#    ro.telephony.call_ring.delay=0 \
+
 PRODUCT_PROPERTY_OVERRIDES += \
     DEVICE_PROVISIONED=1 \
     rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
     ril.subscription.types=NV,RUIM \
-    ro.telephony.call_ring.multiple=false \
     persist.data.qmi.adb_logmask=0 \
     persist.net.doxlat=true \
     persist.radio.apm_sim_not_pwdn=1 \
@@ -164,10 +166,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.redir_party_num=1 \
     persist.vendor.radio.mt_sms_ack=20 \
     persist.vendor.radio.sib16_support=1 \
-    persist.vendor.radio.aosp_usr_pref_sel=true \
     ro.telephony.use_old_mnc_mcc_format=true \
     telephony.lteOnCdmaDevice=1 \
     persist.sys.fflag.override.settings_network_and_internet_v2=true \
+
+#    persist.vendor.radio.aosp_usr_pref_sel=true \
+
 
 # Surfaceflinger
 PRODUCT_PROPERTY_OVERRIDES += \
