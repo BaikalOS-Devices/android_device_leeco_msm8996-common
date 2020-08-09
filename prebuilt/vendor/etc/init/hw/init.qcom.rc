@@ -517,7 +517,7 @@ service vendor.audio-hal-2-0 /vendor/bin/hw/android.hardware.audio@2.0-service
     group audio camera drmrpc inet media mediadrm net_bt net_bt_admin net_bw_acct oem_2901 wakelock system
     capabilities BLOCK_SUSPEND SYS_NICE
     ioprio rt 4
-    writepid /dev/cpuset/foreground/tasks /dev/stune/foreground/tasks
+    writepid /dev/cpuset/boost/tasks /dev/stune/foreground/tasks
     # audioflinger restarts itself when it loses connection with the hal
     # and its .rc file has an "onrestart restart audio-hal" rule, thus
     # an additional auto-restart from the init process isn't needed.
@@ -742,13 +742,20 @@ on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
+service vendor.ril-daemon /vendor/bin/hw/rild
+    class main
+    user radio
+    group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log
+    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+    writepid /dev/cpuset/boost/tasks
+
 service vendor.ril-daemon2 /vendor/bin/hw/rild -c 2
     class main
     user radio
     disabled
     group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
-    writepid /dev/cpuset/system-background/tasks
+    writepid /dev/cpuset/boost/tasks
 
 
 on property:persist.radio.multisim.config=dsds
