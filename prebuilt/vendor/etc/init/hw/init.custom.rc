@@ -46,4 +46,8 @@ on property:persist.hw.0d_disable=0
     write /sys/devices/soc/75ba000.i2c/i2c-12/12-004b/input/input3/0dbutton 1
     write /sys/devices/soc/75ba000.i2c/i2c-12/12-004a/keys_on 1
 
+on property:persist.baikal.dolby.enable=1
+    enable dms-hal-1-0
 
+on property:persist.baikal.dolby.enable=0
+    stop dms-hal-1-0

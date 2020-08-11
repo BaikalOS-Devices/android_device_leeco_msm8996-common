@@ -169,11 +169,13 @@ on property:baikal.eng.perf.profile=balance
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 55
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 75
 
+    write /proc/sys/vm/swappiness 15
+    write /proc/sys/vm/vfs_cache_pressure 100
 
     write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/foreground/cpus 0-1
+    write /dev/cpuset/foreground/cpus 0-2
     write /dev/cpuset/background/cpus 0-1
-    write /dev/cpuset/system-background/cpus 0-1
+    write /dev/cpuset/system-background/cpus 0-2
     write /dev/cpuset/restricted/cpus 0-1
 
     write "/sys/class/devfreq/soc:qcom,cpubw/min_freq" 762
@@ -330,6 +332,8 @@ on property:baikal.eng.perf.profile=video
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 55
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 75
 
+    write /proc/sys/vm/swappiness 15
+    write /proc/sys/vm/vfs_cache_pressure 100
 
     write /dev/cpuset/top-app/cpus 0-3
     write /dev/cpuset/foreground/cpus 0-1
@@ -483,6 +487,9 @@ on property:baikal.eng.perf.profile=performance
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 0
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 0
 
+    write /proc/sys/vm/swappiness 10
+    write /proc/sys/vm/vfs_cache_pressure 100
+
     write /dev/cpuset/top-app/cpus 0-3
     write /dev/cpuset/foreground/cpus 0-3
     write /dev/cpuset/background/cpus 0-3
@@ -634,6 +641,9 @@ on property:baikal.eng.perf.profile=battery
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 85
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 95
 
+    write /proc/sys/vm/swappiness 40
+    write /proc/sys/vm/vfs_cache_pressure 100
+
     write /dev/cpuset/top-app/cpus 0,2
     write /dev/cpuset/foreground/cpus 0-1
     write /dev/cpuset/background/cpus 0-1
@@ -776,6 +786,9 @@ on property:baikal.eng.perf.profile=gaming
     write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 0
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 0
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 0
+
+    write /proc/sys/vm/swappiness 10
+    write /proc/sys/vm/vfs_cache_pressure 100
 
     write /dev/cpuset/top-app/cpus 0-3
     write /dev/cpuset/foreground/cpus 0-3
@@ -943,6 +956,9 @@ on property:baikal.eng.perf.profile=extreme
     write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 75
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 85
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 95
+
+    write /proc/sys/vm/swappiness 60
+    write /proc/sys/vm/vfs_cache_pressure 100
 
     write /dev/cpuset/top-app/cpus 0-1
     write /dev/cpuset/foreground/cpus 0-1

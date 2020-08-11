@@ -19,9 +19,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.audio.sdk.fluencetype=fluence \
     ro.vendor.audio.sdk.ssr=false \
     vendor.audio.dolby.ds2.enabled=true \
-    vendor.audio.dolby.ds2.hardbypass=true \
+    vendor.audio.dolby.ds2.hardbypass=false \
     vendor.audio.flac.sw.decoder.24bit=false \
-    vendor.audio_hal.period_size=192 \
+    vendor.audio_hal.period_size=240 \
     vendor.audio.hw.aac.encoder=true \
     ro.audio.offload_wakelock=false \
     vendor.audio.offload.buffer.size.kb=512 \
@@ -220,6 +220,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     baikal.eng.therm=1 \
     baikal.eng.core_ctl=1 \
     sys.baikal.min_cpus=2
+
+# Baikal Effects
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.baikal.ae.disable=0 \
+    persist.baikal.qcae.disable=0 \
+    persist.baikal.dolby.enable=1 \
+    sys.baikal.dolby.avail=1 \
+    sys.baikal.qcae.avail=1 
 
 # Baikal Maintainer
 PRODUCT_PROPERTY_OVERRIDES += \
