@@ -225,7 +225,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.baikal.ae.disable=0 \
     persist.baikal.qcae.disable=0 \
-    persist.baikal.dolby.enable=1 \
+    persist.baikal.dolby.enable=0 \
     sys.baikal.dolby.avail=1 \
     sys.baikal.qcae.avail=1 
 
