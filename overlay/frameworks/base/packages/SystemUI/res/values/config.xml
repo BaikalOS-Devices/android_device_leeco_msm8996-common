@@ -29,13 +29,13 @@
     <bool name="config_hspa_data_distinguishable">true</bool>
 
     <!-- The CPU temperature sensor path, defaults to empty -->
-    <string name="config_cpuTempSensor" translatable="false">/sys/class/thermal/thermal_zone4/temp</string>
+    <string name="config_cpuTempSensor" translatable="false">/sys/class/thermal/thermal_zone5/temp</string>
     <!-- The CPU temperature sensor path, defaults to empty -->
     <string name="config_cpuTempSensorPrefix" translatable="false">/sys/devices/virtual/thermal/thermal_zone</string>
     <!-- The CPU temperature sensor path, defaults to empty -->
     <string name="config_cpuTempSensorSuffix" translatable="false">/temp</string>
     <!-- The CPU temperature sensor path, defaults to empty -->
-    <string name="config_cpuTempSensorNumber" translatable="false">4,6,9,11</string>
+    <string name="config_cpuTempSensorNumber" translatable="false">5,7,10,12</string>
     <!-- The CPU temperature divider, if needed -->
     <integer name="config_cpuTempDivider" translatable="false">10</integer>
 
