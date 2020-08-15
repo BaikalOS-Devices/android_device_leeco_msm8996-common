@@ -229,7 +229,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     sys.baikal.dolby.avail=1 \
     sys.baikal.qcae.avail=1 
 
+#Fully optimize on install
+PRODUCT_PROPERTY_OVERRIDES += \
+    pm.dexopt.install=speed-profile
+
 # Baikal Maintainer
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.baikalos.maintainer=svasiliev22
+
 
