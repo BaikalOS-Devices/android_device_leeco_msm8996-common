@@ -485,4 +485,13 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST := \
     ro.product.model
 
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    SystemUI \
+    DocumentsUI \
+    Keyguard \
+    TeleService \
+    Telecom \
+    Dialer \
+    Launcher3
+
 $(call inherit-product, vendor/leeco/msm8996-common/msm8996-common-vendor.mk)
