@@ -233,8 +233,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     pm.dexopt.install=speed-profile
 
+# USAP
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.device_config.runtime_native.usap_pool_enabled=true
+
 # Baikal Maintainer
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.baikalos.maintainer=svasiliev22
-
 
