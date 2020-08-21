@@ -22,12 +22,14 @@
     	<item>@string/thermal_default</item>
     	<item>@string/thermal_balance</item>
     	<item>@string/thermal_gaming</item>
+    	<item>@string/thermal_gaming2</item>
     	<item>@string/thermal_cool</item>
      </string-array>
      <string-array name="thermal_listvalues">
     	<item>default</item>
     	<item>balance</item>
     	<item>gaming</item>
+    	<item>gaming2</item>
     	<item>cool</item>
     </string-array>
 </resources>

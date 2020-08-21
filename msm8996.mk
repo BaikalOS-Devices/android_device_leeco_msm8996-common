@@ -424,7 +424,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine-8996.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine-8996.conf \
     $(LOCAL_PATH)/configs/thermal-engine-8996-cool.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine-8996-cool.conf \
-    $(LOCAL_PATH)/configs/thermal-engine-8996-gaming.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine-8996-gaming.conf
+    $(LOCAL_PATH)/configs/thermal-engine-8996-gaming.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine-8996-gaming.conf \
+    $(LOCAL_PATH)/configs/thermal-engine-8996-gaming-2.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine-8996-gaming-2.conf
 
 
 # Trust HAL

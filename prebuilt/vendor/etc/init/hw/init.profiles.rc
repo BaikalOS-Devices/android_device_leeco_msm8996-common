@@ -84,7 +84,7 @@ on property:baikal.therm.profile=gaming
 
 on property:baikal.therm.profile=gaming2
     setprop "baikal.eng.therm.profile" "temporary"
-    setprop "baikal.eng.therm.profile" "gaming"
+    setprop "baikal.eng.therm.profile" "gaming2"
 
 on property:baikal.therm.profile=cool
     setprop "baikal.eng.therm.profile" "temporary"
