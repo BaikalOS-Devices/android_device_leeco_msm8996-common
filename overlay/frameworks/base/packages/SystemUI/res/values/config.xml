@@ -38,12 +38,16 @@
     <string name="config_cpuTempSensorNumber" translatable="false">5,7,10,12</string>
     <!-- The CPU temperature divider, if needed -->
     <integer name="config_cpuTempDivider" translatable="false">10</integer>
+    <!-- The SYS temperature divider, if needed -->
+    <integer name="config_sysTempDivider" translatable="false">1</integer>
+    <!-- The BAT temperature divider, if needed -->
+    <integer name="config_batTempDivider" translatable="false">10</integer>
 
     <!-- FPSInfoService FPS node file path -->
     <string name="config_fpsInfoSysNode" translatable="false">/sys/devices/virtual/graphics/fb0/measured_fps</string>
 
     <!-- The SYS temperature sensor path, defaults to empty -->
-    <string name="config_sysTempSensor" translatable="false">/sys/devices/virtual/thermal/thermal_zone1/temp</string>
+    <string name="config_sysTempSensor" translatable="false">/sys/devices/virtual/thermal/thermal_zone28/temp</string>
 
     <!-- The BAT temperature sensor path, defaults to empty -->
     <string name="config_batTempSensor" translatable="false">/sys/class/power_supply/battery/temp</string>
