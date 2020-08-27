@@ -26,6 +26,7 @@
     	<item>@string/thermal_gaming</item>
     	<item>@string/thermal_gaming2</item>
     	<item>@string/thermal_cool</item>
+    	<item>@string/thermal_high</item>
      </string-array>
      <string-array name="thermal_listvalues">
     	<item>default</item>
@@ -33,5 +34,6 @@
     	<item>gaming</item>
     	<item>gaming2</item>
     	<item>cool</item>
+    	<item>high</item>
     </string-array>
 </resources>

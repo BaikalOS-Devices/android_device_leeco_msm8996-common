@@ -52,6 +52,14 @@ on property:baikal.eng.therm.profile=gaming2
     start thermal-engine
     wait_for_prop init.svc.thermal-engine running
 
+on property:baikal.eng.therm.profile=high
+    setprop "baikal.eng.therm.cur_profile" "high"
+    setprop sys.qcom.thermalcfg "/vendor/etc/thermal-engine-8996-high.conf"
+    stop thermal-engine
+    wait_for_prop init.svc.thermal-engine stopped
+    start thermal-engine
+    wait_for_prop init.svc.thermal-engine running
+
 
 #on property:baikal.eng.therm.profile=*
 #    setprop "baikal.eng.therm.profile" "default"

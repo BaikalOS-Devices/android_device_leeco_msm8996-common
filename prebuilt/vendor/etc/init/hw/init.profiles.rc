@@ -94,6 +94,10 @@ on property:baikal.therm.profile=cool
     setprop "baikal.eng.therm.profile" "temporary"
     setprop "baikal.eng.therm.profile" "cool"
 
+on property:baikal.therm.profile=high
+    setprop "baikal.eng.therm.profile" "temporary"
+    setprop "baikal.eng.therm.profile" "high"
+
 on property:baikal.therm.profile=camera
     setprop "baikal.eng.therm.profile" "temporary"
     setprop "baikal.eng.therm.profile" "gaming"

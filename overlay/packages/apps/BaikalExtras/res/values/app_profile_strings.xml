@@ -16,5 +16,6 @@
     <string name="thermal_gaming">Gaming</string>
     <string name="thermal_gaming2">Gaming 2</string>
     <string name="thermal_cool">Cool</string>
+    <string name="thermal_high">Hot</string>
 
 </resources>
