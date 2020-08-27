@@ -163,6 +163,9 @@ DEVICE_FRAMEWORK_MANIFEST_FILE := $(PLATFORM_PATH)/framework_manifest.xml
 DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(PLATFORM_PATH)/compatibility_matrix.xml
 
+# LMKD stats logging
+TARGET_LMKD_STATS_LOG := true
+
 # Init
 TARGET_INIT_VENDOR_LIB := //$(PLATFORM_PATH):libinit_leeco_msm8996
 TARGET_RECOVERY_DEVICE_MODULES := //$(PLATFORM_PATH):libinit_leeco_msm8996
