@@ -78,7 +78,7 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 0
 
     # Disable Adaptive LMK
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
+    #write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
     #write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
 
     # Set sync wakee policy tunable

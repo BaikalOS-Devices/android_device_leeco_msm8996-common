@@ -82,7 +82,7 @@ on property:baikal.eng.perf.profile=balance
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 307200
 
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "19000 480000:20000 960000:20000"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost 0
@@ -91,7 +91,7 @@ on property:baikal.eng.perf.profile=balance
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack -1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 960000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "95 422400:80 480000:85 556800:80 652800:85 729600:85 844800:95 960000:95 1036800:95 1113600:98 1190400:98 1228800:98 1324800:98 1401600:98 1478400:98 1593600:98"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "95 422400:80 480000:85 556800:80 652800:85 729600:85 844800:95 960000:95 1036800:95 1113600:99 1190400:99 1228800:99 1324800:99 1401600:99 1478400:99 1593600:99"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 19000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 49000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 1
@@ -108,7 +108,7 @@ on property:baikal.eng.perf.profile=balance
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 307200
 
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "19000 1036800:20000 1400000:49000 1700000:49000 2100000:79000"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 101
@@ -117,7 +117,7 @@ on property:baikal.eng.perf.profile=balance
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_slack -1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/hispeed_freq 1036800
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "95 403200:85 480000:85 556800:85 652800:85 729600:85 806400:85 883200:85 940800:85 1036800:85 1113600:98 1190400:98 1248000:98 1324800:99 1401600:99 1478400:99 1555200:99 1632000:99 1708800:99 1785600:99 1824000:99 1920000:99 1996800:99 2073600:99 2150400:99"
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "95 403200:85 480000:85 556800:85 652800:85 729600:85 806400:85 883200:85 940800:85 1036800:85 1113600:99 1190400:99 1248000:99 1324800:99 1401600:99 1478400:99 1555200:99 1632000:99 1708800:99 1785600:99 1824000:99 1920000:99 1996800:99 2073600:99 2150400:99"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/min_sample_time 19000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/max_freq_hysteresis 19000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 1
@@ -175,7 +175,7 @@ on property:baikal.eng.perf.profile=balance
     write /dev/cpuset/top-app/cpus 0-3
     write /dev/cpuset/foreground/cpus 0-2
     write /dev/cpuset/background/cpus 0-1
-    write /dev/cpuset/system-background/cpus 0-2
+    write /dev/cpuset/system-background/cpus 0-1
     write /dev/cpuset/restricted/cpus 0-1
 
     write "/sys/class/devfreq/soc:qcom,cpubw/min_freq" 762
@@ -203,6 +203,168 @@ on property:baikal.eng.perf.profile=balance
     write "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq" 133000000
     write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" 624
     write "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq" 624000000 
+
+# Balance Limited
+on property:baikal.eng.perf.profile=limited
+    setprop "baikal.eng.perf.cur_profile" "limited"
+    # Configure governor settings for little cluster
+
+    write /sys/module/mdss_fb/parameters/boost_on_frame ${persist.ps.fb_boost:-0}
+    setprop "baikal.perf.boost_on_frame" ${persist.ps.fb_boost:-0}
+
+    # Enable cpufreq boost
+    write /sys/module/cpu_input_boost/parameters/boost_enabled ${sys.baikal.input_boost:-0}
+    write /sys/module/cpu_input_boost/parameters/input_boost_duration 64
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_hp 1036800
+    write /sys/module/cpu_input_boost/parameters/input_boost_freq_lp 1036800
+
+    # Enable devrfreq boost
+    write /sys/module/devfreq_boost/parameters/boost_enabled "Y"
+    write /sys/module/devfreq_boost/parameters/boost_all "Y"
+
+    # Re-enable thermal and BCL hotplug
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/module/msm_thermal/parameters/enabled "N"
+
+    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 2
+    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus 2
+
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+
+    # Configure governor settings for little cluster
+
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1228800
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 307200
+
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1228800
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 307200
+
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "19000 480000:20000 960000:20000"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 101
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 25000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack -1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 960000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "95 422400:80 480000:85 556800:80 652800:85 729600:85 844800:95 960000:95 1036800:95 1113600:99 1190400:99 1228800:99 1324800:101 1401600:101 1478400:101 1593600:101"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 19000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 49000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/fast_ramp_down 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction 1
+
+
+    # Configure governor settings for big cluster
+
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1632000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 307200
+
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1632000
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 307200
+
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 0
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "19000 1036800:20000 1400000:49000 1700000:49000 2100000:79000"
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 101
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/boost 0
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_rate 25000
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_slack -1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/hispeed_freq 1036800
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/io_is_busy 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "95 403200:85 480000:85 556800:85 652800:85 729600:85 806400:85 883200:85 940800:85 1036800:85 1113600:99 1190400:99 1248000:99 1324800:99 1401600:99 1478400:99 1555200:99 1632000:99 1708800:101 1785600:101 1824000:101 1920000:101 1996800:101 2073600:101 2150400:101"
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/min_sample_time 19000
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/max_freq_hysteresis 19000
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/fast_ramp_down 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/enable_prediction 1
+
+    # Re-enable thermal hotplug
+    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/module/msm_thermal/parameters/enabled "Y"
+
+    # Set big.LITTLE scheduler parameters
+    write /proc/sys/kernel/sched_window_stats_policy 1
+    write /proc/sys/kernel/sched_boost 0
+    write /proc/sys/kernel/sched_migration_fixup 1
+    write /proc/sys/kernel/sched_upmigrate 99
+    write /proc/sys/kernel/sched_downmigrate 95
+    write /proc/sys/kernel/sched_upmigrate 99
+    write /proc/sys/kernel/sched_downmigrate 95
+    write /proc/sys/kernel/sched_freq_inc_notify 200000
+    write /proc/sys/kernel/sched_freq_dec_notify 50000
+    write /proc/sys/kernel/sched_spill_nr_run 50
+    write /proc/sys/kernel/sched_spill_load 100
+    write /proc/sys/kernel/sched_init_task_load 10
+    write /proc/sys/kernel/sched_big_waker_task_load 50
+    write /proc/sys/kernel/sched_small_task 15
+    write /proc/sys/kernel/sched_wakeup_load_threshold 60
+    write /proc/sys/kernel/sched_small_wakee_task_load 15
+
+    write /proc/sys/kernel/sched_upmigrate_min_nice 9
+
+    write /sys/devices/system/cpu/cpu0/sched_static_cpu_pwr_cost 10
+    write /sys/devices/system/cpu/cpu0/sched_static_cluster_pwr_cost 20
+
+    write /sys/devices/system/cpu/cpu1/sched_static_cpu_pwr_cost 10
+    write /sys/devices/system/cpu/cpu1/sched_static_cluster_pwr_cost 20
+
+    write /sys/devices/system/cpu/cpu2/sched_static_cpu_pwr_cost 500
+    write /sys/devices/system/cpu/cpu2/sched_static_cluster_pwr_cost 1000
+
+    write /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost 500
+    write /sys/devices/system/cpu/cpu3/sched_static_cluster_pwr_cost 1000
+
+    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus ${sys.baikal.min_cpus:-2}
+    write /sys/devices/system/cpu/cpu2/core_ctl/min_cpus ${sys.baikal.min_cpus:-2}
+
+
+    write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 35
+    write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 45
+    write /sys/devices/system/cpu/cpu2/core_ctl/busy_down_thres 55
+    write /sys/devices/system/cpu/cpu2/core_ctl/busy_up_thres 75
+
+    write /proc/sys/vm/swappiness 15
+    write /proc/sys/vm/vfs_cache_pressure 100
+
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/foreground/cpus 0-2
+    write /dev/cpuset/background/cpus 0-1
+    write /dev/cpuset/system-background/cpus 0-1
+    write /dev/cpuset/restricted/cpus 0-1
+
+    write "/sys/class/devfreq/soc:qcom,cpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,cpubw/max_freq" 13763
+
+    write "/sys/class/devfreq/soc:qcom,gpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,gpubw/max_freq" 13763
+
+    write "/sys/class/devfreq/soc:qcom,mincpubw/min_freq" 762
+    write "/sys/class/devfreq/soc:qcom,mincpubw/max_freq" 13763
+
+    write "/sys/class/devfreq/soc:qcom,m4m/min_freq" 307200000
+    write "/sys/class/devfreq/soc:qcom,m4m/max_freq" 1593600000
+
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/min_freq" 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu0/max_freq" 13763
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/min_freq" 1525
+    write "/sys/class/devfreq/soc:qcom,memlat-cpu2/max_freq" 13763
+
+# Set idle GPU to 133 MHz
+    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
+    write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
+#    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 3
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" 133
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq" 133000000
+    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" 624
+    write "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq" 624000000 
+
 
 # Balance (default profile)
 on property:baikal.eng.perf.profile=video
@@ -254,7 +416,8 @@ on property:baikal.eng.perf.profile=video
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 960000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
 #    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "50 422400:50 480000:65 556800:70 652800:70 729600:70 844800:70 960000:70 1036800:70 1113600:70 1190400:70 1228800:70 1324800:80 1401600:80 1478400:80 1593600:80"
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "50 422400:50 480000:65 556800:80 652800:80 729600:80 844800:80 960000:80 1036800:90 1113600:90 1190400:90 1228800:90 1324800:95 1401600:95 1478400:95 1593600:95"
+#    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "50 422400:50 480000:65 556800:80 652800:80 729600:80 844800:80 960000:80 1036800:90 1113600:90 1190400:90 1228800:90 1324800:95 1401600:95 1478400:95 1593600:95"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "95 422400:80 480000:85 556800:80 652800:85 729600:85 844800:95 960000:95 1036800:95 1113600:99 1190400:99 1228800:99 1324800:99 1401600:99 1478400:99 1593600:99"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 19000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 49000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 0
@@ -271,7 +434,7 @@ on property:baikal.eng.perf.profile=video
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 307200
 
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "25000 1400000:49000 1700000:49000 2100000:79000"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 101
@@ -280,7 +443,7 @@ on property:baikal.eng.perf.profile=video
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_slack -1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/hispeed_freq 1036800
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "95 403200:85 480000:85 556800:85 652800:85 729600:85 806400:85 883200:85 940800:95 1036800:95 1113600:95 1190400:95 1248000:95 1324800:99 1401600:99 1478400:99 1555200:99 1632000:99 1708800:99 1785600:99 1824000:99 1920000:99 1996800:99 2073600:99 2150400:99"
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "95 403200:85 480000:85 556800:85 652800:85 729600:85 806400:85 883200:85 940800:85 1036800:85 1113600:99 1190400:99 1248000:99 1324800:99 1401600:99 1478400:99 1555200:99 1632000:99 1708800:99 1785600:99 1824000:99 1920000:99 1996800:99 2073600:99 2150400:99"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/min_sample_time 19000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/max_freq_hysteresis 19000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 0
@@ -336,7 +499,7 @@ on property:baikal.eng.perf.profile=video
     write /proc/sys/vm/vfs_cache_pressure 100
 
     write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/foreground/cpus 0-1
+    write /dev/cpuset/foreground/cpus 0-2
     write /dev/cpuset/background/cpus 0-1
     write /dev/cpuset/system-background/cpus 0-1
     write /dev/cpuset/restricted/cpus 0-1
@@ -408,7 +571,7 @@ on property:baikal.eng.perf.profile=performance
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1593600
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
 
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "19000 480000:20000 960000:20000"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost 0
@@ -434,7 +597,7 @@ on property:baikal.eng.perf.profile=performance
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 2150400
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 1036800
 
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "19000 1400000:20000 1700000:20000 2100000:20000"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/boost 0
@@ -562,7 +725,7 @@ on property:baikal.eng.perf.profile=battery
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1113600
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 307200
 
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "19000 480000:20000 960000:20000"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost 0
@@ -570,7 +733,7 @@ on property:baikal.eng.perf.profile=battery
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack -1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 307200
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "50 422400:50 480000:65 556800:70 652800:70 729600:70 844800:70 960000:70 1036800:70 1113600:70 1190400:70 1228800:70 1324800:75 1401600:75 1478400:75 1593600:75"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "95 422400:95 480000:95 556800:95 652800:95 729600:95 844800:95 960000:95 1036800:95 1113600:99 1190400:99 1228800:99 1324800:99 1401600:99 1478400:99 1593600:99"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 19000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 49000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 1
@@ -587,7 +750,7 @@ on property:baikal.eng.perf.profile=battery
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1248000
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 307200
 
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "25000 1400000:49000 1700000:49000 2100000:79000"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/boost 0
@@ -595,7 +758,7 @@ on property:baikal.eng.perf.profile=battery
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_slack -1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/hispeed_freq 307200
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "60 403200:70 480000:70 556800:70 652800:70 729600:70 806400:70 883200:70 940800:95 1036800:95 1113600:95 1190400:95 1248000:95 1324800:95 1401600:95 1478400:95 1555200:95 1632000:95 1708800:95 1785600:95 1824000:95 1920000:95 1996800:95 2073600:90 2150400:95"
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "95 403200:95 480000:95 556800:95 652800:95 729600:95 806400:95 95:70 940800:95 1036800:95 1113600:99 1190400:99 1248000:99 1324800:99 1401600:99 1478400:99 1555200:99 1632000:99 1708800:99 1785600:99 1824000:99 1920000:99 1996800:99 2073600:99 2150400:99"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/min_sample_time 19000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/max_freq_hysteresis 19000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 0
@@ -645,10 +808,10 @@ on property:baikal.eng.perf.profile=battery
     write /proc/sys/vm/vfs_cache_pressure 100
 
     write /dev/cpuset/top-app/cpus 0,2
-    write /dev/cpuset/foreground/cpus 0-1
-    write /dev/cpuset/background/cpus 0-1
-    write /dev/cpuset/system-background/cpus 0-1
-    write /dev/cpuset/restricted/cpus 0-1
+    write /dev/cpuset/foreground/cpus 0,2
+    write /dev/cpuset/background/cpus 0
+    write /dev/cpuset/system-background/cpus 0
+    write /dev/cpuset/restricted/cpus 0
 
     write /sys/devices/system/cpu/cpu0/online 1
     write /sys/devices/system/cpu/cpu1/online 1
@@ -720,7 +883,7 @@ on property:baikal.eng.perf.profile=gaming
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1593600
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
 
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "19000 480000:20000 960000:20000"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost 0
@@ -742,7 +905,7 @@ on property:baikal.eng.perf.profile=gaming
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 2150400
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 1036800
 
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "19000 1400000:20000 1700000:20000 2100000:20000"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/boost 0
@@ -873,7 +1036,7 @@ on property:baikal.eng.perf.profile=extreme
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1113600
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 307200
 
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "19000 480000:20000 960000:20000"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost 0
@@ -898,7 +1061,7 @@ on property:baikal.eng.perf.profile=extreme
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq 1248000
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 307200
 
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 0
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "25000 1400000:49000 1700000:49000 2100000:79000"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/boost 0
