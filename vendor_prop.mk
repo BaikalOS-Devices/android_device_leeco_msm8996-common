@@ -128,7 +128,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
    persist.radio.VT_CAM_INTERFACE=2 \
    persist.radio.VT_ENABLE=1 \
    persist.radio.VT_HYBRID_ENABLE=1 \
-   persist.radio.ROTATION_ENABLE=1 \
    persist.vendor.qti.telephony.vt_cam_interface=2
 
 # Media
@@ -140,10 +139,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
    ro.vendor.extension_library=libqti-perfd-client.so \
    ro.vendor.qti.sys.fw.bg_apps_limit=200
-
-# RIL
-#    ro.telephony.call_ring.multiple=false \
-#    ro.telephony.call_ring.delay=0 \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     DEVICE_PROVISIONED=1 \
@@ -166,12 +161,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.redir_party_num=1 \
     persist.vendor.radio.mt_sms_ack=20 \
     persist.vendor.radio.sib16_support=1 \
-    ro.telephony.use_old_mnc_mcc_format=true \
     telephony.lteOnCdmaDevice=1 \
     persist.sys.fflag.override.settings_network_and_internet_v2=true \
-
-#    persist.vendor.radio.aosp_usr_pref_sel=true \
-
 
 # Surfaceflinger
 PRODUCT_PROPERTY_OVERRIDES += \
