@@ -108,12 +108,11 @@ PRODUCT_PACKAGES += \
     audio.bluetooth.default \
     android.hardware.bluetooth.audio@2.0-impl
 
-PRODUCT_PACKAGES += BluetoothExt
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.btconfigstore@1.0.vendor
+
 PRODUCT_PACKAGES += libbtconfigstore
 PRODUCT_PACKAGES += vendor.qti.hardware.btconfigstore@1.0
-PRODUCT_PACKAGES += com.qualcomm.qti.bluetooth_audio@1.0
-PRODUCT_PACKAGES += vendor.qti.hardware.bluetooth_audio@2.0
-
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
