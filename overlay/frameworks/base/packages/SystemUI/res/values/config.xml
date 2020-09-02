@@ -52,5 +52,7 @@
     <!-- The BAT temperature sensor path, defaults to empty -->
     <string name="config_batTempSensor" translatable="false">/sys/class/power_supply/battery/temp</string>
 
+    <string name="config_gpuFreqSensor" translatable="false">/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/clock_mhz</string>
+
 </resources>
 
