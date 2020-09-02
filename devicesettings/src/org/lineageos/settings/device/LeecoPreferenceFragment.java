@@ -105,8 +105,10 @@ public class LeecoPreferenceFragment extends PreferenceFragment {
     	mHw0DEnable.setChecked(SettingsUtils.getHw0DEnabled());
     	mHw0DEnable.setOnPreferenceChangeListener(PrefListener);
 
-    	mCoreCtl.setChecked(SettingsUtils.getCoreCtlEnabled());
-    	mCoreCtl.setOnPreferenceChangeListener(PrefListener);
+        if( mCoreCtl != null )  {
+        	mCoreCtl.setChecked(SettingsUtils.getCoreCtlEnabled());
+        	mCoreCtl.setOnPreferenceChangeListener(PrefListener);
+        }
 
     	//mHpDetect.setChecked(SettingsUtils.getHpDetectEnabled());
     	//mHpDetect.setOnPreferenceChangeListener(PrefListener);
