@@ -36,4 +36,62 @@
     	<item>cool</item>
     	<item>high</item>
     </string-array>
+
+    <string-array name="cpu_silver_freqs">
+        <item>307200</item>
+        <item>422400</item>
+        <item>480000</item>
+        <item>556800</item>
+        <item>652800</item>
+        <item>729600</item>
+        <item>844800</item>
+        <item>960000</item>
+        <item>1036800</item>
+        <item>1113600</item>
+        <item>1190400</item>
+        <item>1228800</item>
+        <item>1324800</item>
+        <item>1401600</item>
+        <item>1478400</item>
+        <item>1593600</item>
+    </string-array>
+
+    <string-array name="cpu_gold_freqs">
+        <item>307200</item>
+        <item>403200</item>
+        <item>480000</item>
+        <item>556800</item>
+        <item>652800</item>
+        <item>729600</item>
+        <item>806400</item>
+        <item>883200</item>
+        <item>940800</item>
+        <item>1036800</item>
+        <item>1113600</item>
+        <item>1190400</item>
+        <item>1248000</item>
+        <item>1324800</item>
+        <item>1401600</item>
+        <item>1478400</item>
+        <item>1555200</item>
+        <item>1632000</item>
+        <item>1708800</item>
+        <item>1785600</item>
+        <item>1824000</item>
+        <item>1920000</item>
+        <item>1996800</item>
+        <item>2073600</item>
+        <item>2150400</item>
+    </string-array>
+
+    <string-array name="gpu_freqs">
+        <item>133</item>
+        <item>214</item>
+        <item>315</item>
+        <item>401</item>
+        <item>510</item>
+        <item>560</item>
+        <item>624</item>
+    </string-array>
+
 </resources>
