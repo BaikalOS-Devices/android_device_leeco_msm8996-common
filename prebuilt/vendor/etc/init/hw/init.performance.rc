@@ -262,8 +262,8 @@ on property:baikal.eng.perf.profile=balance
 
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" ${persist.bkp.balance.gmin:-133}
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" ${persist.bkp.balance.gmax:-624}
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz ${persist.bkp.balance.gmin:-133}
+    write /sys/class/kgsl/kgsl-3d0/max_clock_mhz ${persist.bkp.balance.gmax:-624}
 
 # Balance Limited
 on property:baikal.eng.perf.profile=limited
@@ -424,8 +424,8 @@ on property:baikal.eng.perf.profile=limited
 
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" ${persist.bkp.limited.gmin:-133}
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" ${persist.bkp.limited.gmax:-624}
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz ${persist.bkp.limited.gmin:-133}
+    write /sys/class/kgsl/kgsl-3d0/max_clock_mhz ${persist.bkp.limited.gmax:-624}
 
 
 # Balance (default profile)
@@ -590,8 +590,8 @@ on property:baikal.eng.perf.profile=video
 
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" ${persist.bkp.video.gmin:-133}
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" ${persist.bkp.video.gmax:-624}
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz ${persist.bkp.video.gmin:-133}
+    write /sys/class/kgsl/kgsl-3d0/max_clock_mhz ${persist.bkp.video.gmax:-624}
 
 
 
@@ -747,8 +747,8 @@ on property:baikal.eng.perf.profile=performance
 
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" ${persist.bkp.performance.gmin:-133}
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" ${persist.bkp.performance.gmax:-624}
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz ${persist.bkp.performance.gmin:-133}
+    write /sys/class/kgsl/kgsl-3d0/max_clock_mhz ${persist.bkp.performance.gmax:-624}
 
 # Battery
 on property:baikal.eng.perf.profile=battery
@@ -908,8 +908,8 @@ on property:baikal.eng.perf.profile=battery
 
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 6
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" ${persist.bkp.performance.gmin:-133}
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" ${persist.bkp.performance.gmax:-133}
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz ${persist.bkp.performance.gmin:-133}
+    write /sys/class/kgsl/kgsl-3d0/max_clock_mhz ${persist.bkp.performance.gmax:-133}
 
 
 # Gaming
@@ -1064,10 +1064,10 @@ on property:baikal.eng.perf.profile=gaming
 
 #    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 1
 
-    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 0
+    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" ${persist.bkp.gaming.gmax:-315}
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" ${persist.bkp.gaming.gmax:-624}
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz ${persist.bkp.gaming.gmax:-315}
+    write /sys/class/kgsl/kgsl-3d0/max_clock_mhz ${persist.bkp.gaming.gmax:-624}
 
 
 # Gaming
@@ -1222,10 +1222,10 @@ on property:baikal.eng.perf.profile=gaming2
 
 #    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 1
 
-    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 0
+    write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_clock_mhz" ${persist.bkp.gaming2.gmax:-133}
-    write "/sys/devices/soc/b00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_clock_mhz" ${persist.bkp.gaming2.gmax:-624}
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz ${persist.bkp.gaming2.gmax:-133}
+    write /sys/class/kgsl/kgsl-3d0/max_clock_mhz ${persist.bkp.gaming2.gmax:-624}
 
 #on property:baikal.eng.perf.profile=*
 #    setprop "baikal.eng.perf.profile" "default"
