@@ -1065,7 +1065,7 @@ on property:baikal.eng.perf.profile=gaming
 
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
-    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz ${persist.bkp.gaming.gmax:-315}
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz ${persist.bkp.gaming.gmin:-315}
     write /sys/class/kgsl/kgsl-3d0/max_clock_mhz ${persist.bkp.gaming.gmax:-624}
 
 
@@ -1223,7 +1223,7 @@ on property:baikal.eng.perf.profile=gaming2
 
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
     write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 0
-    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz ${persist.bkp.gaming2.gmax:-133}
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz ${persist.bkp.gaming2.gmin:-133}
     write /sys/class/kgsl/kgsl-3d0/max_clock_mhz ${persist.bkp.gaming2.gmax:-624}
 
 #on property:baikal.eng.perf.profile=*
